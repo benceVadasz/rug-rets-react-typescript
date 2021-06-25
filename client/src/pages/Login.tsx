@@ -12,8 +12,7 @@ import {
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 // import {signIn} from '../actions/auth';
 // import Icon from '../assets/icon';
-import {useDispatch} from "react-redux";
-import { FormEventHandler } from "react";
+// import {useDispatch} from "react-redux";
 // import {useHistory} from 'react-router-dom';
 
 const Login = () => {
@@ -54,7 +53,7 @@ const Login = () => {
     const [email, setEmailState] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [invalidCredentials, setInvalidCredentials] = useState(false);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     // const history = useHistory();
 
     const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
