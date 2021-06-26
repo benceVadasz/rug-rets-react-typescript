@@ -14,6 +14,8 @@ import { LoginSubtitle } from "../styles/Login.styles";
 import { ErrorSubtitle } from "../styles/Login.styles";
 import { LoginForm } from "../styles/Login.styles";
 import { Wrapper } from "../styles/Login.styles";
+import { Field } from "../styles/Login.styles";
+import { PasswordField } from "../styles/Login.styles";
 
 const Login = () => {
   const useStyles = makeStyles(() => ({
@@ -70,7 +72,7 @@ const Login = () => {
   };
 
   const submit = (e: React.FormEvent) => {
-    e.preventDefault();
+    console.log(e);
     // dispatch(signIn({email, password}, history))
   };
 
@@ -109,19 +111,28 @@ const Login = () => {
             placeholder="Enter your email"
             onChange={setEmail}
           />
-          <TextField
-            error={invalidCredentials}
-            fullWidth
-            className={classes.passwordStyle}
-            label="Password"
-            type="password"
-            placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Field>
+            <TextField
+              error={invalidCredentials}
+              fullWidth
+              className={classes.passwordStyle}
+              label="Password"
+              type="password"
+              placeholder="Enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Field>
+          <Field
+          name="username"
+          label="Password"
+          rules={[{ required: true, message: 'Please input your username!' }]}
+          >
+            <PasswordField placeholder="Password"/>
+          </Field>
           {/* <Button htmlType="submit" className={classes.button + " lower-case"}>
             Log in
           </Button> */}
-          <LoginButton>Submit</LoginButton>
+          <LoginButton htmlType="submit">Log in</LoginButton>
           {/* <GoogleLogin
                             clientId='525017423702-622ugttvcve20rljokq90t37rdl8m4bc.apps.googleusercontent.com'
                             render={(renderProps) => (
