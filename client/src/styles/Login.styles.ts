@@ -5,6 +5,8 @@ import { Typography } from "antd";
 import { Form, Input } from "antd";
 import { TypographyProps } from "antd/lib/typography/Typography";
 
+const font = 'IBM Plex Mono, monospace';
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -21,29 +23,35 @@ export const Paper = styled(Card)`
 `;
 
 export const LoginButton: React.FunctionComponent<ButtonProps> = styled(AntButton)`
-  margin-top: 24px;
-  color: green;
-  background-color: "#edede9";
+  margin-top: 10px;
+  color: white;
+  background-color: #5B5B5B;
+  border: none;
+  font-family: ${font};
+  &:hover {
+    background-color: #A6A9B6;
+    color: black
+      }
 `;
 
 export const LoginHeader: React.FunctionComponent<TypographyProps> = styled(Typography)`
   margin: 0;
-  font-family: IBM Plex Mono, monospace;
+  font-family: ${font};
   font-size: 24px;
   color: black;
 `;
 
 export const LoginSubtitle = styled(Typography)`
-  margin: 0;
-  font-family: IBM Plex Mono, monospace;
+  margin: 0 0 30px 0;
+  font-family: ${font};
   font-size: 12px;
   color: black;
 `;
 
 export const ErrorSubtitle = styled(Typography)`
   color: red;
-  margin: 0;
-  font-family: IBM Plex Mono, monospace;
+  margin: 0 0 30px 0;
+  font-family: ${font};
   font-size: 12px;
 `;
 
@@ -58,6 +66,5 @@ export const Field = styled(Form.Item)`
 
 `
 
-export const PasswordField = styled(Input.Password)`
-
-`
+export const PasswordField = styled(Input.Password)``
+export const InputField = styled(Input)``

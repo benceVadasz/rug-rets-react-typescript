@@ -6,16 +6,19 @@ import { Avatar, Typography, TextField } from "@material-ui/core";
 // import Icon from '../assets/icon';
 // import {useDispatch} from "react-redux";
 // import {useHistory} from 'react-router-dom';
-import { Paper } from "../styles/Login.styles";
-import { LoginButton } from "../styles/Login.styles";
+import {
+  Paper,
+  LoginButton,
+  LoginHeader,
+  LoginSubtitle,
+  LoginForm,
+  Wrapper,
+  PasswordField,
+  Field,
+  ErrorSubtitle,
+  InputField,
+} from "../styles/Login.styles";
 import { LoginOutlined } from "@ant-design/icons";
-import { LoginHeader } from "../styles/Login.styles";
-import { LoginSubtitle } from "../styles/Login.styles";
-import { ErrorSubtitle } from "../styles/Login.styles";
-import { LoginForm } from "../styles/Login.styles";
-import { Wrapper } from "../styles/Login.styles";
-import { Field } from "../styles/Login.styles";
-import { PasswordField } from "../styles/Login.styles";
 
 const Login = () => {
   const useStyles = makeStyles(() => ({
@@ -76,23 +79,6 @@ const Login = () => {
     // dispatch(signIn({email, password}, history))
   };
 
-  // const googleSuccess = async (res) => {
-  //     const result = res?.profileObj;
-  //     const token = res?.tokenId;
-  //     try {
-  //         dispatch({type: 'AUTH', data: {result, token}})
-  //         history.push('/')
-  //     } catch (e) {
-  //         console.log(e)
-  //     }
-  // };
-
-  const googleFailure = () => {
-    console.log(
-      "google sign in was unsuccessful. Please refresh and start again."
-    );
-  };
-
   return (
     <Wrapper>
       <Paper>
@@ -104,51 +90,23 @@ const Login = () => {
           <ErrorSubtitle>Invalid credentials</ErrorSubtitle>
         )}
         <LoginForm onFinish={submit}>
-          <TextField
-            error={invalidCredentials}
-            fullWidth
-            label="Email"
-            placeholder="Enter your email"
-            onChange={setEmail}
-          />
-          <Field>
-            <TextField
-              error={invalidCredentials}
-              fullWidth
-              className={classes.passwordStyle}
-              label="Password"
-              type="password"
-              placeholder="Enter your password"
+          <Field
+            validateStatus={invalidCredentials ? "error" : ""}
+            rules={[{ required: true, message: "Please enter your email!" }]}
+            name="email"
+          >
+            <InputField placeholder="Email..." onChange={setEmail} />
+          </Field>
+          <Field
+            name="password"
+            rules={[{ required: true, message: "Please enter your password!" }]}
+          >
+            <PasswordField
+              placeholder="Password..."
               onChange={(e) => setPassword(e.target.value)}
             />
           </Field>
-          <Field
-          name="username"
-          label="Password"
-          rules={[{ required: true, message: 'Please input your username!' }]}
-          >
-            <PasswordField placeholder="Password"/>
-          </Field>
-          {/* <Button htmlType="submit" className={classes.button + " lower-case"}>
-            Log in
-          </Button> */}
           <LoginButton htmlType="submit">Log in</LoginButton>
-          {/* <GoogleLogin
-                            clientId='525017423702-622ugttvcve20rljokq90t37rdl8m4bc.apps.googleusercontent.com'
-                            render={(renderProps) => (
-                                <Button className={'lower-case white ' + classes.googleBtn} color="primary"
-                                        fullWidth onClick={renderProps.onClick}
-                                        disabled={renderProps.disabled}
-                                        startIcon={<Icon/>}
-                                        variant="contained"
-                                >
-                                    Sign in with Google
-                                </Button>
-                            )}
-                            onSuccess={googleSuccess}
-                            onFailure={googleFailure}
-                            cookiePolicy="single_host_origin"
-                        /> */}
         </LoginForm>
       </Paper>
     </Wrapper>
