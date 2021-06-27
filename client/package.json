@@ -55,6 +55,8 @@
   },
   "devDependencies": {
     "@material-ui/icons": "^4.11.2",
+    "@types/react-router": "^5.1.15",
+    "@types/react-router-dom": "^5.1.7",
     "http-proxy-middleware": "^2.0.0",
     "react-redux": "^7.2.4",
     "sweetalert2-react-content": "^4.1.0"
