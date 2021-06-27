@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Typography, TextField } from "@material-ui/core";
 // import {signIn} from '../actions/auth';
 // import Icon from '../assets/icon';
-// import {useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 // import {useHistory} from 'react-router-dom';
 import {
   Paper,
@@ -65,8 +65,8 @@ const Login = () => {
   const [email, setEmailState] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [invalidCredentials, setInvalidCredentials] = useState(false);
-  // const dispatch = useDispatch();
-  // const history = useHistory();
+//   const dispatch = useDispatch();
+//   const history = useHistory();
 
   const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvalidCredentials(false);
