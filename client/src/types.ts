@@ -1,0 +1,3 @@
+export type DesignContextState = {
+    designs: [];
+  };
