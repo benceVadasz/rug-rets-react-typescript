@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FunctionComponent as FC} from "react";
 import { Menu } from "antd";
 import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
@@ -41,7 +41,7 @@ const Link = styled(NavLink)`
   line-height: 20px;
 `;
 
-const Navbar = () => {
+const Navbar: FC = () => {
   return (
     <AppBar mode="horizontal">
       <LeftNav>
@@ -66,7 +66,7 @@ const Navbar = () => {
           </Button>
         </Link>
         <Link to="/register" exact activeClassName="current">
-          <Button bordered key="feed">
+          <Button bordered={true} key="feed">
             Sign up
           </Button>
         </Link>

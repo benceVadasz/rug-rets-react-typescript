@@ -17,7 +17,7 @@ const DesignProvider: FC = ({children}) => {
 
 
     useEffect(() => {
-        axios.get('https://www.colourlovers.com/api/patterns?format=json')
+        axios.get('https://www.colourlovers.com/api/patterns?format=json&resultOffset=40')
         .then(response =>
                 setDesigns(response.data))
     }, [])

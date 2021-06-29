@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState, FunctionComponent as FC } from "react";
 import { GoogleLogin } from "react-google-login";
 // import {signIn} from '../actions/auth';
 // import Icon from '../assets/icon';
@@ -18,7 +18,7 @@ import {
 } from "../styles/Login.styles";
 import { LoginOutlined } from "@ant-design/icons";
 
-const Login = () => {
+const Login: FC = () => {
   
   const [email, setEmailState] = useState<string>("");
   const [password, setPassword] = useState<string>("");
