@@ -68,9 +68,8 @@ const Design = () => {
 
     const {designs} = useContext(DesignContext)
 
-
-
     console.log(designs)
+
 
     return (
         <DS.Wrapper>

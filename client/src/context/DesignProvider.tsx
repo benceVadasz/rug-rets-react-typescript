@@ -10,7 +10,7 @@ export const DesignContext = createContext<DesignContextState>(
     contextDefaultValues
   );
 
-const DesignProvider: FC = () => {
+const DesignProvider: FC = ({children}) => {
 
 
     const [designs, setDesigns] = useState(contextDefaultValues.designs);
@@ -24,6 +24,7 @@ const DesignProvider: FC = () => {
 
     return (
         <DesignContext.Provider value={{designs}}>
+            {children}
         </DesignContext.Provider>
     )
 }
