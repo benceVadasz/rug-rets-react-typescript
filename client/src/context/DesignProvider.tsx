@@ -12,11 +12,12 @@ const DesignProvider: FC = ({children}) => {
     const contextDefaultValues: DesignContextState = {
         designs: [],
         setPage: page => setOffset(page),
-        currentPage: 1
+        currentPage: 1,
     };
     const [designs, setDesigns] = useState(contextDefaultValues.designs);
     const [offset, setOffset] = useState(0);
     const [currentPage, setPage] = useState(contextDefaultValues.currentPage);
+
 
     const paginate = (page: number) => {
         setPage(page)

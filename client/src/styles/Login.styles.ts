@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { Button as AntButton, ButtonProps, FormProps, InputProps } from "antd";
+import { Button as AntButton, ButtonProps, FormProps } from "antd";
 import { Card } from "antd";
 import { Typography } from "antd";
 import { Form, Input } from "antd";
 import { TypographyProps } from "antd/lib/typography/Typography";
+import {FunctionComponent as FC} from "react";
 
 const font = 'IBM Plex Mono, monospace';
 
@@ -22,7 +23,7 @@ export const Paper = styled(Card)`
     0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12);
 `;
 
-export const LoginButton: React.FunctionComponent<ButtonProps> = styled(AntButton)`
+export const LoginButton: FC<ButtonProps> = styled(AntButton)`
   margin-top: 10px;
   color: white;
   background-color: #5B5B5B;
@@ -34,7 +35,7 @@ export const LoginButton: React.FunctionComponent<ButtonProps> = styled(AntButto
       }
 `;
 
-export const LoginHeader: React.FunctionComponent<TypographyProps> = styled(Typography)`
+export const LoginHeader: FC<TypographyProps> = styled(Typography)`
   margin: 0;
   font-family: ${font};
   font-size: 24px;
@@ -55,8 +56,8 @@ export const ErrorSubtitle = styled(Typography)`
   font-size: 12px;
 `;
 
-export const LoginForm: React.FunctionComponent<FormProps> = styled(Form)`
-  height: 220;
+export const LoginForm: FC<FormProps> = styled(Form)`
+  height: 220px;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
