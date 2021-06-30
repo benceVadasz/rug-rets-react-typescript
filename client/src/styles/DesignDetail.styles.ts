@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import {Card, Typography} from 'antd';
-import {TypographyProps} from "antd/lib/typography/Typography";
-import {FunctionComponent as FC} from "react";
+import {lightOrDark} from "../util/colorChecker";
 
-type TextProps = {
+type Props = {
     color: string;
 };
 
@@ -20,7 +19,7 @@ export const Wrapper = styled.div`
   margin: 100px auto 0;
 `
 
-export const Text = styled(Typography)<TextProps>`
+export const Text = styled(Typography)<Props>`
   display: inline;
   background: ${(props) => (props.color === "white" ? "#194350" : "")};
   color: ${(props) => props.color};
@@ -33,4 +32,25 @@ export const LoadingWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`
+export const Hex = styled.span`
+`
+
+export const ColorBox = styled.div<Props>`
+  width: 100px;
+  height: 50px;
+  background-color: ${(props) => (props.color)};
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(${(props) => (props.color)}, 0.2);
+  }
+`
+
+
+export const ColorContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 `

@@ -1,4 +1,4 @@
-import React, {FunctionComponent as FC, useEffect, useState} from "react";
+import React, {FunctionComponent as FC, MouseEventHandler, useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {ParamTypes} from "../types";
 import axios from "axios";
@@ -20,8 +20,10 @@ const DesignDetails = () => {
     ;
     const [design, setDesign] = useState<DesignType>(designDefaultValues)
     const [loading, setLoading] = useState(false)
+    const [copied, setCopied] = useState('')
 
     useEffect(() => {
+        console.log(id);
         setLoading(true)
         axios
             .get(
@@ -36,16 +38,34 @@ const DesignDetails = () => {
             });
     }, [id])
 
+
+    const copy = (event: React.MouseEvent<HTMLDivElement>, color: string) => {
+        navigator.clipboard.writeText(`#${color}`)
+        setCopied(color)
+        setTimeout(() => {
+            setCopied('')
+        }, 3000)
+    }
+
     if (loading) {
         return <DS.LoadingWrapper><Loading/></DS.LoadingWrapper>
     }
     console.log(design)
     return (
         <DS.Wrapper>
-            <DS.Paper style={{backgroundImage: `url(${design.imageUrl}`}}>
+            <DS.Paper style={{backgroundImage: `url(${design?.imageUrl}`}}>
                 <DS.Text color={"white"}>{design.title}</DS.Text>
             </DS.Paper>
-            <DS.Text color={"#444444"}>Author:</DS.Text><DS.Text color={"black"}>{design.userName}</DS.Text>
+            <DS.Text color={"#444444"}>Author:</DS.Text>
+            <DS.Text color={"black"}>{design.userName}</DS.Text><br/>
+            <DS.Text color={"#444444"}>Colors:</DS.Text>
+            <DS.ColorContainer>
+                {design.colors.map(color => <DS.ColorBox
+                    onClick={(e) => copy(e, color)}
+                    color={`#${color}`}>
+                    <DS.Hex>{copied !== color ? `#${color}` : 'copied'}</DS.Hex>
+                </DS.ColorBox>)}
+            </DS.ColorContainer>
         </DS.Wrapper>
     )
 }

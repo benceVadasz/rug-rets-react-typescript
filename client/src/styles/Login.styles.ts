@@ -23,7 +23,7 @@ export const Paper = styled(Card)`
     0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12);
 `;
 
-export const LoginButton: FC<ButtonProps> = styled(AntButton)`
+export const LoginButton = styled(AntButton)<ButtonProps>`
   margin-top: 10px;
   color: white;
   background-color: #5B5B5B;
