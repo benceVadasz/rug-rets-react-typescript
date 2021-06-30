@@ -3,21 +3,23 @@ import {Wrapper} from '../styles/Feed.styles';
 import {DesignContext} from '../context/DesignProvider'
 import DesignCard from "../components/DesignCard";
 import {DesignType} from "../types";
+import {Paginator} from "../styles/Feed.styles";
 
 const Feed: FC = () => {
 
-    const {designs} = useContext(DesignContext)
+    const {designs, setPage, currentPage} = useContext(DesignContext)
 
-    console.log(designs)
-
-
+    console.log(currentPage)
 
     return (
-        <Wrapper>
-            {designs.map((design:DesignType) => (
-                <DesignCard design={design} key={design.id}/>
-            ))}
-        </Wrapper>
+        <>
+            <Wrapper>
+                {designs.map((design: DesignType) => (
+                    <DesignCard design={design} key={design.id}/>
+                ))}
+                <Paginator onChange={setPage} current={currentPage} total={70}/>
+            </Wrapper>
+        </>
     );
 }
 

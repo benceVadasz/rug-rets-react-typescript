@@ -6,7 +6,7 @@ import {Route, BrowserRouter as Router} from "react-router-dom";
 import Design from "./pages/Design";
 import Feed from "./pages/Feed";
 import DesignProvider from "./context/DesignProvider";
-import DesignDetails from "./components/DesignDetails";
+import DesignDetails from "./pages/DesignDetails";
 
 function App() {
     return (

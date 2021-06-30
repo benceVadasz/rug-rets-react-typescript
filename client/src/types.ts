@@ -1,9 +1,11 @@
 export type DesignContextState = {
     designs: [];
+    setPage: (page: number) => void;
+    currentPage: number;
   };
 
 export type DesignType = {
-    id: number,
+    id: string,
     title: string,
     colors: string[],
     imageUrl: string,
