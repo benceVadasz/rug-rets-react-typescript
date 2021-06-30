@@ -23,11 +23,10 @@ const DesignDetails = () => {
     const [copied, setCopied] = useState('')
 
     useEffect(() => {
-        console.log(id);
         setLoading(true)
         axios
             .get(
-                `https://www.colourlovers.com/api/palette/${id}?format=json`)
+                `https://www.colourlovers.com/api/pattern/${id}?format=json`)
             .then((res) => {
                 setDesign(res.data[0])
                 setLoading(false)
@@ -36,7 +35,7 @@ const DesignDetails = () => {
                 console.log(error)
                 setLoading(false)
             });
-    }, [id])
+    }, [])
 
 
     const copy = (event: React.MouseEvent<HTMLDivElement>, color: string) => {
