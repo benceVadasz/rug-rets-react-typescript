@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import {makeStyles} from '@material-ui/core/styles';
+import React from "react";
 // import AddNewColor from "./AddNewColor";
 // import {useDispatch, useSelector} from "react-redux";
 // import {setColor, getColors} from "../actions/colors";

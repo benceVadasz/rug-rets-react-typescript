@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import {Card, Typography} from 'antd';
-import {lightOrDark} from "../util/colorChecker";
 
 type Props = {
     color: string;

@@ -3,7 +3,6 @@ import {DesignType} from "../types";
 import {Card} from 'antd';
 import * as FS from "../styles/DesignCard.styles";
 import {CaretUpOutlined, HeartOutlined} from "@ant-design/icons";
-import * as DS from '../styles/DesignDetail.styles'
 
 
 export interface DesignCardProps {

@@ -1,8 +1,8 @@
 import React, { useState, FunctionComponent as FC } from "react";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 // import {signIn} from '../actions/auth';
 // import Icon from '../assets/icon';
-import {useDispatch} from "react-redux";
+// import {useDispatch} from "react-redux";
 // import {useHistory} from 'react-router-dom';
 import {
   Paper,
@@ -36,6 +36,8 @@ const Login: FC = () => {
     console.log(e);
     // dispatch(signIn({email, password}, history))
   };
+
+  console.log(email, password)
 
   return (
     <Wrapper>

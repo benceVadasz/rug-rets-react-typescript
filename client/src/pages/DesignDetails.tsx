@@ -1,4 +1,4 @@
-import React, {FunctionComponent as FC, MouseEventHandler, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {ParamTypes} from "../types";
 import axios from "axios";
@@ -37,6 +37,7 @@ const DesignDetails = () => {
                 console.log(error)
                 setLoading(false)
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
