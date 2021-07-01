@@ -27,7 +27,6 @@ export const ShapePicker = styled.div`
 
 export const Canvas = styled.div`
   grid-area: 4 / 1 / 10 / 5;
-  background-color: #e5e5f7;
   background-image: linear-gradient(
       rgba(209, 207, 197, 0.5) 1px,
       transparent 1px
@@ -41,16 +40,16 @@ export const Canvas = styled.div`
   overflow: scroll;
 `;
 
-export const ColorPicker = styled.div`
+export const ColorPickerContainer = styled.div`
   overflow: scroll;
   box-shadow: 0 1em 1em -1em rgba(0, 0, 0, 0.25);
   grid-area: 5 / 5 / 9 / 6;
-  background-color: red;
 `;
 
 export const ColorBtnContainer = styled.div`
   grid-area: 4 / 5 / 5 / 6;
-  background-color: purple;
+  display: flex;
+  justify-content: center;
 `;
 
 export const ButtonContainer = styled.div`
@@ -64,9 +63,29 @@ export const ButtonContainer = styled.div`
 `;
 
 export const ToggleGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>`
-  
+  height: 50%;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
 `
 
 export const Toggle = styled(ToggleButton)`
   
+`
+
+export const ColorSelector = styled.div`
+  display: flex;
+  margin: 0 auto;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  right: 0;
+  left: 0;
+`
+export const Color = styled.div`
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;    
 `

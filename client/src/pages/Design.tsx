@@ -1,7 +1,9 @@
 import React, {useContext, FunctionComponent as FC} from "react";
 import * as DS from '../styles/Design.styles';
-import DesignTypeSwitcher from '../components/DesignTypeSwitcher';
-import {DesignContext} from '../context/DesignProvider'
+import {Switcher} from "../components/Switcher";
+import {DesignContext} from '../context/DesignProvider';
+import ColorBox from "../components/ColorBox";
+
 
 const Design: FC = () => {
 
@@ -13,7 +15,7 @@ const Design: FC = () => {
     return (
         <DS.Wrapper>
             <DS.DesignTypesContainer>
-                    <DesignTypeSwitcher/>
+                    <Switcher type={'shape'}/>
             </DS.DesignTypesContainer>
             {/* {!isAlertNeeded ? <div className={classes.zoom}>
                 <Zoom/>
@@ -25,11 +27,11 @@ const Design: FC = () => {
                 {/* <Canvas/> */}
             </DS.Canvas>
             <DS.ColorBtnContainer>
-                {/* <ColorTypeSwitcher/> */}
+                 <Switcher type={'color'}/>
             </DS.ColorBtnContainer>
-            <DS.ColorPicker>
-                {/* <ColorPicker/> */}
-            </DS.ColorPicker>
+            <DS.ColorPickerContainer>
+                <ColorBox/>
+            </DS.ColorPickerContainer>
             <DS.ButtonContainer>
                 {/* <ButtonGroup/> */}
             </DS.ButtonContainer>
