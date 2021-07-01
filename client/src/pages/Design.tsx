@@ -1,7 +1,8 @@
 import React, {useContext, FunctionComponent as FC} from "react";
 import * as DS from '../styles/Design.styles';
 import {Switcher} from "../components/Switcher";
-import {DesignContext} from '../context/DesignProvider';
+import {DesignContext} from '../context/store';
+// @ts-ignore
 import ColorBox from "../components/ColorBox";
 
 

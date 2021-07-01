@@ -10,7 +10,9 @@ export type DesignType = {
     colors: string[],
     imageUrl: string,
     description: string,
-    userName: string
+    userName: string,
+    rank: number,
+    numHearts: number
 }
 
 export type ParamTypes = {

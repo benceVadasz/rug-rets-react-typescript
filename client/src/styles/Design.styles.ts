@@ -22,7 +22,6 @@ export const DesignTypesContainer = styled.div`
 
 export const ShapePicker = styled.div`
   grid-area: 2 / 1 / 4 / 6;
-  background-color: blue;
 `;
 
 export const Canvas = styled.div`
@@ -59,7 +58,6 @@ export const ButtonContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   grid-area: 9 / 5 / 10 / 6;
-  background-color: yellow;
 `;
 
 export const ToggleGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>`

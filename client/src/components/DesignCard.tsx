@@ -1,8 +1,9 @@
 import React, {FunctionComponent as FC} from 'react';
-import {Paper} from '../styles/DesignCard.styles';
 import {DesignType} from "../types";
 import {Card} from 'antd';
-import {LinkWrapper} from "../styles/DesignCard.styles";
+import * as FS from "../styles/DesignCard.styles";
+import {CaretUpOutlined, HeartOutlined} from "@ant-design/icons";
+import * as DS from '../styles/DesignDetail.styles'
 
 
 export interface DesignCardProps {
@@ -14,15 +15,27 @@ const DesignCard: FC<DesignCardProps> = ({design}: DesignCardProps) => {
     const {Meta} = Card;
 
     return (
-        <LinkWrapper to={`/design/${design.id}`}>
-            <Paper
+        <FS.LinkWrapper to={`/design/${design.id}`}>
+            <FS.Paper
                 hoverable
                 bordered={false}
                 cover={<img alt="example" src={design.imageUrl}/>}
             >
                 <Meta title={design.title} description={`by: ${design.userName}`}/>
-            </Paper>
-        </LinkWrapper>
+                <FS.HorizontalBox>
+                    <FS.VerticalBox>
+                        <FS.Text>Rank:</FS.Text>
+                        <CaretUpOutlined/>
+                        <FS.Text> {design.rank}</FS.Text>
+                    </FS.VerticalBox>
+                    <FS.VerticalBox>
+                        <FS.Text>Hearts:</FS.Text>
+                        <HeartOutlined/>
+                        <FS.Text> {design.numHearts}</FS.Text>
+                    </FS.VerticalBox>
+                </FS.HorizontalBox>
+            </FS.Paper>
+        </FS.LinkWrapper>
     )
 };
 

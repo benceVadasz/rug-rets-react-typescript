@@ -1,6 +1,6 @@
 import React, {useContext, FunctionComponent as FC} from "react";
 import {Wrapper} from '../styles/Feed.styles';
-import {DesignContext} from '../context/DesignProvider'
+import {DesignContext} from '../context/store'
 import DesignCard from "../components/DesignCard";
 import {DesignType} from "../types";
 import {Paginator} from "../styles/Feed.styles";

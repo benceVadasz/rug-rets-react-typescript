@@ -11,3 +11,5 @@ export const Wrapper = styled.div`
 export const Paginator = styled(Pagination)`
   margin: 10px 0 30px 0;
 `
+
+
