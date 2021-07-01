@@ -1,11 +1,7 @@
-import React, {createContext, FunctionComponent as FC, useEffect, useState} from 'react'
+import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import axios from 'axios';
-import { DesignContextState } from "../types";
-
-
-export const DesignContext = createContext<DesignContextState>(
-    {designs: [], setPage: page => console.log(page), currentPage: 1}
-);
+import {DesignContextState} from "../types";
+import {DesignContext} from "./store";
 
 const DesignProvider: FC = ({children}) => {
 
@@ -14,8 +10,9 @@ const DesignProvider: FC = ({children}) => {
         setPage: page => setOffset(page),
         currentPage: 1,
     };
+
     const [designs, setDesigns] = useState(contextDefaultValues.designs);
-    const [offset, setOffset] = useState(0);
+    const [offset, setOffset] = useState<number>(0);
     const [currentPage, setPage] = useState(contextDefaultValues.currentPage);
 
 
