@@ -20,7 +20,7 @@ export const VerticalBox = styled.div`
   border: 1px solid cornflowerblue;
   padding: 5px;
   border-radius: 5px;
-  min-width: 70px;
+  min-width: 80px;
 `
 
 export const HorizontalBox = styled.div`

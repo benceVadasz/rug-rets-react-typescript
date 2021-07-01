@@ -17,7 +17,7 @@ const DesignDetails = () => {
             description: '',
             userName: '',
             rank: 0,
-            numHearts: 0
+            numVotes: 0
         }
     ;
     const [design, setDesign] = useState<DesignType>(designDefaultValues)

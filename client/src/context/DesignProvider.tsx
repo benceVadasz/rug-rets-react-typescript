@@ -9,11 +9,15 @@ const DesignProvider: FC = ({children}) => {
         designs: [],
         setPage: page => setOffset(page),
         currentPage: 1,
+        setParam: param => setParam(param),
+        loading: false
     };
 
     const [designs, setDesigns] = useState(contextDefaultValues.designs);
     const [offset, setOffset] = useState<number>(0);
     const [currentPage, setPage] = useState(contextDefaultValues.currentPage);
+    const [param, setParam] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
 
 
     const paginate = (page: number) => {
@@ -22,13 +26,14 @@ const DesignProvider: FC = ({children}) => {
     }
 
     useEffect(() => {
-        axios.get(`https://www.colourlovers.com/api/patterns?format=json&resultOffset=${offset}`)
-        .then(response =>
-                setDesigns(response.data))
-    }, [offset])
+        setLoading(true)
+        axios.get(`https://www.colourlovers.com/api/patterns${param}&format=json&resultOffset=${offset}`)
+        .then(({data}) => setDesigns(data))
+        setLoading(false)
+    }, [offset, param])
 
     return (
-        <DesignContext.Provider value={{designs, setPage: paginate, currentPage}}>
+        <DesignContext.Provider value={{designs, setPage: paginate, currentPage, setParam, loading}}>
             {children}
         </DesignContext.Provider>
     )

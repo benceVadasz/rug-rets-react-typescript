@@ -2,6 +2,8 @@ export type DesignContextState = {
     designs: [];
     setPage: (page: number) => void;
     currentPage: number;
+    setParam: (param: string) => void;
+    loading: boolean
   };
 
 export type DesignType = {
@@ -12,7 +14,7 @@ export type DesignType = {
     description: string,
     userName: string,
     rank: number,
-    numHearts: number
+    numVotes: number,
 }
 
 export type ParamTypes = {

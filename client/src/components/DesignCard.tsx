@@ -28,9 +28,9 @@ const DesignCard: FC<DesignCardProps> = ({design}: DesignCardProps) => {
                         <FS.Text> {design.rank}</FS.Text>
                     </FS.VerticalBox>
                     <FS.VerticalBox>
-                        <FS.Text>Hearts:</FS.Text>
+                        <FS.Text>Votes:</FS.Text>
                         <HeartOutlined/>
-                        <FS.Text> {design.numHearts}</FS.Text>
+                        <FS.Text> {design.numVotes}</FS.Text>
                     </FS.VerticalBox>
                 </FS.HorizontalBox>
             </FS.Paper>
