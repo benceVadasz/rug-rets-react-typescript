@@ -1,14 +1,12 @@
 import React, {useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {useDispatch, useSelector} from "react-redux";
+import * as DS from "../styles/Design.styles";
 
 const DesignTypeSwitcher = () => {
     // const dispatch = useDispatch();
     // const shapeSelection = useSelector((state => state.shapeSelection));
     // const currentShapeSelection = shapeSelection.length > 0 ? shapeSelection : 'pre-made';
-    const [types, setTypes] = useState('current');
+    const [types, setTypes] = useState('pre-made');
     const useStyles = makeStyles(() => ({
         switcher: {
             height: '50%',
@@ -20,33 +18,27 @@ const DesignTypeSwitcher = () => {
     //     setTypes(newSelection);
     //     dispatch(setShapeSelectionType(newSelection))
     // };
-    
-    const handleTypes = () => {
-        setTypes('new');
+
+    const handleTypes = (event: React.MouseEvent<HTMLElement, MouseEvent>, newSelection: string) => {
+        setTypes(newSelection);
     };
-    // if (loading)
-    //     return (
-    //         <div className={classes.load}>
-    //             <Loading/>
-    //         </div>
-    //     );
 
     return (
-        <ToggleButtonGroup
-            value={'types'}
+        <DS.ToggleGroup
+            value={types}
             exclusive
             onChange={handleTypes}
             aria-label="text alignment"
             className={classes.switcher}
         >
-            <ToggleButton className='lower-case' value="pre-made" aria-label="left aligned">
+            <DS.Toggle className='lower-case' value="pre-made" aria-label="left aligned">
                 Pre-made
-            </ToggleButton>
-            <ToggleButton className='lower-case' value="custom" aria-label="centered">
+            </DS.Toggle>
+            <DS.Toggle className='lower-case' value="custom" aria-label="centered">
                 Custom
-            </ToggleButton>
+            </DS.Toggle>
 
-        </ToggleButtonGroup>
+        </DS.ToggleGroup>
     );
 }
 

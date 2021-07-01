@@ -14,7 +14,6 @@ const Design: FC = () => {
         <DS.Wrapper>
             <DS.DesignTypesContainer>
                     <DesignTypeSwitcher/>
-
             </DS.DesignTypesContainer>
             {/* {!isAlertNeeded ? <div className={classes.zoom}>
                 <Zoom/>

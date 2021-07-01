@@ -1,4 +1,7 @@
 import styled from "@emotion/styled";
+import {ToggleButton} from '@material-ui/lab';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import {ToggleButtonGroupProps} from '@material-ui/lab';
 
 export const Wrapper = styled.div`
   height: 90vh;
@@ -59,3 +62,11 @@ export const ButtonContainer = styled.div`
   grid-area: 9 / 5 / 10 / 6;
   background-color: yellow;
 `;
+
+export const ToggleGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>`
+  
+`
+
+export const Toggle = styled(ToggleButton)`
+  
+`
