@@ -9,7 +9,7 @@ export const Paper = styled(Card)`
 export const LinkWrapper = styled(Link)`
   width: 240px;
   margin: 20px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 export const VerticalBox = styled.div`
@@ -35,4 +35,8 @@ export const Text = styled(Typography)`
   font-weight: bolder;
   font-size: 16px;
   margin: 5px auto 0;
+`
+
+export const Image = styled.img`
+  //max-height: 150px;
 `

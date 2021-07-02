@@ -6,7 +6,7 @@ import {DesignType} from "../types";
 import {Paginator} from "../styles/Feed.styles";
 import {DropDowN} from "../styles/Feed.styles";
 import {DownOutlined} from "@ant-design/icons";
-import {Dropdown, Button, Menu} from 'antd';
+import {Button, Menu} from 'antd';
 import Loading from "../util/Loading";
 import {LoadingWrapper} from "../styles/DesignDetail.styles";
 
@@ -17,10 +17,10 @@ const Feed: FC = () => {
     const [param, paramSet] = useState('');
 
     const select = (e: any) => {
-        paramSet(e.domEvent.target.innerHTML.toLowerCase())
         let value = e.domEvent.target.innerHTML;
-        value === 'Random' ? setParam('') :
-            setParam(`/${value}`)
+        paramSet(e.domEvent.target.innerHTML.toLowerCase())
+        console.log(value.toLowerCase())
+        setParam(`/${value.toLowerCase()}`)
     }
 
     console.log(currentPage)
@@ -53,7 +53,7 @@ const Feed: FC = () => {
                 {designs.map((design: DesignType) => (
                     <DesignCard design={design} key={design.id}/>
                 ))}
-                <Paginator onChange={setPage} current={currentPage} total={70}/>
+                {param !== 'random' ? <Paginator onChange={setPage} current={currentPage} total={70}/> : null}
             </Wrapper>
         </>
     );

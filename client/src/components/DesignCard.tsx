@@ -1,7 +1,7 @@
 import React, {FunctionComponent as FC} from 'react';
 import {DesignType} from "../types";
 import {Card} from 'antd';
-import * as FS from "../styles/DesignCard.styles";
+import * as DS from "../styles/DesignCard.styles";
 import {CaretUpOutlined, HeartOutlined} from "@ant-design/icons";
 
 
@@ -14,27 +14,27 @@ const DesignCard: FC<DesignCardProps> = ({design}: DesignCardProps) => {
     const {Meta} = Card;
 
     return (
-        <FS.LinkWrapper to={`/design/${design.id}`}>
-            <FS.Paper
+        <DS.LinkWrapper to={`/design/${design.id}`}>
+            <DS.Paper
                 hoverable
                 bordered={false}
-                cover={<img alt="example" src={design.imageUrl}/>}
+                cover={<DS.Image alt="example" src={design.imageUrl}/>}
             >
                 <Meta title={design.title} description={`by: ${design.userName}`}/>
-                <FS.HorizontalBox>
-                    <FS.VerticalBox>
-                        <FS.Text>Rank:</FS.Text>
+                <DS.HorizontalBox>
+                    <DS.VerticalBox>
+                        <DS.Text>Rank:</DS.Text>
                         <CaretUpOutlined/>
-                        <FS.Text> {design.rank}</FS.Text>
-                    </FS.VerticalBox>
-                    <FS.VerticalBox>
-                        <FS.Text>Votes:</FS.Text>
+                        <DS.Text> {design.rank}</DS.Text>
+                    </DS.VerticalBox>
+                    <DS.VerticalBox>
+                        <DS.Text>Votes:</DS.Text>
                         <HeartOutlined/>
-                        <FS.Text> {design.numVotes}</FS.Text>
-                    </FS.VerticalBox>
-                </FS.HorizontalBox>
-            </FS.Paper>
-        </FS.LinkWrapper>
+                        <DS.Text> {design.numVotes}</DS.Text>
+                    </DS.VerticalBox>
+                </DS.HorizontalBox>
+            </DS.Paper>
+        </DS.LinkWrapper>
     )
 };
 

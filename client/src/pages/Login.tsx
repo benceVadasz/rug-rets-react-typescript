@@ -1,9 +1,9 @@
 import React, { useState, FunctionComponent as FC } from "react";
 // import { GoogleLogin } from "react-google-login";
-// import {signIn} from '../actions/auth';
+import {signIn} from '../state/actions/auth';
 // import Icon from '../assets/icon';
-// import {useDispatch} from "react-redux";
-// import {useHistory} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {useHistory} from 'react-router-dom';
 import {
   Paper,
   LoginButton,
@@ -23,8 +23,8 @@ const Login: FC = () => {
   const [email, setEmailState] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [invalidCredentials, setInvalidCredentials] = useState(false);
-//   const dispatch = useDispatch();
-//   const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInvalidCredentials(false);
@@ -34,7 +34,7 @@ const Login: FC = () => {
 
   const submit = (e: React.FormEvent) => {
     console.log(e);
-    // dispatch(signIn({email, password}, history))
+    dispatch(signIn({email, password}, history))
   };
 
   console.log(email, password)
