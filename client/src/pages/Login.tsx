@@ -1,5 +1,4 @@
 import React, { useState, FunctionComponent as FC } from "react";
-// import { GoogleLogin } from "react-google-login";
 import {signIn} from '../state/actions/auth';
 // import Icon from '../assets/icon';
 import {useDispatch} from "react-redux";
