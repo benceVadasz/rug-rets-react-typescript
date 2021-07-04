@@ -5,6 +5,7 @@ import axios from "axios";
 import {DesignType} from "../types";
 import * as DS from '../styles/DesignDetail.styles';
 import Loading from "../util/Loading";
+import {lightOrDark} from "../util/colorChecker";
 
 const DesignDetails = () => {
     const {id} = useParams<ParamTypes>();
@@ -46,7 +47,7 @@ const DesignDetails = () => {
         setCopied(color)
         setTimeout(() => {
             setCopied('')
-        }, 3000)
+        }, 2000)
     }
 
     if (loading) {
@@ -64,7 +65,9 @@ const DesignDetails = () => {
             <DS.ColorContainer>
                 {design.colors.map(color => <DS.ColorBox
                     onClick={(e) => copy(e, color)}
-                    color={`#${color}`}>
+                    color={`#${color}`}
+                    tone={lightOrDark(color)}
+                >
                     <DS.Hex>{copied !== color ? `#${color}` : 'copied'}</DS.Hex>
                 </DS.ColorBox>)}
             </DS.ColorContainer>

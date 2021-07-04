@@ -46,7 +46,11 @@
 
 .lower-case {
   text-transform: unset !important;
-  color: black !important;
+  color: black;
   font-family: 'IBM Plex Mono', monospace !important;
   font-weight: 500 !important;
+}
+
+.white {
+  color: whitesmoke;
 }
