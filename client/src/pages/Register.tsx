@@ -1,14 +1,4 @@
 import React, {useState} from "react";
-import {makeStyles} from '@material-ui/core/styles';
-import {
-    Grid,
-    Paper,
-    Avatar,
-    Typography,
-    TextField,
-    Button,
-} from "@material-ui/core";
-import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import {signUp} from '../state/actions/auth';
 import {GoogleLogin} from "react-google-login";
 import {useDispatch} from "react-redux";
@@ -18,38 +8,7 @@ import * as RS from "../styles/Register.styles";
 // import Loading from "./Loading";
 
 const Register = () => {
-    const useStyles = makeStyles(() => ({
-        paperStyle: {
-            padding: "30px 20px",
-            height: 460,
-            width: 500,
-            margin: "70px auto",
-        },
-        mobilePaperStyle: {
-            padding: "30px 20px 10px 20px",
-            height: 450,
-            width: '90%',
-            margin: "140px auto",
-        },
-        formStyle: {
-            height: 350,
-            display: "flex",
-            flexFlow: "column wrap",
-            justifyContent: "space-between",
-        },
-        mobileFormStyle: {
-            padding: "30px 20px",
-            display: "flex",
-            flexFlow: "column wrap",
-            justifyContent: "space-between",
-        },
-        headerStyle: {margin: 0, fontFamily: "'IBM Plex Mono', monospace"},
-        invalid: {color: 'red'},
-        avatarStyle: {backgroundColor: "#859DF4", marginBottom: 10},
-        button: {backgroundColor: "#edede9", color: 'black'},
-        load: {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}
-    }));
-    const classes = useStyles();
+
     const [givenName, setFirstNameState] = useState("");
     const [familyName, setLastNameState] = useState("");
     const [email, setEmail] = useState("");
