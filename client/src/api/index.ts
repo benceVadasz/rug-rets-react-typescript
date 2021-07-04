@@ -14,7 +14,7 @@ API.interceptors.request.use((req) => {
 // export const uploadShape = (shape: any) => API.post('/shapes', shape);
 // export const deleteShape = (id) => API.delete(`/shapes/${id}`);
 //
-// export const fetchColors = (userId) => API.get(`/colors/${userId}`);
+export const fetchColors = (userId: string) => API.get(`/colors/${userId}`);
 // export const uploadColor = (color) => API.post('/colors', color);
 // export const deleteColor = (id) => API.delete(`/colors/${id}`);
 // export const checkIfColorExists = (hex) => API.post('/colors/check', hex);

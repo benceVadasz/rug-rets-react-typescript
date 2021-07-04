@@ -4,6 +4,7 @@ import {Switcher} from "../components/Switcher";
 import {DesignContext} from '../context/store';
 // @ts-ignore
 import ColorBox from "../components/ColorBox";
+import ButtonGroup from "../components/ButtonGroup";
 
 
 const Design: FC = () => {
@@ -34,7 +35,7 @@ const Design: FC = () => {
                 <ColorBox/>
             </DS.ColorPickerContainer>
             <DS.ButtonContainer>
-                {/* <ButtonGroup/> */}
+                 <ButtonGroup/>
             </DS.ButtonContainer>
         </DS.Wrapper>
     );

@@ -41,7 +41,7 @@ export const Canvas = styled.div`
 
 export const ColorPickerContainer = styled.div`
   overflow: scroll;
-  box-shadow: 0 1em 1em -1em rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1em 1em -1em rgba(0, 0, 0, 0.10);
   grid-area: 5 / 5 / 9 / 6;
 `;
 

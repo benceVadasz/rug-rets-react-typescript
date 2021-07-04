@@ -1,5 +1,12 @@
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
+export const SIGN_OUT = 'SIGN_OUT';
+export const EDIT = 'EDIT';
+export const CREATE = 'CREATE';
+export const FETCH_ALL = 'FETCH_ALL';
+export const SET = 'SET';
+export const SET_TYPE = 'SET_TYPE';
+
 
 export type DesignContextState = {
     designs: [];
@@ -37,6 +44,13 @@ export interface signInData {
     password: string
 }
 
+export interface updatedUser {
+    givenName: string,
+    familyName: string,
+    phone: string,
+    email: string
+}
+
 export interface User {
     givenName: string,
     familyName: string,
@@ -44,14 +58,54 @@ export interface User {
     email: string
 }
 
+export interface Color {
+    name: string,
+    value: string
+}
+
+export interface Colors {
+    colors: Color[]
+}
+
 interface SignInAction {
     type: typeof SIGN_IN;
     payload: User;
 }
 
-interface SignUPAction {
+interface SignUpAction {
     type: typeof SIGN_UP;
     payload: User;
 }
 
-export type AuthAction = SignInAction | SignInAction
+interface SignOutAction {
+    type: typeof SIGN_OUT;
+}
+
+interface EditAction {
+    type: typeof EDIT;
+    payload: User;
+}
+
+export type AuthAction = SignUpAction | SignInAction | SignOutAction | EditAction;
+
+interface uploadColorAction {
+    type: typeof CREATE;
+    payload: Color;
+}
+
+interface fetchColorsAction {
+    type: typeof FETCH_ALL;
+    payload: Colors;
+}
+
+interface setColorAction {
+    type: typeof SET;
+    payload: Color;
+}
+
+interface setColorType {
+    type: typeof SET_TYPE;
+    payload: string;
+}
+
+export type ColorAction = uploadColorAction | fetchColorsAction | setColorAction | setColorType;
