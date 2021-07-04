@@ -1,9 +1,10 @@
 import {AUTH, EDIT} from '../constants/actionTypes';
 import * as api from '../../api';
-import {signUpData, signInData} from "../../types";
+import {signUpData, signInData, updatedUser} from "../../types";
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "../store";
 import {AuthAction} from "../../types";
+
 
 export const signIn = (formData: signInData, history: any): ThunkAction<void, RootState, null,AuthAction> =>
     async (dispatch: any) => {
@@ -18,7 +19,8 @@ export const signIn = (formData: signInData, history: any): ThunkAction<void, Ro
     }
 }
 
-export const signUp = (formData: signUpData, history: any) => async (dispatch: any) => {
+export const signUp = (formData: signUpData, history: any): ThunkAction<void, RootState, null,AuthAction> =>
+    async (dispatch: any) => {
     try {
         const { data } = await api.signUp(formData);
 
@@ -30,7 +32,8 @@ export const signUp = (formData: signUpData, history: any) => async (dispatch: a
     }
 }
 
-export const editProfile = (formData: any, id: any) => async (dispatch: any) => {
+export const editProfile = (formData: updatedUser, id: string): ThunkAction<void, RootState, null,AuthAction> =>
+    async (dispatch: any) => {
     try {
         const { data } = await api.editProfile(formData, id);
         dispatch({ type: AUTH, data })
