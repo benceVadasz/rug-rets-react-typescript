@@ -1,4 +1,10 @@
-import {ColorAction, CREATE, FETCH_ALL} from "../../types";
+import {ColorAction, CREATE, FETCH_ALL, SET, SET_TYPE} from "../../types";
+import {Color} from "../../types";
+
+const initialColorState: Color = {
+    name: '',
+    value: ''
+}
 
 export const colors = (colors = [], action: ColorAction) => {
     switch (action.type) {
@@ -8,5 +14,25 @@ export const colors = (colors = [], action: ColorAction) => {
             return [...colors, action.payload];
         default:
             return colors;
+    }
+}
+
+export const color = (color = initialColorState, action: ColorAction) => {
+    switch (action.type) {
+        case SET:
+            color = action.payload;
+            return color;
+        default:
+            return color;
+    }
+}
+
+export const colorSelection = (colorSelection = '', action: ColorAction) => {
+    switch (action.type) {
+        case SET_TYPE:
+            colorSelection = action.payload;
+            return colorSelection;
+        default:
+            return colorSelection;
     }
 }
