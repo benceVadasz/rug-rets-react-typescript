@@ -11,7 +11,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
 type ButtonProps = {
-    bordered: boolean;
+    bordered?: string;
 };
 
 const AppBar = styled(Menu)`
@@ -77,15 +77,15 @@ const Navbar: FC = () => {
         <AppBar mode="horizontal">
             <LeftNav>
                 <Link to="/shop" exact activeClassName="current">
-                    <Button bordered={false}>Shop</Button>
+                    <Button >Shop</Button>
                 </Link>
                 <Link to="/design" exact activeClassName="current">
-                    <Button bordered={false} key="design">
+                    <Button key="design">
                         Design
                     </Button>
                 </Link>
                 <Link to="/feed" exact activeClassName="current">
-                    <Button bordered={false} key="feed">
+                    <Button key="feed">
                         Feed
                     </Button>
                 </Link>
@@ -93,18 +93,18 @@ const Navbar: FC = () => {
             {!user ?
                 <RightNav>
                     <Link to="/login" exact activeClassName="current">
-                        <Button bordered={false} key="design">
+                        <Button key="design">
                             Sign in
                         </Button>
                     </Link>
                     <Link to="/register" exact activeClassName="current">
-                        <Button bordered={true} key="feed">
+                        <Button bordered='yes' key="feed">
                             Sign up
                         </Button>
                     </Link>
                 </RightNav> :
                 <RightNav>
-                    <Button className=' lower-case' onClick={logout} color="inherit" bordered={false}>
+                    <Button className=' lower-case' onClick={logout} color="inherit">
                         Logout
                     </Button>
                     <Link to="/profile" exact activeClassName="current">

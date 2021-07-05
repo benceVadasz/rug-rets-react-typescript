@@ -66,7 +66,7 @@ export const ToggleGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>`
 `
 
 export const Toggle = styled(ToggleButton)`
-  
+    color: black !important;
 `
 
 export const ColorSelector = styled.div`
