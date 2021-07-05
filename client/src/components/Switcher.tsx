@@ -1,6 +1,9 @@
 import React, {useState, FunctionComponent as FC} from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import * as DS from "../styles/Design.styles";
+import {useDispatch, useSelector} from "react-redux";
+import {setColorSelectionType} from "../state/actions/colors";
+import {RootState} from "../state/store";
 
 
 interface Props {
@@ -9,8 +12,8 @@ interface Props {
 
 export const Switcher:FC<Props>  = ({type}: Props) => {
 
-    // const dispatch = useDispatch();
-    // const shapeSelection = useSelector((state => state.shapeSelection));
+    const dispatch = useDispatch();
+    const colorSelection = useSelector((state: RootState) => state.colorSelection);
     // const currentShapeSelection = shapeSelection.length > 0 ? shapeSelection : 'pre-made';
 
     const [types, setTypes] = useState('pre-made');
@@ -22,6 +25,8 @@ export const Switcher:FC<Props>  = ({type}: Props) => {
 
     const handleTypes = (event: React.MouseEvent<HTMLElement, MouseEvent>, newSelection: string) => {
         setTypes(newSelection);
+        dispatch(setColorSelectionType(newSelection))
+        // types === 'pre-made' ? dispatch(setShapeSelectionType(newSelection)) :
     };
 
     return (
