@@ -1,22 +1,16 @@
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+// import {useDispatch} from "react-redux";
 // import {saveDesign} from "../actions/designs";
 // import {toggleAlertNeeded} from '../actions/alert'
 // import {setAlertState} from "../actions/alert";
 import Swal from "sweetalert2";
 import {useHistory} from 'react-router-dom';
-import {OrderButton, SaveButton} from '../styles/ButtonGroup.styles';
+import {OrderButton, SaveButton, ButtonContainer    } from '../styles/ButtonGroup.styles';
 
 const ButtonGroup = () => {
 
     const history = useHistory()
-    const dispatch = useDispatch();
-    // if (loading)
-    //     return (
-    //         <div className={classes.load}>
-    //             <Loading/>
-    //         </div>
-    //     );
+    // const dispatch = useDispatch();
 
     // const shape = useSelector((state => state.shape))
     // const initColors = useSelector((state => state.shapeColorArray))
@@ -61,11 +55,11 @@ const ButtonGroup = () => {
         }
     }
 
-    const closeAlertIn5 = () => {
-        setTimeout(() => {
-            // dispatch(toggleAlertNeeded())
-        }, 5000)
-    }
+    // const closeAlertIn5 = () => {
+    //     setTimeout(() => {
+    //         // dispatch(toggleAlertNeeded())
+    //     }, 5000)
+    // }
 
     // const replaceEmptyValues = colorList => {
     //     const fin = []
@@ -80,14 +74,14 @@ const ButtonGroup = () => {
     // }
 
     return (
-        <>
+        <ButtonContainer>
             <OrderButton className={'lower-case white'}>
                 Order
             </OrderButton>
             <SaveButton onClick={save} className={'lower-case'}>
                 Save
             </SaveButton>
-        </>
+        </ButtonContainer>
     );
 }
 

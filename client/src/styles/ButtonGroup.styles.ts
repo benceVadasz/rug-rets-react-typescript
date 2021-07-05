@@ -6,7 +6,7 @@ export const OrderButton = styled(AntButton)`
   box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
   color: white;
   &:hover {
-    background-color: #478593;
+    background-color: #366671;
     color: white;
   }
   border: none;
@@ -20,9 +20,17 @@ export const SaveButton = styled(AntButton)`
   width: 40%;
   border-radius: 3px;
   height: 40px;
+  background-color: lightgray;
   border: none;
   &:hover {
-    background-color: #daeaed;
+    background-color: #e6e6e6;
     color: black;
   }
+`
+
+export const ButtonContainer = styled.div`
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 `

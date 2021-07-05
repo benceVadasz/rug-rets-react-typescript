@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import {Pagination} from "antd";
-import {Dropdown, Button, Menu} from 'antd';
+import {Dropdown} from 'antd';
 
 export const Wrapper = styled.div`
   margin: 0 0 30px 0;

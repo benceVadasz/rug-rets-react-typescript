@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {uploadColor} from "../state/actions/colors";
 import {useDispatch} from "react-redux";
+import {ColorAdderWrapper} from "../styles/AddNewColor.styles";
 
 const AddNewColor = () => {
     const MySwal = withReactContent(Swal);
@@ -58,9 +59,9 @@ const AddNewColor = () => {
     }
 
     return (
-        <div title="Add new color" className={classes.color} onClick={addNewColor}>
+        <ColorAdderWrapper onClick={addNewColor}>
             <AddIcon className={classes.icon}/>
-        </div>
+        </ColorAdderWrapper>
     );
 }
 

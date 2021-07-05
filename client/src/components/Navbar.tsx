@@ -8,6 +8,7 @@ import {useHistory, useLocation} from 'react-router-dom';
 import decode from "jwt-decode";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import {SIGN_OUT} from "../types";
 
 
 type ButtonProps = {
@@ -15,7 +16,7 @@ type ButtonProps = {
 };
 
 const AppBar = styled(Menu)`
-  background-color: #f6f6f6;
+  background-color: #E8E8E8;
   position: relative;
   height: 7vh;
   display: flex;
@@ -65,11 +66,13 @@ const Navbar: FC = () => {
             }
         }
         setUser(JSON.parse(localStorage.getItem('profile') as string));
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
     const logout = () => {
-        dispatch({type: LOGOUT});
-        history.push('/auth');
+        dispatch({type: SIGN_OUT});
+        history.push('/');
         setUser(null);
     };
 

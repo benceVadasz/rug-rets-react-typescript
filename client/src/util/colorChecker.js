@@ -20,6 +20,7 @@ export function lightOrDark(color) {
             color.length < 5 && /./g, '$&$&'));
 
         r = color >> 16;
+        // eslint-disable-next-line no-mixed-operators
         g = color >> 8 & 255;
         b = color & 255;
     }

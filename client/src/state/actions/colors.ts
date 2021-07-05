@@ -1,11 +1,10 @@
-import {CREATE, DELETE, FETCH_ALL, SET, SET_TYPE} from '../constants/actionTypes';
+import {CREATE, FETCH_ALL, SET_TYPE} from '../../types';
 
 import * as api from '../../api';
-import {Color, ColorAction, UploadColorData} from "../../types";
-import {RootState, useAppDispatch} from "../store";
+import {ColorAction, UploadColorData} from "../../types";
+import {RootState} from "../store";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "redux"
-import {Col} from "antd";
 
 export const getColors = (userId: string) => async (dispatch: any) => {
     try {

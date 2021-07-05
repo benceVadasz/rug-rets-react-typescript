@@ -1,4 +1,3 @@
-import {AUTH} from '../constants/actionTypes';
 import * as api from '../../api';
 import {AuthAction, EDIT, SIGN_IN, SIGN_UP, signInData, signUpData, updatedUser} from "../../types";
 import {ThunkAction} from "redux-thunk";

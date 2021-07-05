@@ -1,11 +1,11 @@
 import axios from "axios";
-import {Color} from "../types";
+import {Color, profileData, signInData, signUpData} from "../types";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
-        req.headers.Authorization = `Bearer ${JSON.parse(<string>localStorage.getItem('profile')).token}`
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile') as string).token}`
     }
     return req;
 })
@@ -22,6 +22,6 @@ export const checkIfColorExists = (hex: string) => API.post('/colors/check', hex
 // export const fetchDesigns = (userId) => API.get(`/designs/${userId}`);
 // export const saveDesign = (designData) => API.post('/designs', designData);
 
-export const signIn = (formData: any) => API.post('/user/signIn', formData);
-export const signUp = (formData: any) => API.post('/user/signUp', formData);
-export const editProfile = (formData: any, id:any) => API.put(`user/${id}`, formData);
+export const signIn = (formData: signInData) => API.post('/user/signIn', formData);
+export const signUp = (formData: signUpData) => API.post('/user/signUp', formData);
+export const editProfile = (formData: profileData, id:string) => API.put(`user/${id}`, formData);

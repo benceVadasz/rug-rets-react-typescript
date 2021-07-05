@@ -55,7 +55,15 @@ export interface User {
     givenName: string,
     familyName: string,
     password: string,
-    email: string
+    email: string,
+    phone?: string
+}
+
+export interface profileData {
+    givenName: string,
+    familyName: string,
+    email: string,
+    phone?: string
 }
 
 export interface Color {

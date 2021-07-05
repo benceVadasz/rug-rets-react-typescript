@@ -17,10 +17,11 @@ const ColorBox = () => {
     const colorSelection = useSelector((state: RootState) => state.colorSelection)
 
     let colors = colorSelection === 'custom' ? customColors : COLORS;
-    console.log(colorSelection)
-    //
+    console.log(colors)
+
     useEffect(() => {
         dispatch(getColors(userId))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     //
     // const selectColor = (value) => {
@@ -29,7 +30,7 @@ const ColorBox = () => {
 
     return (
         <DS.ColorSelector>
-            {COLORS.map((color: { name: string, value: string }) =>
+            {colors.map((color: { name: string, value: string }) =>
                 (<DS.Color key={color.value} title={color.name}
                            style={{background: color.value}}>
                 </DS.Color>)
