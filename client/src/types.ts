@@ -63,9 +63,12 @@ export interface Color {
     value: string
 }
 
-export interface Colors {
-    colors: Color[]
+export interface UploadColorData {
+    name: string,
+    value: string,
+    id: string
 }
+
 
 interface SignInAction {
     type: typeof SIGN_IN;
@@ -95,7 +98,7 @@ interface uploadColorAction {
 
 interface fetchColorsAction {
     type: typeof FETCH_ALL;
-    payload: Colors;
+    payload: Color[];
 }
 
 interface setColorAction {

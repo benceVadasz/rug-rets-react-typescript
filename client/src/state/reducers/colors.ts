@@ -6,7 +6,7 @@ const initialColorState: Color = {
     value: ''
 }
 
-export const colors = (colors = [], action: ColorAction) => {
+export const colors = (colors = [], action: ColorAction): Color[] => {
     switch (action.type) {
         case FETCH_ALL:
             return action.payload;
@@ -17,7 +17,7 @@ export const colors = (colors = [], action: ColorAction) => {
     }
 }
 
-export const color = (color = initialColorState, action: ColorAction) => {
+export const color = (color = initialColorState, action: ColorAction): Color => {
     switch (action.type) {
         case SET:
             color = action.payload;
@@ -27,7 +27,7 @@ export const color = (color = initialColorState, action: ColorAction) => {
     }
 }
 
-export const colorSelection = (colorSelection = '', action: ColorAction) => {
+export const colorSelection = (colorSelection = 'pre-made', action: ColorAction): string => {
     switch (action.type) {
         case SET_TYPE:
             colorSelection = action.payload;

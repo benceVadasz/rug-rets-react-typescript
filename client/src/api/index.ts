@@ -1,4 +1,5 @@
 import axios from "axios";
+import {Color} from "../types";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 
@@ -6,7 +7,6 @@ API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
         req.headers.Authorization = `Bearer ${JSON.parse(<string>localStorage.getItem('profile')).token}`
     }
-
     return req;
 })
 
@@ -15,9 +15,9 @@ API.interceptors.request.use((req) => {
 // export const deleteShape = (id) => API.delete(`/shapes/${id}`);
 //
 export const fetchColors = (userId: string) => API.get(`/colors/${userId}`);
-// export const uploadColor = (color) => API.post('/colors', color);
+export const uploadColor = (color: Color) => API.post('/colors', color);
 // export const deleteColor = (id) => API.delete(`/colors/${id}`);
-// export const checkIfColorExists = (hex) => API.post('/colors/check', hex);
+export const checkIfColorExists = (hex: string) => API.post('/colors/check', hex);
 //
 // export const fetchDesigns = (userId) => API.get(`/designs/${userId}`);
 // export const saveDesign = (designData) => API.post('/designs', designData);
