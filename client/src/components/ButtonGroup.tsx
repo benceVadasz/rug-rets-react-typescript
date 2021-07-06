@@ -5,7 +5,7 @@ import React from "react";
 // import {setAlertState} from "../actions/alert";
 import Swal from "sweetalert2";
 import {useHistory} from 'react-router-dom';
-import {OrderButton, SaveButton, ButtonContainer    } from '../styles/ButtonGroup.styles';
+import {OrderButton, SaveButton, ButtonContainer} from '../styles/ButtonGroup.styles';
 
 const ButtonGroup = () => {
 

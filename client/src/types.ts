@@ -6,6 +6,7 @@ export const CREATE = 'CREATE';
 export const FETCH_ALL = 'FETCH_ALL';
 export const SET = 'SET';
 export const SET_TYPE = 'SET_TYPE';
+export const SET_SHAPE_TYPE = 'SET_SHAPE_TYPE';
 
 
 export type DesignContextState = {
@@ -43,6 +44,7 @@ export interface signInData {
     email: string,
     password: string
 }
+
 
 export interface updatedUser {
     givenName: string,

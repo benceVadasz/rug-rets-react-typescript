@@ -2,6 +2,7 @@ import React, {useState, FunctionComponent as FC} from "react";
 import * as DS from "../styles/Design.styles";
 import {useDispatch} from "react-redux";
 import {setColorSelectionType} from "../state/actions/colors";
+import {setShapeSelectionType} from "../state/actions/shapes";
 
 
 interface Props {
@@ -16,15 +17,11 @@ export const Switcher:FC<Props>  = ({type}: Props) => {
 
     const [types, setTypes] = useState('pre-made');
 
-    // const handleTypes = (event, newSelection) => {
-    //     setTypes(newSelection);
-    //     dispatch(setShapeSelectionType(newSelection))
-    // };
 
     const handleTypes = (event: React.MouseEvent<HTMLElement, MouseEvent>, newSelection: string) => {
         setTypes(newSelection);
-        dispatch(setColorSelectionType(newSelection))
-        // types === 'pre-made' ? dispatch(setShapeSelectionType(newSelection)) :
+        type === 'color' ? dispatch(setColorSelectionType(newSelection))
+            : dispatch(setShapeSelectionType(newSelection))
     };
 
     return (

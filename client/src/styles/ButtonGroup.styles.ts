@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import {Button as AntButton} from "antd";
 
 export const OrderButton = styled(AntButton)`
-  background-color: #26474E;
+  background-color: #15284E;
   box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
   color: white;
   &:hover {
-    background-color: #366671;
+    background-color: #394867;
     color: white;
   }
   border: none;
