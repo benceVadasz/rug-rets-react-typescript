@@ -1,5 +1,5 @@
 import React, {FunctionComponent as FC, useState, useEffect} from "react";
-import {Menu} from "antd";
+import {Menu, Button as AntButton} from "antd";
 import styled from "@emotion/styled";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
@@ -37,15 +37,17 @@ const RightNav = styled.div`
   right: 2%;
 `;
 
-const Button = styled(Menu.Item)<ButtonProps>`
+const Button = styled(AntButton)<ButtonProps>`
   color: black !important;
   font-family: IBM Plex Mono, monospace;
-  border: ${(props) => (props.bordered ? "1px solid black" : "")};
+  border: ${(props) => (props.bordered ? "1px solid black" : "none")};
   border-radius: 3px;
   padding: 7px;
   line-height: 20px;
+  background-color: #E8E8E8;
   &:hover {
     background-color: #DDDDDD;
+    border: ${(props) => (props.bordered ? "1px solid black" : "none")};
   }
 `;
 
@@ -85,7 +87,7 @@ const Navbar: FC = () => {
         <AppBar mode="horizontal">
             <LeftNav>
                 <Link to="/shop" exact activeClassName="current">
-                    <Button >Shop</Button>
+                    <Button>Shop</Button>
                 </Link>
                 <Link to="/design" exact activeClassName="current">
                     <Button key="design">
@@ -115,7 +117,6 @@ const Navbar: FC = () => {
                     <Button bordered='yes' onClick={logout}>
                         Logout
                     </Button>
-                    <Link to="/profile" exact activeClassName="current">
                         <IconButton
                             component={Link}
                             to="/profile/account"
@@ -126,7 +127,6 @@ const Navbar: FC = () => {
                         >
                             <AccountCircle/>
                         </IconButton>
-                    </Link>
                 </RightNav>
             }
         </AppBar>

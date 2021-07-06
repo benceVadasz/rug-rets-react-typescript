@@ -20,7 +20,7 @@ const ColorBox = () => {
     console.log(colors)
 
     useEffect(() => {
-        dispatch(getColors(userId))
+        if (userId) dispatch(getColors(userId))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     //
