@@ -18,6 +18,7 @@ export const signIn = (formData: signInData, history: any): ThunkAction<void, Ro
     }
 }
 
+
 export const signUp = (formData: signUpData, history: any): ThunkAction<void, RootState, null,AuthAction> =>
     async (dispatch: Dispatch<AuthAction>) => {
     try {

@@ -3,7 +3,6 @@ import {Menu} from "antd";
 import styled from "@emotion/styled";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {LOGOUT} from "../state/constants/actionTypes";
 import {useHistory, useLocation} from 'react-router-dom';
 import decode from "jwt-decode";
 import IconButton from '@material-ui/core/IconButton';
@@ -33,6 +32,8 @@ const LeftNav = styled.div`
 const RightNav = styled.div`
   position: absolute;
   display: flex;
+  align-items: center;
+  height: 100vh;
   right: 2%;
 `;
 
@@ -42,11 +43,15 @@ const Button = styled(Menu.Item)<ButtonProps>`
   border: ${(props) => (props.bordered ? "1px solid black" : "")};
   border-radius: 3px;
   padding: 7px;
+  line-height: 20px;
+  &:hover {
+    background-color: #DDDDDD;
+  }
 `;
 
 const Link = styled(NavLink)`
   padding: 2px;
-  line-height: 20px;
+  
 `;
 
 const Navbar: FC = () => {
@@ -107,7 +112,7 @@ const Navbar: FC = () => {
                     </Link>
                 </RightNav> :
                 <RightNav>
-                    <Button className=' lower-case' onClick={logout} color="inherit">
+                    <Button bordered='yes' onClick={logout}>
                         Logout
                     </Button>
                     <Link to="/profile" exact activeClassName="current">
@@ -117,7 +122,7 @@ const Navbar: FC = () => {
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
-                            color="inherit"
+                            className='icon'
                         >
                             <AccountCircle/>
                         </IconButton>
