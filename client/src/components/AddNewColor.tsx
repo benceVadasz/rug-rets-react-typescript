@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import {uploadColor} from "../state/actions/colors";
 import {useDispatch} from "react-redux";
 import {ColorAdderWrapper} from "../styles/AddNewColor.styles";
+import {useHistory} from "react-router-dom";
 
 const AddNewColor = () => {
     const MySwal = withReactContent(Swal);
@@ -29,26 +30,46 @@ const AddNewColor = () => {
     }));
     const classes = useStyles();
     const userId = JSON.parse(localStorage.getItem('profile') as string)?.result?._id;
-
+    const history = useHistory()
 
     const addNewColor = () => {
-        MySwal.fire({
-            title: 'Add new Color',
-            input: 'text',
-            inputValue: '#',
-            inputAttributes: {
-                autocapitalize: 'off',
-            },
-            confirmButtonText: 'Add',
-            showCancelButton: true,
-        }).then((hexCode) => {
-            const RegExp = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
-            if (hexCode?.value?.length > 0 && !RegExp.test(hexCode.value)) {
-                fire('Hex code invalid')
-            } else {
-                dispatch(uploadColor({"name": '', "value": hexCode.value, "id": userId}))
-            }
-        })
+        if (!localStorage.getItem('profile')) {
+            Swal.fire({
+                title: 'Please log in or sign up to save design',
+                showDenyButton: true,
+                confirmButtonText: `Log in`,
+                denyButtonText: `Sign up`,
+                denyButtonColor: '#424642',
+                confirmButtonColor: '#424642'
+            }).then(res => {
+                if (res) {
+                    if (res.isConfirmed) {
+                        history.push('/login')
+                    } else if (!res.isConfirmed && !res.isDismissed) {
+                        history.push('/register')
+                    }
+                }
+            })
+        }
+        else {
+            MySwal.fire({
+                title: 'Add new Color',
+                input: 'text',
+                inputValue: '#',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                },
+                confirmButtonText: 'Add',
+                showCancelButton: true,
+            }).then((hexCode) => {
+                const RegExp = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
+                if (hexCode?.value?.length > 0 && !RegExp.test(hexCode.value)) {
+                    fire('Hex code invalid')
+                } else {
+                    dispatch(uploadColor({"name": '', "value": hexCode.value, "id": userId}))
+                }
+            })
+        }
     }
 
     const fire = (text: string) => {
