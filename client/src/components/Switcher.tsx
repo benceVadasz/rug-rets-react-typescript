@@ -12,8 +12,6 @@ interface Props {
 export const Switcher:FC<Props>  = ({type}: Props) => {
 
     const dispatch = useDispatch();
-    // const colorSelection = useSelector((state: RootState) => state.colorSelection);
-    // const currentShapeSelection = shapeSelection.length > 0 ? shapeSelection : 'pre-made';
 
     const [types, setTypes] = useState('pre-made');
 

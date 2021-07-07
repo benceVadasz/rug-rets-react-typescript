@@ -1,19 +1,11 @@
 import React from "react";
-// import {useDispatch} from "react-redux";
-// import {saveDesign} from "../actions/designs";
-// import {toggleAlertNeeded} from '../actions/alert'
-// import {setAlertState} from "../actions/alert";
 import Swal from "sweetalert2";
 import {useHistory} from 'react-router-dom';
 import {OrderButton, SaveButton, ButtonContainer} from '../styles/ButtonGroup.styles';
 
 const ButtonGroup = () => {
-
     const history = useHistory()
-    // const dispatch = useDispatch();
 
-    // const shape = useSelector((state => state.shape))
-    // const initColors = useSelector((state => state.shapeColorArray))
     const save = () => {
         if (!localStorage.getItem('profile')) {
             Swal.fire({
@@ -33,45 +25,9 @@ const ButtonGroup = () => {
                     }
                 }
             })
-        } else {
-            // if (shape.length > 0) {
-            //     Swal.fire({
-            //         title: 'Please enter a name for your design:',
-            //         input: 'text',
-            //         inputAttributes: {
-            //             autocapitalize: 'off',
-            //         },
-            //         confirmButtonText: 'Save',
-            //     }).then(r => {
-            //             const name = r.value;
-            //             // const colors = replaceEmptyValues(initColors)
-            //             // dispatch(saveDesign({shape, colors, name}))
-            //             // dispatch(setAlertState({text: "Your shape has been successfully saved!", severity: 'success'}))
-            //             // dispatch(toggleAlertNeeded())
-            //             closeAlertIn5()
-            //         }
-            //     )
-            // }
         }
+        // todo: else, ask name for shape, dispatch save and show alert
     }
-
-    // const closeAlertIn5 = () => {
-    //     setTimeout(() => {
-    //         // dispatch(toggleAlertNeeded())
-    //     }, 5000)
-    // }
-
-    // const replaceEmptyValues = colorList => {
-    //     const fin = []
-    //     for (let colorCode of colorList) {
-    //         if (!colorCode) {
-    //             fin.push("white")
-    //         } else {
-    //             fin.push(colorCode)
-    //         }
-    //     }
-    //     return fin
-    // }
 
     return (
         <ButtonContainer>

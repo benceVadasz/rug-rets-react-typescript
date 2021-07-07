@@ -1,5 +1,4 @@
 import React, {useState, FunctionComponent as FC} from "react";
-// import Icon from '../assets/icon';
 import {useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {
@@ -17,7 +16,6 @@ import {
 } from "../styles/Login.styles";
 import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
-import {SIGN_IN} from "../types";
 import {signIn} from "../state/actions/auth";
 
 const Login: FC = () => {

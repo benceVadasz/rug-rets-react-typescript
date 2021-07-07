@@ -5,6 +5,7 @@ import {DesignContext} from '../context/store';
 // @ts-ignore
 import ColorBox from "../components/ColorBox";
 import ButtonGroup from "../components/ButtonGroup";
+import Canvas from "../components/Canvas";
 
 
 const Design: FC = () => {
@@ -26,7 +27,7 @@ const Design: FC = () => {
                 {/* <ShapePicker/> */}
             </DS.ShapePicker>
             <DS.Canvas>
-                {/* <Canvas/> */}
+                 <Canvas/>
             </DS.Canvas>
             <DS.ColorBtnContainer>
                  <Switcher type={'color'}/>

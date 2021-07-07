@@ -5,8 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {getColors} from "../state/actions/colors";
 import {RootState} from "../state/store";
 import AddNewColor from "./AddNewColor";
-// import {useDispatch, useSelector} from "react-redux";
-// import {setColor, getColors} from "../actions/colors";
 
 
 const ColorBox = () => {
@@ -23,10 +21,8 @@ const ColorBox = () => {
         if (userId) dispatch(getColors(userId))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    //
-    // const selectColor = (value) => {
-    //     dispatch(setColor(value))
-    // }
+
+    // todo: dispatch color setting when selected
 
     return (
         <DS.ColorSelector>
