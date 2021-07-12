@@ -1,6 +1,6 @@
 import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import axios from 'axios';
-import {DesignContextState} from "../types";
+import {DesignContextState, DesignType} from "../types";
 import {DesignContext} from "./store";
 
 const DesignProvider: FC = ({children}) => {
@@ -13,7 +13,7 @@ const DesignProvider: FC = ({children}) => {
         loading: false
     };
 
-    const [designs, setDesigns] = useState(contextDefaultValues.designs);
+    const [designs, setDesigns] = useState<typeof contextDefaultValues.designs>([]);
     const [offset, setOffset] = useState<number>(0);
     const [currentPage, setPage] = useState(contextDefaultValues.currentPage);
     const [param, setParam] = useState<string>('')
