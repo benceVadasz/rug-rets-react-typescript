@@ -17,6 +17,7 @@ import {
 import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
 import {signIn} from "../state/actions/auth";
+import LoginTitle from '../components/LoginHeader'
 
 const Login: FC = () => {
 
@@ -57,6 +58,7 @@ const Login: FC = () => {
             <Paper>
                 <LoginOutlined/>
                 <LoginHeader>Login</LoginHeader>
+                {/*<LoginTitle/>*/}
                 {!invalidCredentials ? (
                     <LoginSubtitle>Please fill this form to log in!</LoginSubtitle>
                 ) : (
@@ -64,15 +66,14 @@ const Login: FC = () => {
                 )}
                 <LoginForm onFinish={submit}>
                     <Field
-                        validateStatus={invalidCredentials ? "error" : ""}
-                        rules={[{required: true, message: "Please enter your email!"}]}
+                        rules={[{required: true, message: "Email is required!"}]}
                         name="email"
                     >
                         <InputField placeholder="Email..." onChange={setEmail}/>
                     </Field>
                     <Field
                         name="password"
-                        rules={[{required: true, message: "Please enter your password!"}]}
+                        rules={[{required: true, message: "Password is required!"}]}
                     >
                         <PasswordField
                             placeholder="Password..."
