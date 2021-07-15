@@ -42,9 +42,9 @@ const Button = styled(AntButton)<ButtonProps>(
         color: 'black !important',
         fontFamily: "IBM Plex Mono, monospace",
         border: props.bordered ? "1px solid black" : "none",
+        marginTop: props.bordered ? 10 : 0,
         borderRadius: 3,
-        padding: 7,
-        lineHeight: 20,
+        padding: props.bordered ? '0 7px 3px 7px' : 7,
         backgroundColor: '#E8E8E8',
         '&:hover': {
             backgroundColor: '#DDDDDD',
