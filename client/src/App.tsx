@@ -8,6 +8,7 @@ import Feed from "./pages/Feed";
 import DesignProvider from "./context/DesignProvider";
 import DesignDetails from "./pages/DesignDetails";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
             <Navbar/>
             <Route exact path="/login" children={<Login/>}/>
             <Route exact path="/register" children={<Register/>}/>
+            <Route exact path="/profile" children={<Profile/>}/>
             <Route exact path="/design" children={<Design/>}/>
             <Route exact path="/design/:id" children={<DesignDetails/>}
             />
