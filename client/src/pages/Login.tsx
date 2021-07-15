@@ -18,9 +18,12 @@ import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
 import {signIn} from "../state/actions/auth";
 import LoginTitle from '../components/LoginHeader'
+import {Form} from "antd";
+
 
 const Login: FC = () => {
 
+    const [form] = Form.useForm();
     const [email, setEmailState] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [invalidCredentials, setInvalidCredentials] = useState(false);
@@ -64,7 +67,7 @@ const Login: FC = () => {
                 ) : (
                     <ErrorSubtitle>Invalid credentials</ErrorSubtitle>
                 )}
-                <LoginForm onFinish={submit}>
+                <LoginForm onFinish={submit} form={form}>
                     <Field
                         rules={[{required: true, message: "Email is required!"}]}
                         name="email"

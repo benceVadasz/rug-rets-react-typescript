@@ -14,47 +14,48 @@ type ButtonProps = {
     bordered?: string;
 };
 
-const AppBar = styled(Menu)`
-  background-color: #E8E8E8;
-  position: relative;
-  height: 7vh;
-  display: flex;
-  align-items: center;
-`;
+const AppBar = styled(Menu)({
+    backgroundColor: '#E8E8E8',
+    position: 'relative',
+    height: '7vh',
+    display: 'flex',
+    alignItems: 'center',
+});
 
-const LeftNav = styled.div`
-  display: flex;
-  width: 40%;
-  position: absolute;
-  justify-content: space-around;
-`;
+const LeftNav = styled.div({
+    display: 'flex',
+    width: '40%',
+    position: 'absolute',
+    justifyContent: 'space-around'
+});
 
-const RightNav = styled.div`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  height: 100vh;
-  right: 2%;
-`;
+const RightNav = styled.div({
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    height: '100vh',
+    right: '2%'
+});
 
-const Button = styled(AntButton)<ButtonProps>`
-  color: black !important;
-  font-family: IBM Plex Mono, monospace;
-  border: ${(props) => (props.bordered ? "1px solid black" : "none")};
-  border-radius: 3px;
-  padding: 7px;
-  line-height: 20px;
-  background-color: #E8E8E8;
-  &:hover {
-    background-color: #DDDDDD;
-    border: ${(props) => (props.bordered ? "1px solid black" : "none")};
-  }
-`;
+const Button = styled(AntButton)<ButtonProps>(
+    (props: ButtonProps) => ({
+        color: 'black !important',
+        fontFamily: "IBM Plex Mono, monospace",
+        border: props.bordered ? "1px solid black" : "none",
+        borderRadius: 3,
+        padding: 7,
+        lineHeight: 20,
+        backgroundColor: '#E8E8E8',
+        '&:hover': {
+            backgroundColor: '#DDDDDD',
+            border: props.bordered ? "1px solid black" : "none"
+        }
+    })
+);
 
-const Link = styled(NavLink)`
-  padding: 2px;
-  
-`;
+const Link = styled(NavLink)({
+    padding: 2
+});
 
 const Navbar: FC = () => {
 
@@ -117,16 +118,16 @@ const Navbar: FC = () => {
                     <Button bordered='yes' onClick={logout}>
                         Logout
                     </Button>
-                        <IconButton
-                            component={Link}
-                            to="/profile/account"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            className='icon'
-                        >
-                            <AccountCircle/>
-                        </IconButton>
+                    <IconButton
+                        component={Link}
+                        to="/profile/account"
+                        aria-label="account of current user"
+                        aria-controls="menu-appbar"
+                        aria-haspopup="true"
+                        className='icon'
+                    >
+                        <AccountCircle/>
+                    </IconButton>
                 </RightNav>
             }
         </AppBar>
