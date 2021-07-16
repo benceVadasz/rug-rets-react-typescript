@@ -45,14 +45,6 @@ export interface signInData {
     password: string
 }
 
-
-export interface updatedUser {
-    givenName: string,
-    familyName: string,
-    phone: string,
-    email: string
-}
-
 export interface User {
     givenName: string,
     familyName: string,
@@ -79,7 +71,6 @@ export interface UploadColorData {
     id: string
 }
 
-
 interface SignInAction {
     type: typeof SIGN_IN;
     payload: User;
@@ -94,9 +85,16 @@ interface SignOutAction {
     type: typeof SIGN_OUT;
 }
 
+export interface UpdatedUser {
+    givenName: string,
+    familyName: string,
+    email: string,
+    phone?: string
+}
+
 interface EditAction {
     type: typeof EDIT;
-    payload: User;
+    payload: UpdatedUser;
 }
 
 export type AuthAction = SignUpAction | SignInAction | SignOutAction | EditAction;

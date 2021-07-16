@@ -16,7 +16,7 @@ function App() {
             <Navbar/>
             <Route exact path="/login" children={<Login/>}/>
             <Route exact path="/register" children={<Register/>}/>
-            <Route exact path="/profile" children={<Profile/>}/>
+            <Route path="/profile" children={<Profile/>}/>
             <Route exact path="/design" children={<Design/>}/>
             <Route exact path="/design/:id" children={<DesignDetails/>}
             />

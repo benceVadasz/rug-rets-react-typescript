@@ -63,9 +63,24 @@ export const RegisterForm: FC<FormProps> = styled(Form)({
   justifyContent: 'space-between'
 });
 
-export const Field = styled(Form.Item)`
-
-`
+export const Field = styled(Form.Item)({
+    fontWeight: "bolder",
+    fontFamily: `${font}`
+})
 
 export const PasswordField = styled(Input.Password)``
-export const InputField = styled(Input)``
+export const InputField = styled(Input)({
+    width: 300
+})
+
+export const SaveButton = styled(AntButton)({
+    color: 'white',
+    backgroundColor: '#A6A9B6',
+    width: 300,
+    border: 'none',
+    fontFamily: `${font}`,
+    '&:hover': {
+        backgroundColor: '#747474',
+        color: 'black'
+    }
+})
