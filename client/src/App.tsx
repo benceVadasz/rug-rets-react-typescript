@@ -4,11 +4,12 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import {Route, BrowserRouter as Router} from "react-router-dom";
 import Design from "./pages/Design";
-import Feed from "./pages/Feed";
+import FeedF from "./pages/FeedF";
 import DesignProvider from "./context/DesignProvider";
 import DesignDetails from "./pages/DesignDetails";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Feed from "./pages/Feed";
 
 function App() {
     return (
