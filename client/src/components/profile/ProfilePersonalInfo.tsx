@@ -5,6 +5,8 @@ import * as RS from "../../styles/Register.styles";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {editProfile} from "../../state/actions/auth";
+import 'react-phone-input-2/lib/style.css'
+import PhoneInput from 'react-phone-input-2'
 
 const ProfilePersonalInfo = () => {
 
@@ -23,6 +25,7 @@ const ProfilePersonalInfo = () => {
       dispatch(editProfile({givenName, familyName, email, phone},
           userState?._id ? userState?._id : userState?.googleId))
     };
+
 
     return (
         <s.Paper>
@@ -58,8 +61,13 @@ const ProfilePersonalInfo = () => {
                   label={'Phone'}
                   name="phone"
               >
-                <RS.InputField defaultValue={phone ? phone : ""} placeholder="Phone..." onChange={(e) => setPhone(e.target.value)}/>
+                {/*<RS.InputField defaultValue={phone ? phone : ""} placeholder="Phone..." onChange={(e) => setPhone(e.target.value)}/>*/}
+                <PhoneInput
+                    placeholder="Enter phone number"
+                    value={phone}
+                    onChange={(e) => setPhone(e)}/>
               </RS.Field>
+
               <RS.SaveButton disabled={noChange} htmlType="submit">Save</RS.SaveButton>
             </Col>
           </s.Container>
