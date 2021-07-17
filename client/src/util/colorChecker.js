@@ -2,7 +2,6 @@ export function lightOrDark(color) {
 
     // Variables for red, green, blue values
     let r, g, b, hsp;
-    console.log(color)
     // Check the format of the color, HEX or RGB?
     if (color.match(/^rgb/)) {
 

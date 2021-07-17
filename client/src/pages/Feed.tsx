@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React, {Component, createRef} from "react";
 import {Wrapper} from '../styles/Feed.styles';
 import {DesignContext} from '../context/store'
 import DesignCard from "../components/DesignCard";
 import {DesignType} from "../types";
 import {Paginator} from "../styles/Feed.styles";
+
 
 
 export default class Feed extends Component {
