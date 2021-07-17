@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import {Route, BrowserRouter as Router} from "react-router-dom";
 import Design from "./pages/Design";
-import FeedF from "./pages/FeedF";
 import DesignProvider from "./context/DesignProvider";
 import DesignDetails from "./pages/DesignDetails";
 import Register from "./pages/Register";

@@ -27,8 +27,9 @@ export const Text = styled(Typography)<Props>(
     (props: Props) => ({
         display: 'inline',
         background: props.color === "white" ? "#194350" : "",
+        color: props.color,
         padding: 3,
-        fontSize: 17
+        fontSize: 17,
     })
 )
 
