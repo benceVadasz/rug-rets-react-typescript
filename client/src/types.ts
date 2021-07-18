@@ -17,6 +17,10 @@ export type DesignContextState = {
     loading: boolean
   };
 
+export type ThemeProps = {
+    dark: boolean
+}
+
 export type DesignType = {
     id: string,
     title: string,

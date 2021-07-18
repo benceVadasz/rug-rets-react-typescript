@@ -26,7 +26,8 @@ const AppBar = styled(AntMenu)({
     position: 'relative',
     height: '7vh',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    border: 'none'
 });
 
 const LeftNav = styled.div({
@@ -54,16 +55,21 @@ const ModeIcon = styled.img({
 
 const Button = styled(AntButton)<ButtonProps>(
     (props: ButtonProps) => ({
-        color: 'black !important',
+        color: 'white !important',
         fontFamily: "IBM Plex Mono, monospace",
         border: props.bordered ? "1px solid black" : "none",
         marginTop: props.bordered && !props.logout ? 10 : 0,
         borderRadius: 3,
+        background: '#20232A',
         padding: props.bordered ? '0 7px 3px 7px' : 7,
         // backgroundColor: '#E8E8E8',
         '&:hover': {
-            backgroundColor: '#DDDDDD',
-            border: props.bordered ? "1px solid black" : "none"
+            background: '#20232A',
+            border: "1px solid white"
+        },
+        '&:focus': {
+            outline: 0,
+            background: '#20232A',
         }
     })
 );
@@ -119,12 +125,12 @@ const Navbar: FC = () => {
             {!user ?
                 <RightNav>
                     <ModeIcon onClick={changeMode} src={dark ? sun : moon} alt="change mode"/>
-                    <Link to="/login" exact activeClassName="current">
+                    <Link to="/login" exact>
                         <Button key="design">
                             Sign in
                         </Button>
                     </Link>
-                    <Link to="/register" exact activeClassName="current">
+                    <Link to="/register" exact>
                         <Button bordered='yes' key="feed">
                             Sign up
                         </Button>

@@ -1,4 +1,4 @@
-import React, {Component, FunctionComponent as FC} from 'react';
+import React, {Component} from 'react';
 import {DesignType} from "../types";
 import {Card} from 'antd';
 import * as DS from "../styles/DesignCard.styles";
@@ -7,6 +7,7 @@ import {CaretUpOutlined, HeartOutlined} from "@ant-design/icons";
 
 type DesignCardProps = {
     design: DesignType,
+    dark: boolean
 }
 
 class DesignCard extends Component<DesignCardProps> {
@@ -16,6 +17,7 @@ class DesignCard extends Component<DesignCardProps> {
         return (
             <DS.LinkWrapper to={`/design/${this.props.design.id}`}>
                 <DS.Paper
+                    dark={this.props.dark}
                     hoverable
                     bordered={false}
                     cover={<DS.Image alt="example" src={this.props.design.imageUrl}/>}

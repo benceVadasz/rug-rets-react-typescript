@@ -5,8 +5,10 @@ import SavedDesigns from "../components/profile/SavedDesigns";
 import Orders from "../components/profile/Orders";
 import * as PS from '../styles/Profile.styles';
 import ProfileMenu from "../components/profile/ProfileMenu";
+import {withTheme} from "../HOC/withTheme";
+import {ThemeProps} from "../types";
 
-export default class Profile extends Component {
+class Profile extends Component<ThemeProps> {
 
     render() {
         const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
@@ -14,9 +16,9 @@ export default class Profile extends Component {
 
         return (
             <PS.BG>
-                <PS.Container>
-                        <ProfileMenu/>
-                        <PS.Grid>
+                <PS.Container dark={this.props.dark}>
+                        <ProfileMenu dark={this.props.dark}/>
+                        <PS.Grid dark={this.props.dark}>
                             <Route exact path="/profile/account" children={<ProfilePersonalInfo/>}/>
                             <Route exact path="/profile/saved" children={<SavedDesigns/>}/>
                             <Route exact path="/profile/orders" children={<Orders/>}/>
@@ -26,3 +28,5 @@ export default class Profile extends Component {
         )
     }
 }
+
+export default withTheme(Profile)
