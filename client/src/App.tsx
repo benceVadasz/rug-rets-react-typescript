@@ -9,21 +9,24 @@ import DesignDetails from "./pages/DesignDetails";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Feed from "./pages/Feed";
+import ThemeProvider from "./context/ThemeProvider";
 
 function App() {
     return (
-        <Router>
-            <Navbar/>
-            <Route exact path="/login" children={<Login/>}/>
-            <Route exact path="/register" children={<Register/>}/>
-            <Route path="/profile" children={<Profile/>}/>
-            <Route exact path="/design" children={<Design/>}/>
-            <Route exact path="/design/:id" children={<DesignDetails/>}
-            />
-            <DesignProvider>
-                <Route exact path="/feed" children={<Feed/>}/>
-            </DesignProvider>
-        </Router>
+        <ThemeProvider>
+            <Router>
+                <Navbar/>
+                <Route exact path="/login" children={<Login/>}/>
+                <Route exact path="/register" children={<Register/>}/>
+                <Route path="/profile" children={<Profile/>}/>
+                <Route exact path="/design" children={<Design/>}/>
+                <Route exact path="/design/:id" children={<DesignDetails/>}
+                />
+                <DesignProvider>
+                    <Route exact path="/feed" children={<Feed/>}/>
+                </DesignProvider>
+            </Router>
+        </ThemeProvider>
     );
 }
 

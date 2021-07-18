@@ -1,5 +1,5 @@
-import React, {FunctionComponent as FC, useState, useEffect} from "react";
-import {Menu, Button as AntButton} from "antd";
+import React, {FunctionComponent as FC, useState, useEffect, useContext} from "react";
+import {Menu as AntMenu, Button as AntButton} from "antd";
 import styled from "@emotion/styled";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
@@ -7,20 +7,26 @@ import {useHistory, useLocation} from 'react-router-dom';
 import decode from "jwt-decode";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {SIGN_OUT,  UserState} from "../types";
+import {SIGN_OUT, UserState} from "../types";
 import {useLocalStorage} from "../useLocalStorage";
+import {ThemeContext} from "../context/store";
+import moon from '../assets/moon.svg';
+import sun from '../assets/sun.svg';
 
 
 type ButtonProps = {
     bordered?: string;
+    logout?: string;
+    dark?: boolean
 };
 
-const AppBar = styled(Menu)({
-    backgroundColor: '#E8E8E8',
+
+const AppBar = styled(AntMenu)({
+    backgroundColor: '#20232A',
     position: 'relative',
     height: '7vh',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'center'
 });
 
 const LeftNav = styled.div({
@@ -38,15 +44,23 @@ const RightNav = styled.div({
     right: '2%'
 });
 
+const ModeIcon = styled.img({
+    width: 40,
+    marginRight: 50,
+    '&:hover': {
+        cursor: 'pointer'
+    }
+});
+
 const Button = styled(AntButton)<ButtonProps>(
     (props: ButtonProps) => ({
         color: 'black !important',
         fontFamily: "IBM Plex Mono, monospace",
         border: props.bordered ? "1px solid black" : "none",
-        marginTop: props.bordered ? 10 : 0,
+        marginTop: props.bordered && !props.logout ? 10 : 0,
         borderRadius: 3,
         padding: props.bordered ? '0 7px 3px 7px' : 7,
-        backgroundColor: '#E8E8E8',
+        // backgroundColor: '#E8E8E8',
         '&:hover': {
             backgroundColor: '#DDDDDD',
             border: props.bordered ? "1px solid black" : "none"
@@ -57,12 +71,11 @@ const Button = styled(AntButton)<ButtonProps>(
 const Link = styled(NavLink)({
     padding: 2
 });
-
 const Navbar: FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
-
+    const {dark, changeMode} = useContext(ThemeContext)
     const defaultUser = useLocalStorage('profile')
     const [user, setUser] = useState<UserState | null | undefined>(defaultUser);
 
@@ -78,7 +91,7 @@ const Navbar: FC = () => {
         setUser(defaultUser);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location]);
+    }, [location, dark]);
 
     const logout = () => {
         dispatch({type: SIGN_OUT});
@@ -105,6 +118,7 @@ const Navbar: FC = () => {
             </LeftNav>
             {!user ?
                 <RightNav>
+                    <ModeIcon onClick={changeMode} src={dark ? sun : moon} alt="change mode"/>
                     <Link to="/login" exact activeClassName="current">
                         <Button key="design">
                             Sign in
@@ -117,7 +131,8 @@ const Navbar: FC = () => {
                     </Link>
                 </RightNav> :
                 <RightNav>
-                    <Button bordered='yes' onClick={logout}>
+                    <ModeIcon onClick={changeMode} src={dark ? sun : moon} alt="change mode"/>
+                    <Button bordered='yes' logout="yes" onClick={logout}>
                         Logout
                     </Button>
                     <IconButton
@@ -128,7 +143,7 @@ const Navbar: FC = () => {
                         aria-haspopup="true"
                         className='icon'
                     >
-                        <AccountCircle/>
+                        <AccountCircle style={{color: 'white'}}/>
                     </IconButton>
                 </RightNav>
             }
