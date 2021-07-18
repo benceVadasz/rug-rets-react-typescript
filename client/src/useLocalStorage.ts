@@ -1,11 +1,4 @@
-type UserState = {
-    givenName: string,
-    familyName: string,
-    email:string,
-    phone: string,
-    _id?: string | undefined
-    googleId?: string | undefined
-}
+import {UserState} from "./types";
 
 export const useLocalStorage = (key: string): undefined | UserState => {
 

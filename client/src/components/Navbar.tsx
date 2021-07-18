@@ -7,7 +7,8 @@ import {useHistory, useLocation} from 'react-router-dom';
 import decode from "jwt-decode";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {SIGN_OUT} from "../types";
+import {SIGN_OUT,  UserState} from "../types";
+import {useLocalStorage} from "../useLocalStorage";
 
 
 type ButtonProps = {
@@ -58,11 +59,12 @@ const Link = styled(NavLink)({
 });
 
 const Navbar: FC = () => {
-
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile') as string));
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
+
+    const defaultUser = useLocalStorage('profile')
+    const [user, setUser] = useState<UserState | null | undefined>(defaultUser);
 
     useEffect(() => {
         const token = user?.token;
@@ -73,7 +75,7 @@ const Navbar: FC = () => {
                 logout();
             }
         }
-        setUser(JSON.parse(localStorage.getItem('profile') as string));
+        setUser(defaultUser);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);

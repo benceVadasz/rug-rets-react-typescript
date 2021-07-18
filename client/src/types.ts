@@ -97,6 +97,16 @@ interface EditAction {
     payload: UpdatedUser;
 }
 
+export type UserState = {
+    token?: string;
+    givenName: string,
+    familyName: string,
+    email:string,
+    phone: string,
+    _id?: string | undefined
+    googleId?: string | undefined
+}
+
 export type AuthAction = SignUpAction | SignInAction | SignOutAction | EditAction;
 
 interface uploadColorAction {
