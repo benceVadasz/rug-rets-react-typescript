@@ -17,8 +17,8 @@ import {
 import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
 import {signIn} from "../state/actions/auth";
-import LoginTitle from '../components/LoginHeader'
 import {Form} from "antd";
+import {SIGN_IN} from "../types";
 
 
 const Login: FC = () => {
@@ -36,16 +36,16 @@ const Login: FC = () => {
         setEmailState(e.target.value);
     };
 
-    const submit = (e: React.FormEvent) => {
-        console.log(e);
+    const submit = () => {
         dispatch(signIn({email, password}, history))
     };
 
     const googleSuccess = async (res: any) => {
         const result = res?.profileObj;
         const token = res?.tokenId;
+        console.log(result)
         try {
-            dispatch({type: 'SIGN_IN', data: {result, token}})
+            dispatch({type: SIGN_IN, payload: {result, token}})
             history.push('/')
         } catch (e) {
             console.log(e)

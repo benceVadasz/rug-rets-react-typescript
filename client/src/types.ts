@@ -86,10 +86,10 @@ interface SignOutAction {
 }
 
 export interface UpdatedUser {
-    givenName: string,
-    familyName: string,
-    email: string,
-    phone?: string
+    givenName: string | undefined,
+    familyName: string | undefined,
+    email: string | undefined,
+    phone?: string | undefined
 }
 
 interface EditAction {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Color, profileData, signInData, signUpData} from "../types";
+import {Color, profileData, signInData, signUpData, UpdatedUser} from "../types";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 
@@ -24,4 +24,4 @@ export const checkIfColorExists = (hex: string) => API.post('/colors/check', hex
 
 export const signIn = (formData: signInData) => API.post('/user/signIn', formData);
 export const signUp = (formData: signUpData) => API.post('/user/signUp', formData);
-export const editProfile = (formData: profileData, id:string) => API.put(`user/${id}`, formData);
+export const editProfile = (formData: UpdatedUser, id: string | undefined) => API.put(`user/${id}`, formData);
