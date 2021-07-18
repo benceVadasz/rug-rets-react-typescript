@@ -7,16 +7,25 @@ import {useDispatch} from "react-redux";
 import {editProfile} from "../../state/actions/auth";
 import 'react-phone-input-2/lib/style.css'
 import PhoneInput from 'react-phone-input-2'
+import {useLocalStorage} from "../../useLocalStorage";
+import {useHistory} from "react-router";
 
 const ProfilePersonalInfo = () => {
 
+  const history = useHistory()
   const dispatch = useDispatch();
-  const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
+  // const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
+  if (!useLocalStorage('profile')) {
+    history.push('login')
+  }
 
-  const [givenName, setFirstName] = useState<string>(userState?.givenName);
-  const [familyName, setLastName] = useState<string>(userState?.familyName);
-  const [email, setEmail] = useState<string>(userState?.email);
-  const [phone, setPhone] = useState<string>(userState?.phone);
+  const userState = useLocalStorage('profile')
+
+
+  const [givenName, setFirstName] = useState<string | undefined>(userState?.givenName);
+  const [familyName, setLastName] = useState<string | undefined>(userState?.familyName);
+  const [email, setEmail] = useState<string | undefined>(userState?.email);
+  const [phone, setPhone] = useState<string | undefined>(userState?.phone);
 
   const noChange = givenName === userState?.givenName && familyName === userState?.familyName
       && email === userState?.email && phone === userState?.phone;
