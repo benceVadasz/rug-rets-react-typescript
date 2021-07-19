@@ -28,7 +28,7 @@ export const uploadColor = (colorData: UploadColorData): ThunkAction<void, RootS
 };
 
 export const colorExists = (hex: string) =>
-    async (dispatch: Dispatch<ColorAction>) => {
+    async () => {
     try {
         return await api.checkIfColorExists(hex)
     } catch (error) {
@@ -45,10 +45,11 @@ export const setColorSelectionType = (type: string) =>
     }
 };
 
-export const setColor = (value: string) => async (dispatch: any) => {
+export const setColor = (value: string) =>
+    async (dispatch: Dispatch) => {
     try {
         dispatch({type: SET, payload: value});
-    } catch (e) {
-        console.log(e)
+    } catch (error) {
+        console.log(error.message)
     }
 }

@@ -1,6 +1,8 @@
 import {FETCH_ALL, CREATE, SET_SHAPE_TYPE, SET_SHAPE, SET_SHAPE_COLOR_ARRAY} from '../constants/actionTypes';
+import {ShapeAction, Color} from "../../types";
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export const shapes = (shapes = [], action: any) => {
+export const shapes = (shapes = [], action: ShapeAction) => {
     switch (action.type) {
         case FETCH_ALL:
             return action.payload;
@@ -11,7 +13,7 @@ export const shapes = (shapes = [], action: any) => {
     }
 }
 
-export const shapeSelection = (shapeSelection = [], action: any) => {
+export const shapeSelection = (shapeSelection = [], action: ShapeAction) => {
     switch (action.type) {
         case SET_SHAPE_TYPE:
             return  action.payload;
@@ -20,7 +22,7 @@ export const shapeSelection = (shapeSelection = [], action: any) => {
     }
 }
 
-export const shape = (shape = [], action: any) => {
+export const shape = (shape = [], action: ShapeAction) => {
     switch (action.type) {
         case SET_SHAPE:
             return action.payload;
@@ -29,10 +31,11 @@ export const shape = (shape = [], action: any) => {
     }
 }
 
-export const shapeColorArray = (shapeColorArray = [], action: any) => {
+export const shapeColorArray = (shapeColorArray: Color[] = [], action: ShapeAction) => {
     switch (action.type) {
         case SET_SHAPE_COLOR_ARRAY:
-            return shapeColorArray = action.payload;
+            shapeColorArray = action.payload;
+            return shapeColorArray
         default:
             return shapeColorArray;
     }

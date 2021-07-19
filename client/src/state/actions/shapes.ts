@@ -1,7 +1,8 @@
 import {FETCH_ALL, CREATE, DELETE, SET_SHAPE_TYPE, SET_SHAPE, SET_SHAPE_COLOR_ARRAY} from '../constants/actionTypes';
 import * as api from '../../api';
+import {Dispatch} from "redux";
 
-export const getShapes = () => async (dispatch: any) => {
+export const getShapes = () => async (dispatch: Dispatch) => {
     try {
         const { data } = await api.fetchShapes();
         dispatch({ type: FETCH_ALL, payload: data });
@@ -11,7 +12,7 @@ export const getShapes = () => async (dispatch: any) => {
     }
 }
 
-export const uploadShape = (shape: any) => async (dispatch: any) => {
+export const uploadShape = (shape: any) => async (dispatch: Dispatch) => {
     try {
         const { data } = await api.uploadShape(shape);
 
@@ -21,7 +22,7 @@ export const uploadShape = (shape: any) => async (dispatch: any) => {
     }
 };
 
-export const deleteShape = (id: string) => async (dispatch: any) => {
+export const deleteShape = (id: string) => async (dispatch: Dispatch) => {
     try {
         await api.deleteShape(id);
 
@@ -31,7 +32,7 @@ export const deleteShape = (id: string) => async (dispatch: any) => {
     }
 };
 
-export const setShapeSelectionType = (type: string) => async (dispatch: any) => {
+export const setShapeSelectionType = (type: string) => async (dispatch: Dispatch) => {
     try {
         dispatch({type: SET_SHAPE_TYPE, payload: type});
     } catch (error) {
@@ -39,7 +40,7 @@ export const setShapeSelectionType = (type: string) => async (dispatch: any) => 
     }
 };
 
-export const setShape = (name: string) => async (dispatch: any) => {
+export const setShape = (name: string) => async (dispatch: Dispatch) => {
     try {
         dispatch({type: SET_SHAPE, payload: name});
     } catch (error) {
@@ -48,7 +49,7 @@ export const setShape = (name: string) => async (dispatch: any) => {
 };
 
 
-export const setColorArray = (colorArray: string[]) => async (dispatch: any) => {
+export const setColorArray = (colorArray: string[]) => async (dispatch: Dispatch) => {
     try {
         dispatch({type: SET_SHAPE_COLOR_ARRAY, payload: colorArray});
     } catch (error) {

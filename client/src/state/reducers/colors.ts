@@ -6,7 +6,7 @@ const initialColorState: Color = {
     value: ''
 }
 
-export const colors = (colors = [], action: ColorAction): Color[] => {
+export const colors = (colors: Color[] = [], action: ColorAction): Color[] => {
     switch (action.type) {
         case FETCH_ALL:
             return action.payload;

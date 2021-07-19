@@ -1,3 +1,5 @@
+import {SET_SHAPE, SET_SHAPE_COLOR_ARRAY} from "./state/constants/actionTypes";
+
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_OUT = 'SIGN_OUT';
@@ -134,3 +136,30 @@ interface setColorType {
 }
 
 export type ColorAction = uploadColorAction | fetchColorsAction | setColorAction | setColorType;
+
+interface addShapeAction {
+    type: typeof CREATE;
+    payload: {}
+}
+
+interface setShapeSelectionAction {
+    type: typeof SET_SHAPE_TYPE;
+    payload: string;
+}
+
+interface fetchShapesAction {
+    type: typeof FETCH_ALL;
+    payload: []
+}
+
+interface setShapeAction {
+    type: typeof SET_SHAPE;
+    payload: string;
+}
+
+interface setColorArrayAction {
+    type: typeof SET_SHAPE_COLOR_ARRAY,
+    payload: Color[];
+}
+
+export type ShapeAction = addShapeAction | setShapeAction | setShapeSelectionAction | setColorArrayAction | fetchShapesAction
