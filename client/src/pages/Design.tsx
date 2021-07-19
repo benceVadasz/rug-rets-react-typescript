@@ -26,9 +26,9 @@ const Design: FC = () => {
             <DS.ShapePicker>
                 <ShapePicker/>
             </DS.ShapePicker>
-            <DS.Canvas>
+            <DS.CanvasContainer>
                 <Canvas/>
-            </DS.Canvas>
+            </DS.CanvasContainer>
             <DS.ColorBtnContainer>
                 <Switcher type={'color'}/>
             </DS.ColorBtnContainer>

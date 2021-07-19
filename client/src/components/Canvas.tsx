@@ -5,21 +5,16 @@ import Rug from "./Rug";
 import {useDispatch} from "react-redux";
 import {setColorArray} from "../state/actions/shapes";
 import {RootState} from "../state/store";
+import {CanvaS} from "../styles/Design.styles";
 
 const Canvas = () => {
     const dispatch = useDispatch();
     const shape = useSelector((state: RootState) => state.shape)
     const color = useSelector((state: RootState) => state.color)
+    console.log(color)
     const colorChosen = color.length > 0;
     const colorArray = useSelector((state: RootState) => state.shapeColorArray)
 
-    const useStyles = makeStyles(() => ({
-        canvas: {
-            overflow: 'auto',
-            cursor: colorChosen ? "pointer" : "",
-        }
-    }));
-    const classes = useStyles();
     // todo: check what the design type selection is in redux store | fetch it in useEffect
 
     const fill = (i: number) => {
@@ -44,9 +39,9 @@ const Canvas = () => {
     }
 
     return (
-        <div className={classes.canvas}>
+        <CanvaS colorChosen={colorChosen}>
             {colorArray.length>0?<Rug size={793.70076} file={shape} onFill={fill} fillColors={colorArray}/>:null}
-        </div>
+        </CanvaS>
     );
 }
 
