@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Color, signInData, signUpData, UpdatedUser} from "../types";
+import {Color, DesignData, signInData, signUpData, UpdatedUser} from "../types";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 
@@ -19,8 +19,8 @@ export const uploadColor = (color: Color) => API.post('/colors', color);
 // export const deleteColor = (id) => API.delete(`/colors/${id}`);
 export const checkIfColorExists = (hex: string) => API.post('/colors/check', hex);
 //
-// export const fetchDesigns = (userId) => API.get(`/designs/${userId}`);
-// export const saveDesign = (designData) => API.post('/designs', designData);
+export const fetchDesigns = (userId: string) => API.get(`/designs/${userId}`);
+export const saveDesign = (designData: DesignData) => API.post('/designs', designData);
 
 export const signIn = (formData: signInData) => API.post('/user/signIn', formData);
 export const signUp = (formData: signUpData) => API.post('/user/signUp', formData);

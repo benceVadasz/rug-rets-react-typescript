@@ -22,7 +22,7 @@ export const shapeSelection = (shapeSelection = [], action: ShapeAction) => {
     }
 }
 
-export const shape = (shape = [], action: ShapeAction) => {
+export const shape = (shape = {}, action: ShapeAction) => {
     switch (action.type) {
         case SET_SHAPE:
             return action.payload;

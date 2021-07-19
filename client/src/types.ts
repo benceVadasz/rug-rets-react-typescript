@@ -9,6 +9,7 @@ export const FETCH_ALL = 'FETCH_ALL';
 export const SET = 'SET';
 export const SET_TYPE = 'SET_TYPE';
 export const SET_SHAPE_TYPE = 'SET_SHAPE_TYPE';
+export const CREATE_DESIGN = 'CREATE_DESIGN';
 
 
 export type DesignContextState = {
@@ -179,3 +180,21 @@ interface toggleAlertAction {
 }
 
 export type AlertAction = setAlertStateAction | toggleAlertAction;
+
+export type DesignData = {
+    shape: string,
+    colors: string[],
+    name?: string
+}
+
+interface fetchDesignsAction {
+    type: typeof FETCH_ALL,
+    payload: DesignData[]
+}
+
+interface saveDesign {
+    type: typeof CREATE_DESIGN,
+    payload: DesignData
+}
+
+export type DesignAction = fetchDesignsAction | saveDesign;
