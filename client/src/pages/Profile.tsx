@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import ProfilePersonalInfo from "../components/profile/ProfilePersonalInfo";
 import SavedDesigns from "../components/profile/SavedDesigns";
 import Orders from "../components/profile/Orders";
-import * as PS from '../styles/Profile.styles';
+import * as PS from './Profile.styles';
 import ProfileMenu from "../components/profile/ProfileMenu";
 import {withTheme} from "../HOC/withTheme";
 import {ThemeProps} from "../types";

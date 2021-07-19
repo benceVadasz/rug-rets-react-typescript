@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {uploadColor} from "../state/actions/colors";
 import {useDispatch} from "react-redux";
-import {ColorAdderWrapper} from "../styles/AddNewColor.styles";
+import {ColorAdderWrapper} from "./AddNewColor.styles";
 import {useHistory} from "react-router-dom";
 
 const AddNewColor = () => {

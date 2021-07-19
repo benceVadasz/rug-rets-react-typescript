@@ -13,7 +13,7 @@ import {
     ErrorSubtitle,
     InputField,
     GoogleButton
-} from "../styles/Login.styles";
+} from "./Login.styles";
 import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
 import {signIn} from "../state/actions/auth";

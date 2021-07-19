@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import * as PM from '../../styles/ProfileMenu.styles'
+import * as PM from './ProfileMenu.styles'
 import Box from '../../assets/inventory_2_black_24dp.svg'
 import acc from '../../assets/account_circle_black_24dp.svg'
 import FavoriteIcon from '@material-ui/icons/Favorite';

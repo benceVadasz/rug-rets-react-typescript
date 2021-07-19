@@ -1,5 +1,5 @@
 import React, {useState, FunctionComponent as FC} from "react";
-import * as DS from "../styles/Design.styles";
+import * as DS from "../pages/Design.styles";
 import {useDispatch} from "react-redux";
 import {setColorSelectionType} from "../state/actions/colors";
 import {setShapeSelectionType} from "../state/actions/shapes";

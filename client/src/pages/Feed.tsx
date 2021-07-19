@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {Wrapper} from '../styles/Feed.styles';
+import {Wrapper} from './Feed.styles';
 import {DesignContext} from '../context/store'
 import DesignCard from "../components/DesignCard";
 import {DesignType} from "../types";
-import {Paginator} from "../styles/Feed.styles";
+import {Paginator} from "./Feed.styles";
 import {withTheme} from "../HOC/withTheme";
 import {ThemeProps} from "../types";
 

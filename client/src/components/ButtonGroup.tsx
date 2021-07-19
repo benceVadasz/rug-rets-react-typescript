@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 import {useHistory} from 'react-router-dom';
-import {OrderButton, SaveButton, ButtonContainer} from '../styles/ButtonGroup.styles';
+import {OrderButton, SaveButton, ButtonContainer} from './ButtonGroup.styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../state/store";
 import {setAlertState, toggleAlertNeeded} from "../state/actions/alert";

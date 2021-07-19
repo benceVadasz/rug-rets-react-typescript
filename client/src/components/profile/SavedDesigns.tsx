@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom";
 import {RootState} from "../../state/store";
 import {DesignData} from "../../types";
 import Design from "./Design";
-import {ProfileContainer} from "../../styles/Profile.styles";
+import {ProfileContainer} from "../../pages/Profile.styles";
 import {ThemeContext} from "../../context/store";
 
 

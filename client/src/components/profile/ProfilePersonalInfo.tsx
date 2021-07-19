@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
-import * as s from '../../styles/ProfilePersonalInfo.styles'
+import * as s from './ProfilePersonalInfo.styles'
 import {Col} from "antd";
-import * as RS from "../../styles/Register.styles";
+import * as RS from "../../pages/Register.styles";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {editProfile} from "../../state/actions/auth";
@@ -9,7 +9,7 @@ import 'react-phone-input-2/lib/style.css'
 import PhoneInput from 'react-phone-input-2'
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
 import {useHistory} from "react-router";
-import {ProfileContainer} from "../../styles/Profile.styles";
+import {ProfileContainer} from "../../pages/Profile.styles";
 import {ThemeContext} from "../../context/store";
 
 const ProfilePersonalInfo = () => {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {DesignType} from "../types";
 import {Card} from 'antd';
-import * as DS from "../styles/DesignCard.styles";
+import * as DS from "./DesignCard.styles";
 import {CaretUpOutlined, HeartOutlined} from "@ant-design/icons";
 
 

@@ -4,7 +4,7 @@ import Rug from "./Rug";
 import {useDispatch} from "react-redux";
 import {setColorArray} from "../state/actions/shapes";
 import {RootState} from "../state/store";
-import {CanvaS} from "../styles/Design.styles";
+import {CanvaS} from "../pages/Design.styles";
 
 const Canvas = () => {
     const dispatch = useDispatch();

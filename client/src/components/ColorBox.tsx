@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {COLORS} from "../data/colors";
-import * as DS from '../styles/Design.styles'
+import * as DS from '../pages/Design.styles'
 import {useDispatch, useSelector} from "react-redux";
 import {getColors, setColor} from "../state/actions/colors";
 import {RootState} from "../state/store";

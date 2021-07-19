@@ -3,7 +3,7 @@ import {Typography} from 'antd'
 import {Button as MButton} from '@material-ui/core'
 import {NavLink} from "react-router-dom";
 import {Divider as AntDivider} from "antd";
-import {ThemeProps} from "../types";
+import {ThemeProps} from "../../types";
 
 export const Paper = styled.div({
         alignItems: "center",

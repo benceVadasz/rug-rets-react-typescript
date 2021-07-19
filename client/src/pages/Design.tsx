@@ -1,5 +1,5 @@
 import React, {useContext, FunctionComponent as FC} from "react";
-import * as DS from '../styles/Design.styles';
+import * as DS from './Design.styles';
 import {Switcher} from "../components/Switcher";
 import {DesignContext} from '../context/store';
 import ColorBox from "../components/ColorBox";

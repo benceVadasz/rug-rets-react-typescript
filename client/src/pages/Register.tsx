@@ -4,7 +4,7 @@ import {signUp} from '../state/actions/auth';
 import {useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";
-import * as RS from "../styles/Register.styles";
+import * as RS from "./Register.styles";
 // import Loading from "./Loading";
 
 const Register = () => {
