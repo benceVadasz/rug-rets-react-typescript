@@ -2,10 +2,10 @@ import React, {useContext, FunctionComponent as FC} from "react";
 import * as DS from '../styles/Design.styles';
 import {Switcher} from "../components/Switcher";
 import {DesignContext} from '../context/store';
-// @ts-ignore
 import ColorBox from "../components/ColorBox";
 import ButtonGroup from "../components/ButtonGroup";
 import Canvas from "../components/Canvas";
+import ShapePicker from "../components/Shapepicker";
 
 
 const Design: FC = () => {
@@ -18,25 +18,25 @@ const Design: FC = () => {
     return (
         <DS.Wrapper>
             <DS.DesignTypesContainer>
-                    <Switcher type={'shape'}/>
+                <Switcher type={'shape'}/>
             </DS.DesignTypesContainer>
             {/* {!isAlertNeeded ? <div className={classes.zoom}>
                 <Zoom/>
             </div> : null} */}
             <DS.ShapePicker>
-                {/* <ShapePicker/> */}
+                <ShapePicker/>
             </DS.ShapePicker>
             <DS.Canvas>
-                 <Canvas/>
+                <Canvas/>
             </DS.Canvas>
             <DS.ColorBtnContainer>
-                 <Switcher type={'color'}/>
+                <Switcher type={'color'}/>
             </DS.ColorBtnContainer>
             <DS.ColorPickerContainer>
                 <ColorBox/>
             </DS.ColorPickerContainer>
             <DS.ButtonContainer>
-                 <ButtonGroup/>
+                <ButtonGroup/>
             </DS.ButtonContainer>
         </DS.Wrapper>
     );
