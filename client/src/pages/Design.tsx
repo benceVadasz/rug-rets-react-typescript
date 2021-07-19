@@ -5,7 +5,7 @@ import {DesignContext} from '../context/store';
 import ColorBox from "../components/ColorBox";
 import ButtonGroup from "../components/ButtonGroup";
 import Canvas from "../components/Canvas";
-import ShapePicker from "../components/Shapepicker";
+import ShapePicker from "../components/ShapePicker";
 
 
 const Design: FC = () => {

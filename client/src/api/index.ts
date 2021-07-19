@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Color, profileData, signInData, signUpData, UpdatedUser} from "../types";
+import {Color, signInData, signUpData, UpdatedUser} from "../types";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 

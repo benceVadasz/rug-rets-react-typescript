@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useSelector} from "react-redux";
-import {makeStyles} from '@material-ui/core/styles';
 import Rug from "./Rug";
 import {useDispatch} from "react-redux";
 import {setColorArray} from "../state/actions/shapes";

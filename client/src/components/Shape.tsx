@@ -55,7 +55,7 @@ const Shape = ({name, file}: ShapeProps) => {
     return (
         <Button onClick={() => selectShape(name)} className={classes.paper}>
             <div className={classes.flexBox}>
-                <img src={file} className={classes.shapeImg} />
+                <img alt="" src={file} className={classes.shapeImg} />
             </div>
         </Button>
     );

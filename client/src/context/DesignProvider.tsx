@@ -1,6 +1,6 @@
 import React, {FunctionComponent as FC, useEffect, useState} from 'react'
 import axios from 'axios';
-import {DesignContextState, DesignType} from "../types";
+import {DesignContextState} from "../types";
 import {DesignContext} from "./store";
 
 const DesignProvider: FC = ({children}) => {

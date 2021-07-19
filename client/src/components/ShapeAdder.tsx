@@ -11,7 +11,7 @@ import {uploadShape} from "../state/actions/shapes";
 const MySwal = withReactContent(Swal)
 
 const ShapeAdder = () => {
-    const [shapeData, setShapeData] = useState({name: '', selectedFile: ''});
+    // const [shapeData, setShapeData] = useState({name: '', selectedFile: ''});
     const dispatch = useDispatch();
 
     const useStyles = makeStyles(() => ({
