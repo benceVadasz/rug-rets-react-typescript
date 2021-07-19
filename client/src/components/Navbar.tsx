@@ -8,7 +8,7 @@ import decode from "jwt-decode";
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import {SIGN_OUT, UserState} from "../types";
-import {useLocalStorage} from "../useLocalStorage";
+import {useLocalStorage} from "./customHooks/useLocalStorage";
 import {ThemeContext} from "../context/store";
 import moon from '../assets/moon.svg';
 import sun from '../assets/sun.svg';

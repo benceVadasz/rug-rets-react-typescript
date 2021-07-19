@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {editProfile} from "../../state/actions/auth";
 import 'react-phone-input-2/lib/style.css'
 import PhoneInput from 'react-phone-input-2'
-import {useLocalStorage} from "../../useLocalStorage";
+import {useLocalStorage} from "../customHooks/useLocalStorage";
 import {useHistory} from "react-router";
 
 const ProfilePersonalInfo = () => {
