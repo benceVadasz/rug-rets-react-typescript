@@ -82,6 +82,7 @@ const Navbar: FC = () => {
     const history = useHistory();
     const location = useLocation();
     const {dark, changeMode} = useContext(ThemeContext)
+
     const defaultUser = useLocalStorage('profile')
     const [user, setUser] = useState<UserState | null | undefined>(defaultUser);
 
