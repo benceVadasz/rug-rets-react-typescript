@@ -9,6 +9,7 @@ import DesignDetails from "./pages/DesignDetails";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Feed from "./pages/Feed";
+import Forum from "./pages/Forum";
 import ThemeProvider from "./context/ThemeProvider";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Route exact path="/login" children={<Login/>}/>
                 <Route exact path="/register" children={<Register/>}/>
                 <Route path="/profile" children={<Profile/>}/>
+                <Route path="/forum" children={<Forum/>}/>
                 <Route exact path="/design" children={<Design/>}/>
                 <Route exact path="/design/:id" children={<DesignDetails/>}
                 />

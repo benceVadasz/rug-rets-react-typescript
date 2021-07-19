@@ -109,8 +109,8 @@ const Navbar: FC = () => {
     return (
         <AppBar mode="horizontal">
             <LeftNav>
-                <Link to="/shop" exact activeClassName="current">
-                    <Button>Shop</Button>
+                <Link to="/forum" exact activeClassName="current">
+                    <Button>Forum</Button>
                 </Link>
                 <Link to="/design" exact activeClassName="current">
                     <Button key="design">
