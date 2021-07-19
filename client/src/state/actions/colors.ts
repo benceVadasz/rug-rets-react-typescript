@@ -1,4 +1,4 @@
-import {CREATE, FETCH_ALL, SET_TYPE} from '../../types';
+import {CREATE, FETCH_ALL, SET, SET_TYPE} from '../../types';
 
 import * as api from '../../api';
 import {ColorAction, UploadColorData} from "../../types";
@@ -44,3 +44,11 @@ export const setColorSelectionType = (type: string) =>
         console.log(error.message);
     }
 };
+
+export const setColor = (value: string) => async (dispatch: any) => {
+    try {
+        dispatch({type: SET, payload: value});
+    } catch (e) {
+        console.log(e)
+    }
+}

@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {COLORS} from "../data/colors";
 import * as DS from '../styles/Design.styles'
 import {useDispatch, useSelector} from "react-redux";
-import {getColors} from "../state/actions/colors";
+import {getColors, setColor} from "../state/actions/colors";
 import {RootState} from "../state/store";
 import AddNewColor from "./AddNewColor";
 
@@ -24,11 +24,15 @@ const ColorBox = () => {
 
     // todo: dispatch color setting when selected
 
+    const selectColor = (value: string) => {
+        dispatch(setColor(value))
+    }
+
     return (
         <DS.ColorSelector>
             {colors.map((color: { name: string, value: string }) =>
                 (<DS.Color key={color.value} title={color.name}
-                           style={{background: color.value}}>
+                           style={{background: color.value}} onClick={() => selectColor(color.value)}>
                 </DS.Color>)
             )}
             {colorSelection === 'custom' ? <AddNewColor/> : null}
