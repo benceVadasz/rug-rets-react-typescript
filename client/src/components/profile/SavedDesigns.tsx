@@ -1,11 +1,41 @@
-import React, { Component } from 'react'
+import React, {useContext, useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {getDesigns} from "../../state/actions/designs";
+import {useLocalStorage} from "../../customHooks/useLocalStorage";
+import {useHistory} from "react-router-dom";
+import {RootState} from "../../state/store";
+import {DesignData} from "../../types";
+import Design from "./Design";
+import {ProfileContainer} from "../../styles/Profile.styles";
+import {ThemeContext} from "../../context/store";
 
-export default class SavedDesigns extends Component {
-  render() {
-    return (
-      <div>
 
-      </div>
-    )
+const SavedDesigns = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  if (!useLocalStorage('profile')) {
+    history.push('login')
   }
+  const userState = useLocalStorage('profile')
+
+  const userId = userState?._id ? userState._id : userState?.googleId
+
+
+  const designs = useSelector((state: RootState) => state.designs)
+  const {dark} = useContext(ThemeContext)
+
+  useEffect(() => {
+    dispatch(getDesigns(userId))
+  }, []);
+
+  return (
+      <ProfileContainer dark={dark}>
+        {designs?.map((design: DesignData) => (
+            <Design key={design.name} design={design}/>
+        ))}
+      </ProfileContainer>
+  )
 }
+
+export default SavedDesigns;

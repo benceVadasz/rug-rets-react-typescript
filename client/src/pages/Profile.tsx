@@ -18,11 +18,11 @@ class Profile extends Component<ThemeProps> {
             <PS.BG>
                 <PS.Container dark={this.props.dark}>
                         <ProfileMenu dark={this.props.dark}/>
-                        <PS.Grid dark={this.props.dark}>
+                        {/*<PS.Grid dark={this.props.dark}>*/}
                             <Route exact path="/profile/account" children={<ProfilePersonalInfo/>}/>
                             <Route exact path="/profile/saved" children={<SavedDesigns/>}/>
                             <Route exact path="/profile/orders" children={<Orders/>}/>
-                        </PS.Grid>
+                        {/*</PS.Grid>*/}
                 </PS.Container>
             </PS.BG>
         )

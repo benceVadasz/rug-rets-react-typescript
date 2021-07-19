@@ -19,7 +19,7 @@ export const uploadColor = (color: Color) => API.post('/colors', color);
 // export const deleteColor = (id) => API.delete(`/colors/${id}`);
 export const checkIfColorExists = (hex: string) => API.post('/colors/check', hex);
 //
-export const fetchDesigns = (userId: string) => API.get(`/designs/${userId}`);
+export const fetchDesigns = (userId: string | undefined) => API.get(`/designs/${userId}`);
 export const saveDesign = (designData: DesignData) => API.post('/designs', designData);
 
 export const signIn = (formData: signInData) => API.post('/user/signIn', formData);

@@ -10,6 +10,7 @@ export const SET = 'SET';
 export const SET_TYPE = 'SET_TYPE';
 export const SET_SHAPE_TYPE = 'SET_SHAPE_TYPE';
 export const CREATE_DESIGN = 'CREATE_DESIGN';
+export const FETCH_ALL_DESIGN = 'FETCH_ALL_DESIGN';
 
 
 export type DesignContextState = {
@@ -188,7 +189,7 @@ export type DesignData = {
 }
 
 interface fetchDesignsAction {
-    type: typeof FETCH_ALL,
+    type: typeof FETCH_ALL_DESIGN,
     payload: DesignData[]
 }
 

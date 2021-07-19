@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import * as s from '../../styles/ProfilePersonalInfo.styles'
-import { Col} from "antd";
+import {Col} from "antd";
 import * as RS from "../../styles/Register.styles";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
@@ -9,79 +9,86 @@ import 'react-phone-input-2/lib/style.css'
 import PhoneInput from 'react-phone-input-2'
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
 import {useHistory} from "react-router";
+import {ProfileContainer} from "../../styles/Profile.styles";
+import {ThemeContext} from "../../context/store";
 
 const ProfilePersonalInfo = () => {
 
-  const history = useHistory()
-  const dispatch = useDispatch();
-  // const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
-  if (!useLocalStorage('profile')) {
-    history.push('login')
-  }
+    const history = useHistory()
+    const dispatch = useDispatch();
 
-  const userState = useLocalStorage('profile')
+    if (!useLocalStorage('profile')) {
+        history.push('login')
+    }
+
+    const userState = useLocalStorage('profile')
 
 
-  const [givenName, setFirstName] = useState<string | undefined>(userState?.givenName);
-  const [familyName, setLastName] = useState<string | undefined>(userState?.familyName);
-  const [email, setEmail] = useState<string | undefined>(userState?.email);
-  const [phone, setPhone] = useState<string | undefined>(userState?.phone);
+    const [givenName, setFirstName] = useState<string | undefined>(userState?.givenName);
+    const [familyName, setLastName] = useState<string | undefined>(userState?.familyName);
+    const [email, setEmail] = useState<string | undefined>(userState?.email);
+    const [phone, setPhone] = useState<string | undefined>(userState?.phone);
+    const {dark} = useContext(ThemeContext)
 
-  const noChange = givenName === userState?.givenName && familyName === userState?.familyName
-      && email === userState?.email && phone === userState?.phone;
+    const noChange = givenName === userState?.givenName && familyName === userState?.familyName
+        && email === userState?.email && phone === userState?.phone;
 
-  const saveInfo = () => {
-      dispatch(editProfile({givenName, familyName, email, phone},
-          userState?._id ? userState?._id : userState?.googleId))
+    const saveInfo = () => {
+        dispatch(editProfile({givenName, familyName, email, phone},
+            userState?._id ? userState?._id : userState?.googleId))
     };
 
 
     return (
-        <s.Paper>
-          <s.Title>
-            <s.Text className={"lower-case"}>
-              Account overview
-            </s.Text>
-          </s.Title>
-          <s.Container onFinish={saveInfo} layout="vertical">
-            <Col>
-              <RS.Field
-                  label={'First Name'}
-                  rules={[{required: true, message: "Please enter your first name!"}]}
-                  name="first name"
-              >
-                <RS.InputField defaultValue={givenName ? givenName : ""} placeholder="First name..." onChange={(e) => setFirstName(e.target.value)}/>
-              </RS.Field>
-              <RS.Field
-                  label={'Last Name'}
-                  name="last name"
-                  rules={[{required: true, message: "Please enter your last name!"}]}
-              >
-                <RS.InputField defaultValue={familyName ? familyName : ""} placeholder="Last Name..." onChange={(e) => setLastName(e.target.value)}/>
-              </RS.Field>
-              <RS.Field
-                  label={'Email'}
-                  name="email"
-                  rules={[{required: true, message: "Please enter email!"}]}
-              >
-                <RS.InputField defaultValue={email ? email : ""} placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
-              </RS.Field>
-              <RS.Field
-                  label={'Phone'}
-                  name="phone"
-              >
-                {/*<RS.InputField defaultValue={phone ? phone : ""} placeholder="Phone..." onChange={(e) => setPhone(e.target.value)}/>*/}
-                <PhoneInput
-                    placeholder="Enter phone number"
-                    value={phone}
-                    onChange={(e) => setPhone(e)}/>
-              </RS.Field>
+        <ProfileContainer dark={dark}>
+            <s.Paper>
+                <s.Title>
+                    <s.Text className={"lower-case"}>
+                        Account overview
+                    </s.Text>
+                </s.Title>
+                <s.Container onFinish={saveInfo} layout="vertical">
+                    <Col>
+                        <RS.Field
+                            label={'First Name'}
+                            rules={[{required: true, message: "Please enter your first name!"}]}
+                            name="first name"
+                        >
+                            <RS.InputField defaultValue={givenName ? givenName : ""} placeholder="First name..."
+                                           onChange={(e) => setFirstName(e.target.value)}/>
+                        </RS.Field>
+                        <RS.Field
+                            label={'Last Name'}
+                            name="last name"
+                            rules={[{required: true, message: "Please enter your last name!"}]}
+                        >
+                            <RS.InputField defaultValue={familyName ? familyName : ""} placeholder="Last Name..."
+                                           onChange={(e) => setLastName(e.target.value)}/>
+                        </RS.Field>
+                        <RS.Field
+                            label={'Email'}
+                            name="email"
+                            rules={[{required: true, message: "Please enter email!"}]}
+                        >
+                            <RS.InputField defaultValue={email ? email : ""} placeholder="Email..."
+                                           onChange={(e) => setEmail(e.target.value)}/>
+                        </RS.Field>
+                        <RS.Field
+                            label={'Phone'}
+                            name="phone"
+                        >
+                            <PhoneInput
+                                placeholder="Enter phone number"
+                                value={phone}
+                                onChange={(e) => setPhone(e)}/>
+                        </RS.Field>
 
-              <RS.SaveButton disabled={noChange} htmlType="submit">Save</RS.SaveButton>
-            </Col>
-          </s.Container>
-        </s.Paper>
+                        <RS.SaveButton disabled={noChange} htmlType="submit">Save</RS.SaveButton>
+                    </Col>
+                </s.Container>
+            </s.Paper>
+        </ProfileContainer>
     )
 }
 
-export default ProfilePersonalInfo
+export default ProfilePersonalInfo;
