@@ -10,9 +10,9 @@ API.interceptors.request.use((req) => {
     return req;
 })
 
-// export const fetchShapes = () => API.get('/shapes');
-// export const uploadShape = (shape: any) => API.post('/shapes', shape);
-// export const deleteShape = (id) => API.delete(`/shapes/${id}`);
+export const fetchShapes = () => API.get('/shapes');
+export const uploadShape = (shape: any) => API.post('/shapes', shape);
+export const deleteShape = (id: string) => API.delete(`/shapes/${id}`);
 //
 export const fetchColors = (userId: string) => API.get(`/colors/${userId}`);
 export const uploadColor = (color: Color) => API.post('/colors', color);

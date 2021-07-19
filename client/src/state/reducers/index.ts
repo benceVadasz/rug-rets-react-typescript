@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import {auth} from './auth';
-import {colorSelection} from './colors';
-import {color} from './colors';
-import {colors} from './colors';
+import * as colors from './colors'
+import * as shapes from './shapes'
 
-export const reducers = combineReducers({auth, color, colors, colorSelection});
+export const reducers = combineReducers({auth, ...colors, ...shapes});
