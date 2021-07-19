@@ -1,4 +1,4 @@
-import {SET_SHAPE, SET_SHAPE_COLOR_ARRAY} from "./state/constants/actionTypes";
+import {SET_ALERT_STATE, SET_SHAPE, SET_SHAPE_COLOR_ARRAY, TOGGLE_ALERT_NEEDED} from "./state/constants/actionTypes";
 
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
@@ -163,3 +163,19 @@ interface setColorArrayAction {
 }
 
 export type ShapeAction = addShapeAction | setShapeAction | setShapeSelectionAction | setColorArrayAction | fetchShapesAction
+
+export type alertState = {
+    text: string,
+    severity: string
+}
+
+interface setAlertStateAction {
+    type: typeof SET_ALERT_STATE,
+    payload: alertState
+}
+
+interface toggleAlertAction {
+    type: typeof TOGGLE_ALERT_NEEDED,
+}
+
+export type AlertAction = setAlertStateAction | toggleAlertAction;

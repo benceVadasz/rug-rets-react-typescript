@@ -1,6 +1,7 @@
 import {SET_ALERT_STATE, TOGGLE_ALERT_NEEDED} from '../constants/actionTypes';
+import {AlertAction} from "../../types";
 // eslint-disable-next-line import/no-anonymous-default-export
-export const alertState = (alertState = {}, action: any) => {
+export const alertState = (alertState = {text: "", severity: ""}, action: AlertAction) => {
     switch (action.type) {
         case SET_ALERT_STATE:
             alertState = action.payload;
