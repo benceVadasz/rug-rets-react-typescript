@@ -1,5 +1,5 @@
 import React from 'react';
-import useFetch from "../components/customHooks/useFetch";
+import useFetch from "../customHooks/useFetch";
 import {useParams} from "react-router-dom";
 
 interface WithDispatchProps {

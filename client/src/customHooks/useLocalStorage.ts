@@ -1,4 +1,4 @@
-import {UserState} from "../../types";
+import {UserState} from "../types";
 
 export const useLocalStorage = (key: string): undefined | UserState => {
 
