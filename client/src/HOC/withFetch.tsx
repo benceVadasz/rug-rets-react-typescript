@@ -5,7 +5,8 @@ import {useParams} from "react-router-dom";
 interface WithDispatchProps {
     data: any;
     fetchData: (url?: string | undefined) => Promise<void>;
-    id: { id: string }
+    id: { id: string };
+    dark?: boolean
 }
 
 export const withFetch = (WrappedComponent: React.ComponentType<WithDispatchProps>) => {

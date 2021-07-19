@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
 import {Card, Typography} from 'antd';
+import {ThemeProps} from "../types";
+import {useContext} from "react";
+import {ThemeContext} from "../context/store";
 
 type Props = {
     color: string;
+    dark?: boolean
 };
 
 type BoxProps = {
@@ -10,18 +14,30 @@ type BoxProps = {
     tone: string;
 };
 
+
 export const Paper = styled(Card)({
     display: 'flex',
     width: '100%',
     height: '50vh',
-    margin: '100px auto 0',
-    borderRadius: 15
+    borderRadius: 15,
+    border: 'none'
 })
 
 export const Wrapper = styled.div({
     width: '50%',
-    margin: '100px auto 0'
-})
+    }
+);
+
+export const Container = styled.div<ThemeProps>(
+    (props: ThemeProps) => ({
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        minHeight: '100vh',
+        backgroundImage: props.dark ? 'linear-gradient(60deg, #29323c 0%, #485563 100%)' : '',
+    })
+)
 
 export const Text = styled(Typography)<Props>(
     (props: Props) => ({
@@ -64,7 +80,7 @@ export const ColorBox = styled.div<BoxProps>(
 
 
 export const ColorContainer = styled.div({
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'space-between'
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between'
 })

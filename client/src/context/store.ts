@@ -1,4 +1,4 @@
-import { DesignContextState } from "../types";
+import {DesignContextState, ThemeProps} from "../types";
 import {createContext} from "react";
 
 const defaultThemeState = {
@@ -12,4 +12,4 @@ export const DesignContext = createContext<DesignContextState>(
                     loading: false}
 );
 
-export const ThemeContext = createContext(defaultThemeState)
+export const ThemeContext = createContext<ThemeProps>(defaultThemeState)

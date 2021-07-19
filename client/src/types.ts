@@ -22,7 +22,8 @@ export type DesignContextState = {
   };
 
 export type ThemeProps = {
-    dark: boolean
+    dark: boolean,
+    changeMode?: () => void
 }
 
 export type DesignType = {

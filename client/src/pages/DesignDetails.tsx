@@ -1,13 +1,14 @@
-import React, {Component} from "react";
+import React, {Component, useContext} from "react";
 import * as DS from '../styles/DesignDetail.styles';
 import {withFetch} from "../HOC/withFetch";
 import {lightOrDark} from "../util/colorChecker";
 import Loading from "../util/Loading";
+import {ThemeContext} from "../context/store";
 
 type IProps = {
     data: any;
     fetchData: (url?: string | undefined) => Promise<void>;
-    id: { id: string }
+    id: { id: string },
 }
 
 type IState = {
@@ -42,7 +43,12 @@ class DesignDetails extends Component<IProps, IState> {
         }, 2000)
     }
 
+    static contextType = ThemeContext
+
+
     render() {
+
+        console.log(this.context.dark)
 
         if (this.state.loading) {
             return <DS.Wrapper><Loading/></DS.Wrapper>
@@ -50,25 +56,27 @@ class DesignDetails extends Component<IProps, IState> {
         const {design} = this.state
 
         return (
-            <DS.Wrapper>
-                <DS.Paper style={{backgroundImage: `url(${design.imageUrl}`}}>
-                    <DS.Text color={"white"}>{design.title}</DS.Text>
-                </DS.Paper>
-                <DS.Text color={"#444444"}>Author:</DS.Text>
-                <DS.Text color={"black"}>{design.userName}</DS.Text><br/>
-                <DS.Text color={"#444444"}>Colors:</DS.Text>
-                <DS.ColorContainer>
-                    {design?.colors?.map((color: string) => <DS.ColorBox
-                        onClick={(e) => this.copy(e, color)}
-                        color={`#${color}`}
-                        tone={lightOrDark(color)}
-                    >
-                        <DS.Hex key={color}>{this.state.copied !== color ? `#${color}` : 'copied'}</DS.Hex>
-                    </DS.ColorBox>)}
-                </DS.ColorContainer>
-            </DS.Wrapper>
+            <DS.Container dark={this.context.dark}>
+                <DS.Wrapper>
+                    <DS.Paper style={{backgroundImage: `url(${design.imageUrl}`}}>
+                        <DS.Text color={"white"}>{design.title}</DS.Text>
+                    </DS.Paper>
+                    <DS.Text color={this.context.dark ? 'white' : "#444444"}>Author:</DS.Text>
+                    <DS.Text color={this.context.dark ? 'white' :"black"}>{design.userName}</DS.Text><br/>
+                    <DS.Text color={this.context.dark ? 'white' :"#444444"}>Colors:</DS.Text>
+                    <DS.ColorContainer>
+                        {design?.colors?.map((color: string) => <DS.ColorBox
+                            onClick={(e) => this.copy(e, color)}
+                            color={`#${color}`}
+                            tone={lightOrDark(color)}
+                        >
+                            <DS.Hex key={color}>{this.state.copied !== color ? `#${color}` : 'copied'}</DS.Hex>
+                        </DS.ColorBox>)}
+                    </DS.ColorContainer>
+                </DS.Wrapper>
+            </DS.Container>
         )
     }
 }
 
-export default withFetch(DesignDetails);
+export default withFetch(DesignDetails)
