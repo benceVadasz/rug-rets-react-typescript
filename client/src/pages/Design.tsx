@@ -6,11 +6,14 @@ import ColorBox from "../components/ColorBox";
 import ButtonGroup from "../components/ButtonGroup";
 import Canvas from "../components/Canvas";
 import ShapePicker from "../components/ShapePicker";
-
+import {useSelector} from "react-redux";
+import {RootState} from "../state/store";
+import {CustomAlert} from "../components/CustomAlert";
 
 const Design: FC = () => {
 
     const {designs} = useContext(DesignContext)
+    const alertNeeded = useSelector((state: RootState) => state.alertNeeded)
 
     console.log(designs)
 
@@ -18,7 +21,7 @@ const Design: FC = () => {
     return (
         <DS.Wrapper>
             <DS.DesignTypesContainer>
-                <Switcher type={'shape'}/>
+                {!alertNeeded ? <Switcher type={'shape'}/> : <CustomAlert/>}
             </DS.DesignTypesContainer>
             {/* {!isAlertNeeded ? <div className={classes.zoom}>
                 <Zoom/>
