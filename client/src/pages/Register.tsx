@@ -24,7 +24,7 @@ const Register = () => {
         if (password !== confirmPassword) alert("Passwords do not match");
         console.log(email)
         const signUpSuccessful = await dispatch(signUp({givenName, familyName, email, password, confirmPassword}))
-        !signUpSuccessful ? setInvalidEmail(true) : history.push('/')
+        !signUpSuccessful ? setInvalidEmail(true) : history.push('/feed')
     };
 
     const setFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {

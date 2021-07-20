@@ -38,7 +38,7 @@ const Login: FC = () => {
 
     const submit = async () => {
         const loginSuccessful = await dispatch(signIn({email, password}))
-        !loginSuccessful ? setInvalidCredentials(true) : history.push('/')
+        !loginSuccessful ? setInvalidCredentials(true) : history.push('/feed')
     };
 
     const googleSuccess = async (res: any) => {
@@ -47,7 +47,7 @@ const Login: FC = () => {
         console.log(result)
         try {
             dispatch({type: SIGN_IN, payload: {result, token}})
-            history.push('/')
+            history.push('/feed')
         } catch (e) {
             console.log(e)
         }
