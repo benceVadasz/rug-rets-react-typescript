@@ -18,8 +18,7 @@ const SavedDesigns = () => {
     history.push('login')
   }
   const userState = useLocalStorage('profile')
-
-  const userId = userState?._id ? userState._id : userState?.googleId
+  const userId = userState?.result._id ? userState.result._id : userState?.result.googleId
 
 
   const designs = useSelector((state: RootState) => state.designs)

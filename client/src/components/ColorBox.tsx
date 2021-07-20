@@ -5,12 +5,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {getColors, setColor} from "../state/actions/colors";
 import {RootState} from "../state/store";
 import AddNewColor from "./AddNewColor";
+import {useLocalStorage} from "../customHooks/useLocalStorage";
 
 
 const ColorBox = () => {
     const dispatch = useDispatch();
-    const userId = JSON.parse(localStorage.getItem('profile') as string)?.result?._id ||
-        JSON.parse(localStorage.getItem('profile') as string)?.result?.googleId;
+    const userState = useLocalStorage('profile')
+    const userId = userState?.result._id ? userState.result._id : userState?.result.googleId
+
     const customColors = useSelector((state: RootState) => state.colors)
     const colorSelection = useSelector((state: RootState) => state.colorSelection)
 
@@ -22,7 +24,6 @@ const ColorBox = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // todo: dispatch color setting when selected
 
     const selectColor = (value: string) => {
         dispatch(setColor(value))

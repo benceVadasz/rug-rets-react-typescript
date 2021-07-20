@@ -21,7 +21,7 @@ const ProfilePersonalInfo = () => {
         history.push('login')
     }
 
-    const userState = useLocalStorage('profile')
+    const userState = useLocalStorage('profile')?.result
 
 
     const [givenName, setFirstName] = useState<string | undefined>(userState?.givenName);

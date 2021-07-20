@@ -7,6 +7,7 @@ import {uploadColor} from "../state/actions/colors";
 import {useDispatch} from "react-redux";
 import {ColorAdderWrapper} from "./AddNewColor.styles";
 import {useHistory} from "react-router-dom";
+import {useLocalStorage} from "../customHooks/useLocalStorage";
 
 const AddNewColor = () => {
     const MySwal = withReactContent(Swal);
@@ -29,7 +30,9 @@ const AddNewColor = () => {
         }
     }));
     const classes = useStyles();
-    const userId = JSON.parse(localStorage.getItem('profile') as string)?.result?._id;
+    const userState = useLocalStorage('profile')
+    const userId = userState?.result._id ? userState.result._id : userState?.result.googleId
+
     const history = useHistory()
 
     const addNewColor = () => {
