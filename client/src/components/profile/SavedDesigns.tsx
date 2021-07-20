@@ -23,6 +23,7 @@ const SavedDesigns = () => {
 
   const designs = useSelector((state: RootState) => state.designs)
   const {dark} = useContext(ThemeContext)
+  console.log(dark)
 
   useEffect(() => {
     dispatch(getDesigns(userId))
