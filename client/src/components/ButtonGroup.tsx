@@ -5,7 +5,6 @@ import {OrderButton, SaveButton, ButtonContainer} from './ButtonGroup.styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../state/store";
 import {setAlertState, toggleAlertNeeded} from "../state/actions/alert";
-import {Color} from "../types";
 import {saveDesign} from "../state/actions/designs";
 
 const ButtonGroup = () => {

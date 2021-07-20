@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {signUp} from '../state/actions/auth';
-// import {GoogleLogin} from "react-google-login";
 import {useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";

@@ -9,8 +9,8 @@ import DesignDetails from "./pages/DesignDetails";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Feed from "./pages/Feed";
-import Forum from "./pages/Forum";
 import ThemeProvider from "./context/ThemeProvider";
+import Forum from "./pages/Forum";
 
 function App() {
     return (
