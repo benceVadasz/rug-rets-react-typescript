@@ -31,7 +31,7 @@ export const SaveButton = styled(AntButton)({
 )
 
 export const ButtonContainer = styled.div({
-  marginTop: 30,
   width: '100%',
   display: 'flex',
-  justifyContent: 'space-around'})
+  justifyContent: 'space-around',
+})
