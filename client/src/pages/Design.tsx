@@ -1,7 +1,7 @@
 import React, {useContext, FunctionComponent as FC} from "react";
 import * as DS from './Design.styles';
 import {Switcher} from "../components/Switcher";
-import {DesignContext} from '../context/store';
+import {DesignContext, ThemeContext} from '../context/store';
 import ColorBox from "../components/ColorBox";
 import ButtonGroup from "../components/ButtonGroup";
 import Canvas from "../components/Canvas";
@@ -17,9 +17,10 @@ const Design: FC = () => {
 
     console.log(designs)
 
+    const {dark} = useContext(ThemeContext)
 
     return (
-        <DS.Wrapper>
+        <DS.Wrapper dark={dark}>
             <DS.DesignTypesContainer>
                 {!alertNeeded ? <Switcher type={'shape'}/> : <CustomAlert/>}
             </DS.DesignTypesContainer>

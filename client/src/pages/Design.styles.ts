@@ -2,20 +2,24 @@ import styled from "@emotion/styled";
 import {ToggleButton} from '@material-ui/lab';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import {ToggleButtonGroupProps} from '@material-ui/lab';
+import {ThemeProps} from "../types";
 
 type CanvasProps = {
     colorChosen: boolean
 }
 
-export const Wrapper = styled.div({
-    height: '90vh',
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(5, 1fr)',
-    gridTemplateRows: 'repeat(9, 1fr)',
-    gridColumnGap: 0,
-    gridRowGap: 0
-})
+export const Wrapper = styled.div<ThemeProps>(
+    (props: ThemeProps) => ({
+        height: '100vh',
+        width: '100%',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(5, 1fr)',
+        gridTemplateRows: 'repeat(9, 1fr)',
+        gridColumnGap: 0,
+        gridRowGap: 0,
+        backgroundImage: props.dark ? 'linear-gradient(60deg, #29323c 0%, #485563 100%)' : ''
+    })
+);
 
 export const DesignTypesContainer = styled.div({
     display: 'flex',
@@ -66,14 +70,16 @@ export const ButtonContainer = styled.div({
     gridArea: '9 / 5 / 10 / 6'
 });
 
-export const ToggleGroup = styled(ToggleButtonGroup)<ToggleButtonGroupProps>({
+export const ToggleGroup = styled(ToggleButtonGroup)({
     height: '50%',
-    boxShadow: 'rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px'
-})
+    boxShadow: 'rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px',
+});
 
-export const Toggle = styled(ToggleButton)({
-    color: 'black !important'
-})
+export const Toggle = styled(ToggleButton)<ThemeProps>(
+    (props: ThemeProps) => ({
+        color: props.dark ? 'white !important' : 'black !important'
+    })
+)
 
 export const ColorSelector = styled.div({
     display: 'flex',
