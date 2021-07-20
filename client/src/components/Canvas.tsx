@@ -10,7 +10,7 @@ const Canvas = () => {
     const dispatch = useDispatch();
     const shape = useSelector((state: RootState) => state.shape)
     const color = useSelector((state: RootState) => state.color)
-    console.log(color)
+
     const colorChosen = color.length > 0;
     const colorArray = useSelector((state: RootState) => state.shapeColorArray)
 

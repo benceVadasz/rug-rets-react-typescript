@@ -3,7 +3,6 @@ import {AuthAction, SIGN_IN, SIGN_OUT, SIGN_UP, EDIT} from "../../types";
 export const auth = (auth = { authData: null }, action: AuthAction) => {
     switch (action.type) {
         case SIGN_IN:
-            console.log(action)
             localStorage.setItem('profile', JSON.stringify({ ...action?.payload }))
             return { ...auth, authData: action?.payload }
         case SIGN_UP:

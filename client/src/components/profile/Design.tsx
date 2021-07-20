@@ -45,7 +45,6 @@ const Design = ({design} : DesignProp) => {
         }
     }));
     const classes = useStyles();
-    const dispatch = useDispatch();
     const history = useHistory();
 
 
