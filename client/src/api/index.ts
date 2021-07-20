@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Color, DesignData, signInData, signUpData, UpdatedUser} from "../types";
+import {Color, DesignData, UploadedPost, signInData, signUpData, UpdatedUser} from "../types";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 
@@ -25,3 +25,9 @@ export const saveDesign = (designData: DesignData) => API.post('/designs', desig
 export const signIn = (formData: signInData) => API.post('/user/signIn', formData);
 export const signUp = (formData: signUpData) => API.post('/user/signUp', formData);
 export const editProfile = (formData: UpdatedUser, id: string | undefined) => API.put(`user/${id}`, formData);
+
+export const fetchPosts = () => API.get('/posts');
+export const createPost = (newPost: UploadedPost) => API.post('/posts', newPost);
+// export const likePost = (id) => API.patch(`${url}/${id}/likePost`);
+// export const updatePost = (id, updatedPost) => API.patch(`${url}/${id}`, updatedPost);
+// export const deletePost = (id) => API.delete(`${url}/${id}`);

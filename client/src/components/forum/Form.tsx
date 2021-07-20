@@ -1,21 +1,18 @@
 import React, {useState} from "react";
 import "./TweetBox.css";
-import {Button} from "@material-ui/core";
 import FileBase from 'react-file-base64';
 import * as FS from './Form.styles'
-
-type PostData = {
-    creator: string,
-    message: string,
-    selectedFile: string
-}
+import {useDispatch} from "react-redux";
+import {createPost} from "../../state/actions/posts";
+import {UploadedPost} from "../../types";
 
 const Form = () => {
 
-    const [postData, setPostData] = useState<PostData>({creator: '', message: '', selectedFile: ''});
+    const dispatch = useDispatch()
+    const [postData, setPostData] = useState<UploadedPost>({message: '', selectedFile: ''});
 
     const submit = () => {
-        console.log(postData)
+        dispatch(createPost(postData))
     }
 
     return (
@@ -30,6 +27,7 @@ const Form = () => {
                     />
                 </FS.InputBox>
                 <FileBase type="file" multiple={false}
+                          style={{color: 'white'}}
                           onDone={({base64}: any) => setPostData({...postData, selectedFile: base64})}
                 />
 

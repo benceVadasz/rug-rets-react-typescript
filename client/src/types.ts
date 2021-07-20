@@ -6,12 +6,13 @@ export const SIGN_OUT = 'SIGN_OUT';
 export const EDIT = 'EDIT';
 export const CREATE = 'CREATE';
 export const FETCH_ALL = 'FETCH_ALL';
+export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const SET = 'SET';
 export const SET_TYPE = 'SET_TYPE';
 export const SET_SHAPE_TYPE = 'SET_SHAPE_TYPE';
 export const CREATE_DESIGN = 'CREATE_DESIGN';
 export const FETCH_ALL_DESIGN = 'FETCH_ALL_DESIGN';
-
+export const CREATE_POST = 'CREATE_POST';
 
 export type DesignContextState = {
     designs: [];
@@ -19,7 +20,7 @@ export type DesignContextState = {
     currentPage: number;
     setParam: (param: string) => void;
     loading: boolean
-  };
+};
 
 export type ThemeProps = {
     dark: boolean,
@@ -38,7 +39,18 @@ export type DesignType = {
 }
 
 export interface ParamTypes {
-    id: string;
+    id: string
+}
+
+export type UploadedPost = {
+    message: string,
+    selectedFile: string
+}
+
+export type PostData = {
+    message: string,
+    selectedFile: string,
+    _id: string
 }
 
 export interface signUpData {
@@ -77,7 +89,7 @@ export interface Color {
 export interface UploadColorData {
     name: string,
     value: string,
-    id: string
+    id: string | undefined
 }
 
 interface SignInAction {
@@ -107,13 +119,15 @@ interface EditAction {
 }
 
 export type UserState = {
+    result: {
+        givenName: string,
+        familyName: string,
+        email: string,
+        phone: string,
+        _id?: string | undefined
+        googleId?: string | undefined
+    };
     token?: string;
-    givenName: string,
-    familyName: string,
-    email:string,
-    phone: string,
-    _id?: string | undefined
-    googleId?: string | undefined
 }
 
 export type AuthAction = SignUpAction | SignInAction | SignOutAction | EditAction;
@@ -165,7 +179,12 @@ interface setColorArrayAction {
     payload: Color[];
 }
 
-export type ShapeAction = addShapeAction | setShapeAction | setShapeSelectionAction | setColorArrayAction | fetchShapesAction
+export type ShapeAction =
+    addShapeAction
+    | setShapeAction
+    | setShapeSelectionAction
+    | setColorArrayAction
+    | fetchShapesAction
 
 export type alertState = {
     text: string,

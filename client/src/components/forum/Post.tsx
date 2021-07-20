@@ -1,10 +1,15 @@
 import React from 'react'
+import {PostData, UploadedPost} from "../../types";
 
-const Post = () => {
+type PostProps = {
+  post: UploadedPost
+}
+
+const Post = ({post}: PostProps) => {
   return (
-    <div>
-
-    </div>
+      <div className="post">
+        <h2>{post.message}</h2>
+      </div>
   )
 }
 
