@@ -13,6 +13,7 @@ export const auth = (auth = { authData: null }, action: AuthAction) => {
             localStorage.clear();
             return { ...auth, authData: null }
         case EDIT:
+            localStorage.setItem('profile', JSON.stringify({ ...action?.payload }))
             return { ...auth, authData: action?.payload }
         default:
             return auth;

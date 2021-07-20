@@ -53,24 +53,27 @@ const ProfilePersonalInfo = () => {
                             label={'First Name'}
                             rules={[{required: true, message: "Please enter your first name!"}]}
                             name="first name"
+                            initialValue={givenName ? givenName : ""}
                         >
-                            <RS.InputField defaultValue={givenName ? givenName : ""} placeholder="First name..."
+                            <RS.InputField placeholder="First name..."
                                            onChange={(e) => setFirstName(e.target.value)}/>
                         </RS.Field>
                         <RS.Field
                             label={'Last Name'}
                             name="last name"
                             rules={[{required: true, message: "Please enter your last name!"}]}
+                            initialValue={familyName ? familyName : ""}
                         >
-                            <RS.InputField defaultValue={familyName ? familyName : ""} placeholder="Last Name..."
+                            <RS.InputField  placeholder="Last Name..."
                                            onChange={(e) => setLastName(e.target.value)}/>
                         </RS.Field>
                         <RS.Field
                             label={'Email'}
                             name="email"
                             rules={[{required: true, message: "Please enter email!"}]}
+                            initialValue={email ? email : ""}
                         >
-                            <RS.InputField defaultValue={email ? email : ""} placeholder="Email..."
+                            <RS.InputField placeholder="Email..."
                                            onChange={(e) => setEmail(e.target.value)}/>
                         </RS.Field>
                         <RS.Field
