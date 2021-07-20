@@ -13,6 +13,7 @@ export const SET_SHAPE_TYPE = 'SET_SHAPE_TYPE';
 export const CREATE_DESIGN = 'CREATE_DESIGN';
 export const FETCH_ALL_DESIGN = 'FETCH_ALL_DESIGN';
 export const CREATE_POST = 'CREATE_POST';
+export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
 
 export type DesignContextState = {
     designs: [];
@@ -97,6 +98,11 @@ interface SignInAction {
     payload: User;
 }
 
+interface SignUpError {
+    type: typeof SIGN_UP_ERROR;
+    payload: string;
+}
+
 interface SignUpAction {
     type: typeof SIGN_UP;
     payload: User;
@@ -130,7 +136,7 @@ export type UserState = {
     token?: string;
 }
 
-export type AuthAction = SignUpAction | SignInAction | SignOutAction | EditAction;
+export type AuthAction = SignUpAction | SignInAction | SignOutAction | EditAction | SignUpError;
 
 interface uploadColorAction {
     type: typeof CREATE;

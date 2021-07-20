@@ -1,5 +1,5 @@
 import React from 'react'
-import {PostData, UploadedPost} from "../../types";
+import {UploadedPost} from "../../types";
 
 type PostProps = {
   post: UploadedPost

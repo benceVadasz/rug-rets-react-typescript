@@ -64,7 +64,7 @@ export const ErrorSubtitle = styled(Typography)({
   color: 'red',
   margin: '0 0 30px 0',
   fontFamily: `${font}`,
-  fontSize: 12
+  fontSize: 14
 });
 
 export const LoginForm: FC<FormProps> = styled(Form)({

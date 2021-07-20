@@ -1,7 +1,6 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Button, Typography} from "@material-ui/core";
-import {useDispatch} from "react-redux";
 import Rug from "../Rug";
 // import SizeDropDown from "../SizeDropDown";
 import Swal from "sweetalert2";

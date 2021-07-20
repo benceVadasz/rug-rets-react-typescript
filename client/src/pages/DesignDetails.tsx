@@ -1,4 +1,4 @@
-import React, {Component, useContext} from "react";
+import React, {Component} from "react";
 import * as DS from './DesignDetail.styles';
 import {withFetch} from "../HOC/withFetch";
 import {lightOrDark} from "../util/colorChecker";

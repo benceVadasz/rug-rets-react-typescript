@@ -36,8 +36,9 @@ const Login: FC = () => {
         setEmailState(e.target.value);
     };
 
-    const submit = () => {
-        dispatch(signIn({email, password}, history))
+    const submit = async () => {
+        const loginSuccessful = await dispatch(signIn({email, password}))
+        !loginSuccessful ? setInvalidCredentials(true) : history.push('/')
     };
 
     const googleSuccess = async (res: any) => {
@@ -71,12 +72,14 @@ const Login: FC = () => {
                     <Field
                         rules={[{required: true, message: "Email is required!"}]}
                         name="email"
+                        validateStatus={invalidCredentials? "error": ""}
                     >
                         <InputField placeholder="Email..." onChange={setEmail}/>
                     </Field>
                     <Field
                         name="password"
                         rules={[{required: true, message: "Password is required!"}]}
+                        validateStatus={invalidCredentials? "error": ""}
                     >
                         <PasswordField
                             placeholder="Password..."

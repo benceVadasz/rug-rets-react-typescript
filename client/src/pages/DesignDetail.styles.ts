@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import {Card, Typography} from 'antd';
 import {ThemeProps} from "../types";
-import {useContext} from "react";
-import {ThemeContext} from "../context/store";
 
 type Props = {
     color: string;

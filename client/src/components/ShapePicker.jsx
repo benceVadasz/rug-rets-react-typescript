@@ -8,7 +8,7 @@ import Shape from "./Shape";
 
 const ShapePicker = () => {
 
-    const shapes = useSelector((state => state.shapes))
+    // const shapes = useSelector((state => state.shapes))
     const shapeSelection = useSelector((state => state.shapeSelection));
 
     const useStyles = makeStyles(() => ({

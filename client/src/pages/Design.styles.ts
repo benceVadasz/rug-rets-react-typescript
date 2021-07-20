@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import {ToggleButton} from '@material-ui/lab';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {ToggleButtonGroupProps} from '@material-ui/lab';
 import {ThemeProps} from "../types";
 
 type CanvasProps = {

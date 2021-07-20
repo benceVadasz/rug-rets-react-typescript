@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {signUp} from '../state/actions/auth';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";
 import * as RS from "./Register.styles";
+import {RootState} from "../state/store";
 // import Loading from "./Loading";
 
 const Register = () => {
@@ -16,10 +17,14 @@ const Register = () => {
     const [invalidEmail, setInvalidEmail] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+    const auth = useSelector((state: RootState) => state.auth)
 
-    const submit = () => {
+
+    const submit = async () => {
         if (password !== confirmPassword) alert("Passwords do not match");
-        dispatch(signUp({givenName, familyName, email, password, confirmPassword}, history))
+        console.log(email)
+        const signUpSuccessful = await dispatch(signUp({givenName, familyName, email, password, confirmPassword}))
+        !signUpSuccessful ? setInvalidEmail(true) : history.push('/')
     };
 
     const setFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +33,11 @@ const Register = () => {
     }
     const setLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLastNameState(e.target.value)
+        setInvalidEmail(false)
+    }
+
+    const setUserEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value)
         setInvalidEmail(false)
     }
 
@@ -55,13 +65,16 @@ const Register = () => {
                         name="last name"
                         rules={[{required: true, message: "Please enter your last name!"}]}
                     >
-                        <RS.InputField placeholder="Last Name..." onChange={(setLastName)}/>
+                        <RS.InputField placeholder="Last Name..." onChange={setLastName}/>
                     </RS.Field>
                     <RS.Field
+                        validateStatus={invalidEmail ? "error" : ""}
+                        help={invalidEmail ? "Email already exists" : ""}
                         name="email"
                         rules={[{required: true, message: "Please enter email!"}]}
+                        style={{ marginBottom: !invalidEmail ?  -3 : 0}}
                     >
-                        <RS.InputField placeholder="Email..." onChange={(e) => setEmail(e.target.value)}/>
+                        <RS.InputField placeholder="Email..." onChange={setUserEmail}/>
                     </RS.Field>
                     <RS.Field
                         rules={[{required: true, message: "Please enter your email!"}]}
