@@ -39,6 +39,10 @@ export const LoginButton = styled(Button)<ButtonProps>({
     '&:hover': {
         backgroundColor: '#15284E',
         color: 'white'
+    },
+    '&:focus': {
+        backgroundColor: '#394867',
+        color: 'white',
     }
 });
 

@@ -26,12 +26,16 @@ export const Paper = styled(Card)({
 export const RegisterButton = styled(AntButton)<ButtonProps>({
     marginTop: 10,
     color: 'white',
-    backgroundColor: '#5B5B5B',
+    backgroundColor: '#394867',
     border: 'none',
     fontFamily: `${font}`,
     '&:hover': {
-        backgroundColor: '#A6A9B6',
+        backgroundColor: '#15284E',
         color: 'black'
+    },
+    '&:focus': {
+        backgroundColor: '#394867',
+        color: 'white',
     }
 });
 
@@ -74,13 +78,17 @@ export const InputField = styled(Input)({
 })
 
 export const SaveButton = styled(AntButton)({
-    color: 'white',
+    color: 'black',
     backgroundColor: '#A6A9B6',
     width: 300,
     border: 'none',
     fontFamily: `${font}`,
     '&:hover': {
         backgroundColor: '#747474',
+        color: 'white'
+    },
+    '&:focus': {
+        backgroundColor: '#A6A9B6',
         color: 'black'
     }
 })

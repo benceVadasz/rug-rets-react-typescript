@@ -1,40 +1,45 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./TweetBox.css";
-import { Avatar, Button } from "@material-ui/core";
+import {Button} from "@material-ui/core";
+import FileBase from 'react-file-base64';
+import * as FS from './Form.styles'
+
+type PostData = {
+    creator: string,
+    message: string,
+    selectedFile: string
+}
 
 const Form = () => {
-    const [tweetMessage, setTweetMessage] = useState("");
-    const [tweetImage, setTweetImage] = useState("");
 
+    const [postData, setPostData] = useState<PostData>({creator: '', message: '', selectedFile: ''});
+
+    const submit = () => {
+        console.log(postData)
+    }
 
     return (
-        <div className="tweetBox">
-            <form>
-                <div className="tweetBox__input">
-                    <input
-                        onChange={(e) => setTweetMessage(e.target.value)}
-                        value={tweetMessage}
+        <FS.Container>
+            <FS.Form onFinish={submit}>
+                <FS.InputBox>
+                    <FS.Input
+                        onChange={(e) => setPostData({...postData, message: e.target.value})}
+                        value={postData.message}
                         placeholder="Share it..."
                         type="text"
                     />
-                </div>
-                <input
-                    value={tweetImage}
-                    onChange={(e) => setTweetImage(e.target.value)}
-                    className="tweetBox__imageInput"
-                    placeholder="Optional: Enter image URL"
-                    type="text"
+                </FS.InputBox>
+                <FileBase type="file" multiple={false}
+                          onDone={({base64}: any) => setPostData({...postData, selectedFile: base64})}
                 />
 
-                <Button
-                    // onClick={sendTweet}
-                    type="submit"
-                    className="tweetBox__tweetButton"
+                <FS.Button
+                    htmlType="submit"
                 >
                     Go!
-                </Button>
-            </form>
-        </div>
+                </FS.Button>
+            </FS.Form>
+        </FS.Container>
     );
 }
 
