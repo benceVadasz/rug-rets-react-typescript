@@ -6,6 +6,7 @@ import {getPosts} from "../../state/actions/posts";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../state/store";
 import {PostData} from "../../types";
+import * as FS from './ForumFeed.styles'
 
 function Feed() {
     const dispatch = useDispatch()
@@ -16,10 +17,10 @@ function Feed() {
     }, [])
 
     return (
-        <div className="feed">
-            <div className="feed__header">
+        <FS.Feed>
+            <FS.FeedHeader>
                 <h2>Home</h2>
-            </div>
+            </FS.FeedHeader>
 
             <Form/>
                 {posts?.length > 0 && posts.map((post: PostData) => (
@@ -28,7 +29,7 @@ function Feed() {
                         post={post}
                     />
                 ))}
-        </div>
+        </FS.Feed>
     );
 }
 
