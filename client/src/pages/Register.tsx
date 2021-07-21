@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {signUp} from '../state/actions/auth';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";
 import * as RS from "./Register.styles";
-import {RootState} from "../state/store";
 // import Loading from "./Loading";
 
 const Register = () => {
@@ -14,16 +13,16 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [userName, setUsername] = useState("");
     const [invalidEmail, setInvalidEmail] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
-    const auth = useSelector((state: RootState) => state.auth)
 
 
     const submit = async () => {
         if (password !== confirmPassword) alert("Passwords do not match");
         console.log(email)
-        const signUpSuccessful = await dispatch(signUp({givenName, familyName, email, password, confirmPassword}))
+        const signUpSuccessful = await dispatch(signUp({userName, givenName, familyName, email, password, confirmPassword}))
         !signUpSuccessful ? setInvalidEmail(true) : history.push('/feed')
     };
 
@@ -41,6 +40,11 @@ const Register = () => {
         setInvalidEmail(false)
     }
 
+    const setUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(e.target.value)
+        setInvalidEmail(false)
+    }
+
     // if (loading)
     //     return (
     //         <div className={classes.load}>
@@ -55,6 +59,12 @@ const Register = () => {
                 <RS.RegisterHeader>Register</RS.RegisterHeader>
                 <RS.RegisterSubtitle>Please fill this form to sign up!</RS.RegisterSubtitle>
                 <RS.RegisterForm onFinish={submit}>
+                    <RS.Field
+                        rules={[{required: true, message: "Please enter a username!"}]}
+                        name="user name"
+                    >
+                        <RS.InputField placeholder="Username..." onChange={setUserName}/>
+                    </RS.Field>
                     <RS.Field
                         rules={[{required: true, message: "Please enter your first name!"}]}
                         name="first name"

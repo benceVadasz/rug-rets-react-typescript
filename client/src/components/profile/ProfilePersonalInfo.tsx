@@ -22,20 +22,23 @@ const ProfilePersonalInfo = () => {
     }
 
     const userState = useLocalStorage('profile')?.result
+    const userId = userState?._id ? userState._id : userState?.googleId
 
 
     const [givenName, setFirstName] = useState<string | undefined>(userState?.givenName);
     const [familyName, setLastName] = useState<string | undefined>(userState?.familyName);
+    const [username, setUsername] = useState<string | undefined>(userState?.username);
     const [email, setEmail] = useState<string | undefined>(userState?.email);
     const [phone, setPhone] = useState<string | undefined>(userState?.phone);
     const {dark} = useContext(ThemeContext)
 
-    const noChange = givenName === userState?.givenName && familyName === userState?.familyName
-        && email === userState?.email && phone === userState?.phone;
+    const noChange = username === userState?.username && givenName === userState?.givenName &&
+        familyName === userState?.familyName && email === userState?.email && phone === userState?.phone;
+
 
     const saveInfo = () => {
-        dispatch(editProfile({givenName, familyName, email, phone},
-            userState?._id ? userState?._id : userState?.googleId))
+        dispatch(editProfile({username, givenName, familyName, email, phone},
+            userId))
     };
 
 
@@ -49,6 +52,15 @@ const ProfilePersonalInfo = () => {
                 </s.Title>
                 <s.Container onFinish={saveInfo} layout="vertical">
                     <Col>
+                        <RS.Field
+                            label={'Username'}
+                            rules={[{required: true, message: "Please enter your username!"}]}
+                            name="username"
+                            initialValue={username ? username : ""}
+                        >
+                            <RS.InputField placeholder="First name..."
+                                           onChange={(e) => setUsername(e.target.value)}/>
+                        </RS.Field>
                         <RS.Field
                             label={'First Name'}
                             rules={[{required: true, message: "Please enter your first name!"}]}

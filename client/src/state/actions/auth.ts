@@ -33,9 +33,10 @@ export const signUp = (formData: signUpData): ThunkAction<void, RootState, null,
     }
 }
 
-export const editProfile = (formData: UpdatedUser, id: string | undefined): ThunkAction<void, RootState, null, AuthAction> =>
+export const editProfile = (formData: { phone: string | undefined; givenName: string | undefined; familyName: string | undefined; email: string | undefined; username: string | undefined }, id: string | undefined): ThunkAction<void, RootState, null, AuthAction> =>
     async (dispatch: Dispatch<AuthAction>) => {
     try {
+        console.log(formData)
         const { data } = await api.editProfile(formData, id);
         dispatch({ type: EDIT, payload: data })
     }

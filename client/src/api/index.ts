@@ -1,11 +1,13 @@
 import axios from "axios";
 import {Color, DesignData, UploadedPost, signInData, signUpData, UpdatedUser} from "../types";
+import {useLocalStorage} from "../customHooks/useLocalStorage";
 
 const API = axios.create(({baseURL: 'http://localhost:5000'}));
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile') as string).token}`
+        console.log(useLocalStorage('profile'))
+        req.headers.Authorization = `Bearer ${useLocalStorage('profile')?.token}`
     }
     return req;
 })
