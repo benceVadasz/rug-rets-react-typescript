@@ -43,7 +43,8 @@ export const Typo = styled(Typography)({
 export const Avatar = styled.img({
     width: 100,
     height: 100,
-    display: 'inline-block'
+    display: 'inline-block',
+    borderRadius: '50%'
 });
 
 export const Link = styled(NavLink)({

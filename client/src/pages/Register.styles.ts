@@ -18,8 +18,8 @@ export const Wrapper = styled.div({
 
 export const Paper = styled(Card)({
     padding: '30px 20px',
-    height: 540,
-    width: 350,
+    height: 570,
+    width: 400,
     boxShadow: '0px 10px 13px -6px rgba(0, 0, 0, 0.2) 0px 20px 31px 3px rgba(0, 0, 0, 0.14), 0px 8px 38px 7px rgba(0, 0, 0, 0.12)'
 });
 
@@ -61,7 +61,7 @@ export const ErrorSubtitle = styled(Typography)({
 });
 
 export const RegisterForm: FC<FormProps> = styled(Form)({
-  height: 350,
+  height: 380,
   display: 'flex',
   flexFlow: 'column wrap',
   justifyContent: 'space-between'

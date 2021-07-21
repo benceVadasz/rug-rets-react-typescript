@@ -16,7 +16,7 @@ export default class ProfileMenu extends Component<ThemeProps> {
         return (
             <PM.Paper>
                 <PM.AvatarContainer dark={this.props.dark}>
-                    <PM.Avatar src={acc}/>
+                    <PM.Avatar src={userState?.imageUrl || acc}/>
                         <PM.Typo className="lower-case">
                             Hi, {userState?.givenName}
                         </PM.Typo>

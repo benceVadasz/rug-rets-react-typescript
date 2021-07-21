@@ -51,10 +51,12 @@ export type UploadedPost = {
 export type PostData = {
     message: string,
     selectedFile: string,
-    _id: string
+    _id: string,
+    user: string
 }
 
 export interface signUpData {
+    userName: string,
     givenName: string,
     familyName: string,
     email: string,
@@ -113,6 +115,7 @@ interface SignOutAction {
 }
 
 export interface UpdatedUser {
+    username: string | undefined,
     givenName: string | undefined,
     familyName: string | undefined,
     email: string | undefined,
@@ -126,6 +129,7 @@ interface EditAction {
 
 export type UserState = {
     result: {
+        username: string;
         givenName: string,
         familyName: string,
         email: string,
