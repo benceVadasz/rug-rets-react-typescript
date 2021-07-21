@@ -14,11 +14,17 @@ export const InputBox = styled.div({
     display: 'flex'
 })
 
-export const Input = styled.input({
+export const Input = styled.textarea({
     flex: 1,
     marginLeft: 20,
-    fontSize: 20,
-    border: 'none'
+    fontSize: 16,
+    lineHeight: 1.2,
+    border: 'none',
+    height: 70,
+    '&:focus': {
+        outline: 'none !important',
+        boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',
+    }
 })
 
 export const Button = styled(AntButton)({

@@ -1,10 +1,11 @@
 import React from 'react'
+import * as SS from './Searchbar.styles'
 
 const Searchbar = () => {
   return (
-    <div style={{flex: 0.5}}>
+    <SS.Container>
       <h1>Searchbar</h1>
-    </div>
+    </SS.Container>
   )
 }
 

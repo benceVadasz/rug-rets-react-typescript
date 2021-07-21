@@ -57,11 +57,10 @@ const Button = styled(AntButton)<ButtonProps>(
     (props: ButtonProps) => ({
         color: 'white !important',
         fontFamily: "IBM Plex Mono, monospace",
-        border: props.bordered ? "1px solid black" : "none",
-        marginTop: props.bordered && !props.logout ? 10 : 0,
+        border: props.bordered ? "1px solid #B5EAEA" : "none",
         borderRadius: 3,
         background: '#20232A',
-        padding: props.bordered ? '0 7px 3px 7px' : 7,
+        padding: props.bordered && !props.logout ? '7px 7px 3px 7px' : props.logout ? '0 7px 0 7px' : 7,
         // backgroundColor: '#E8E8E8',
         '&:hover': {
             background: '#20232A',
