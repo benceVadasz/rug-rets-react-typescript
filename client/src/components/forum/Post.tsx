@@ -20,6 +20,8 @@ const Post = ({post}: PostProps) => {
     const userState = useLocalStorage('profile')
     const userId = userState?.result._id ? userState.result._id : userState?.result.googleId
 
+
+
     const menu = (
         <Menu onClick={handleMenuClick}>
             <Menu.Item key="1" icon={<HeartOutlined/>}>
@@ -39,14 +41,15 @@ const Post = ({post}: PostProps) => {
             // cover={post.selectedFile?<img alt="example" src={post.selectedFile} /> : null}
         >
             <PS.PostHeaderContainer>
+                <PS.InfoContainer>
                 <PS.Avatar icon={<UserOutlined/>}/>
                 <PS.Text bold='yes'>
-                    @{}
+                    @User1249712
                 </PS.Text>
                 <PS.Text time='yes'>
                     12h ago
                 </PS.Text>
-
+                </PS.InfoContainer>
                 <PS.Dropdown overlay={menu} placement="bottomCenter" icon={<PS.Ellipsis/>}>
                 </PS.Dropdown>
             </PS.PostHeaderContainer>

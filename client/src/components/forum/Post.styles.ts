@@ -22,9 +22,11 @@ export const Text = styled(Typography)<TextProps>(
     (props: TextProps) => ({
         fontFamily: 'IBM Plex Mono, monospace',
         fontWeight: props.bold ? 'bolder' : 'normal',
+        display: props.bold ? 'inline-block' : '',
         paddingLeft: 5,
-        margin: props.message ? '0 0 20px 103px' : 0,
-        color: props.time ? '#787A91' : 'black'
+        margin: props.message ? '0 0 20px 90px' : 0,
+        width: props.message ? '70%' : '',
+        color: props.time ? '#787A91' : 'black',
     })
 );
 
@@ -47,13 +49,21 @@ export const PostHeaderContainer = styled.div({
     width: '100%',
     display: 'flex',
     alignItems: 'center',
-    margin: '30px 0 0 70px',
+    margin: '30px 0 0 55px',
+    position: "relative"
 })
+
+export const InfoContainer = styled.div({
+    display: 'flex',
+    justifyContent: "space-around",
+    alignItems: 'center'
+});
 
 export const Dropdown = styled(AntDropdown.Button)({
     border: 'none',
     justifySelf: 'flex-end',
-    marginLeft: 433,
+    position: "absolute",
+    right: 140
 })
 
 export const Ellipsis = styled(EllipsisOutlined)({

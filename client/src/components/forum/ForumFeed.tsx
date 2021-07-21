@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import Form from "./Form";
 import Post from "./Post";
-import "./Feed.css";
 import {getPosts} from "../../state/actions/posts";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../state/store";
@@ -14,7 +13,7 @@ function Feed() {
 
     useEffect(() => {
         dispatch(getPosts())
-    }, [])
+    }, [posts])
 
     return (
         <FS.Feed>

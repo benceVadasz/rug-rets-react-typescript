@@ -56,7 +56,7 @@ export type PostData = {
 }
 
 export interface signUpData {
-    userName: string,
+    username: string,
     givenName: string,
     familyName: string,
     email: string,
@@ -136,6 +136,7 @@ export type UserState = {
         phone: string,
         _id?: string | undefined
         googleId?: string | undefined
+        imageUrl?: string | undefined
     };
     token?: string;
 }

@@ -13,7 +13,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [userName, setUsername] = useState("");
+    const [username, setUsername] = useState("");
     const [invalidEmail, setInvalidEmail] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -22,7 +22,7 @@ const Register = () => {
     const submit = async () => {
         if (password !== confirmPassword) alert("Passwords do not match");
         console.log(email)
-        const signUpSuccessful = await dispatch(signUp({userName, givenName, familyName, email, password, confirmPassword}))
+        const signUpSuccessful = await dispatch(signUp({username, givenName, familyName, email, password, confirmPassword}))
         !signUpSuccessful ? setInvalidEmail(true) : history.push('/feed')
     };
 
