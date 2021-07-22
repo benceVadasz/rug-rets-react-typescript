@@ -27,6 +27,7 @@ const SavedDesigns = () => {
 
   useEffect(() => {
     dispatch(getDesigns(userId))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

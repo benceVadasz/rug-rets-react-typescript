@@ -1,5 +1,5 @@
 import * as api from '../../api';
-import {AuthAction, EDIT, SIGN_IN, SIGN_UP, SIGN_UP_ERROR, signInData, signUpData, UpdatedUser} from "../../types";
+import {AuthAction, EDIT, SIGN_IN, SIGN_UP, SIGN_UP_ERROR, signInData, signUpData} from "../../types";
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "../store";
 import {Dispatch} from "redux";

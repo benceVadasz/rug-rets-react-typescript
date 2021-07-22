@@ -1,5 +1,4 @@
 import {AuthAction, EDIT, SIGN_IN, SIGN_OUT, SIGN_UP, SIGN_UP_ERROR} from "../../types";
-import {useLocalStorage} from "../../customHooks/useLocalStorage";
 
 export const auth = (auth = { authData: null }, action: AuthAction) => {
     switch (action.type) {
