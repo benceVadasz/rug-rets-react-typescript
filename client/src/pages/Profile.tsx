@@ -14,10 +14,11 @@ class Profile extends Component<ThemeProps> {
         const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
         if (!userState) window.location.href = '/login';
 
+        const {dark} = this.props
         return (
             <PS.BG>
-                <PS.Container dark={this.props.dark}>
-                        <ProfileMenu dark={this.props.dark}/>
+                <PS.Container dark={dark}>
+                        <ProfileMenu dark={dark}/>
                         {/*<PS.Grid dark={this.props.dark}>*/}
                             <Route exact path="/profile/account" children={<ProfilePersonalInfo/>}/>
                             <Route exact path="/profile/saved" children={<SavedDesigns/>}/>

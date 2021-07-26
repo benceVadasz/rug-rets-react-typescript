@@ -19,6 +19,12 @@ type IState = {
 
 class DesignDetails extends Component<IProps, IState> {
 
+    // todo
+    // constructor(props: IProps, context: any, state: IState) {
+    //     super(props, context);
+    //     this.state = state;
+    // }
+
     state: IState = {
         design: {imageUrl: '', title: '', userName: '', colors: []},
         loading: true,

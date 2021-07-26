@@ -87,7 +87,7 @@ const Register = () => {
                         <RS.InputField placeholder="Email..." onChange={setUserEmail}/>
                     </RS.Field>
                     <RS.Field
-                        rules={[{required: true, message: "Please enter your email!"}]}
+                        rules={[{required: true, message: "Please enter your password!"}]}
                         name="password"
                     >
                         <RS.PasswordField placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>

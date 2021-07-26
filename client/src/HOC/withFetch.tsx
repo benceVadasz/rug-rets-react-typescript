@@ -11,6 +11,7 @@ interface WithDispatchProps {
 
 export const withFetch = (WrappedComponent: React.ComponentType<WithDispatchProps>) => {
 
+    // todo HOC props
 
     return (props: any) => {
         const {fetchData, data} = useFetch();

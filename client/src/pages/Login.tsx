@@ -57,6 +57,14 @@ const Login: FC = () => {
         console.log('google sign in was unsuccessful. Please refresh and start again.')
     };
 
+    // todo
+    // ({ getFieldValue }) => ({
+    //     validator(_, value) {
+    //         if (!value || getFieldValue('password') === value) {
+    //             return Promise.resolve();
+    //         }
+    //         return Promise.reject(new Error('The t
+
     return (
         <Wrapper>
             <Paper>
@@ -73,6 +81,7 @@ const Login: FC = () => {
                         rules={[{required: true, message: "Email is required!"}]}
                         name="email"
                         validateStatus={invalidCredentials? "error": ""}
+
                     >
                         <InputField placeholder="Email..." onChange={setEmail}/>
                     </Field>
