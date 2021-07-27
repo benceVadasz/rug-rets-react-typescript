@@ -45,12 +45,6 @@ const Register = () => {
         setInvalidEmail(false)
     }
 
-    // if (loading)
-    //     return (
-    //         <div className={classes.load}>
-    //             <Loading/>
-    //         </div>
-    //     );
 
     return (
         <RS.Wrapper>
@@ -93,7 +87,17 @@ const Register = () => {
                         <RS.PasswordField placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
                     </RS.Field>
                     <RS.Field
-                        rules={[{required: true, message: "Please repeat password!"}]}
+                        rules={[{required: true, message: "Please repeat password!"},
+                            ({ getFieldValue }) => ({
+                                    validator(_, value) {
+                                        if (!value || getFieldValue('password') === value) {
+                                            return Promise.resolve();
+                                        } else {
+                                            return Promise.reject('Password do not match');
+                                        }
+                                    }
+                                    })
+                        ]}
                         name="confirmPassword"
                     >
                         <RS.PasswordField placeholder="Confirm password..."
