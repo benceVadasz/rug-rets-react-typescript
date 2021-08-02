@@ -4,11 +4,11 @@ import {useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";
 import * as RS from "./Register.styles";
-// import Loading from "./Loading";
+import {signUpData} from "../types";
 
 const Register = () => {
 
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<signUpData>({
         username: "",
         givenName: "",
         familyName: "",
@@ -17,25 +17,14 @@ const Register = () => {
         confirmPassword: ""
     })
 
-    const [givenName, setFirstNameState] = useState("");
-    const [familyName, setLastNameState] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [submitted, setSubmitted] = useState(false);
     const [invalidEmail, setInvalidEmail] = useState(false);
     const [provided, setProvided] = useState(true)
-    const [usernameProvided, setUsernameProvided] = useState(true)
-    const [givenNameProvided, setGivenNameProvided] = useState(true)
-    const [familyNameProvided, setFamilyNameProvided] = useState(true)
     const [passwordsMatch, setPasswordsMatch] = useState(true)
-    const [confirmPasswordProvided, setConfirmPasswordProvided] = useState(true)
     const dispatch = useDispatch();
     const history = useHistory();
 
 
     const submit = async () => {
-        setSubmitted(true)
         if (user.password !== user.confirmPassword) {
             setPasswordsMatch(false)
             return;
@@ -114,7 +103,6 @@ const Register = () => {
                         help={!provided && user.email === '' ? "Please enter your email!" :
                             invalidEmail ? "Email already registered" : null}
                         name="email"
-                        // rules={[{required: true, message: "Please enter email!"}]}
                     >
                         <RS.InputField placeholder="Email..." onChange={setUserEmail}/>
                     </RS.Field>

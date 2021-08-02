@@ -8,7 +8,7 @@ import {ThemeContext} from "../context/store";
 type IProps = {
     data: any;
     fetchData: (url?: string | undefined) => Promise<void>;
-    id: { id: string },
+    id: { id?: string },
 }
 
 type IState = {
