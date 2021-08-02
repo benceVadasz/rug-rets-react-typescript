@@ -6,9 +6,9 @@ import Loading from "../util/Loading";
 import {ThemeContext} from "../context/store";
 
 type IProps = {
-    data: any;
-    fetchData: (url?: string | undefined) => Promise<void>;
-    id: { id?: string },
+    data?: any;
+    fetchData?: (url?: string | undefined) => Promise<void>;
+    id?: { id?: string },
 }
 
 type IState = {
@@ -17,25 +17,25 @@ type IState = {
     copied: string
 }
 
+
 class DesignDetails extends Component<IProps, IState> {
 
-    // todo
-    // constructor(props: IProps, context: any, state: IState) {
-    //     super(props, context);
-    //     this.state = state;
-    // }
-
-    state: IState = {
-        design: {imageUrl: '', title: '', userName: '', colors: []},
-        loading: true,
-        copied: ''
+    constructor(props: IProps, context: typeof ThemeContext) {
+        super(props, context);
+        this.state = {
+            design: {imageUrl: '', title: '', userName: '', colors: []},
+            loading: true,
+            copied: ''
+        };
     }
 
     // componentWillMount() was deprecated in 2018, it isn’t best practice because it is not safe for async rendering
     async componentDidMount() {
-        const id = this.props.id.id
+        const id = this.props?.id?.id
         const {fetchData} = this.props
-        await fetchData('https://www.colourlovers.com/api/pattern/' + id + '?format=json')
+        if (fetchData) {
+            await fetchData('https://www.colourlovers.com/api/pattern/' + id + '?format=json')
+        }
         const {data} = this.props
         this.setState({design: data[0]})
         this.setState({loading: false})
@@ -54,10 +54,8 @@ class DesignDetails extends Component<IProps, IState> {
 
     render() {
 
-        console.log(this.context.dark)
-
         if (this.state.loading) {
-            return <DS.Wrapper><Loading/></DS.Wrapper>
+            return <DS.LoadingWrapper><Loading/></DS.LoadingWrapper>
         }
         const {design} = this.state
 

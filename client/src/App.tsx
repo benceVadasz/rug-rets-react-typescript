@@ -22,7 +22,7 @@ function App() {
                 <Route path="/profile" children={<Profile/>}/>
                 <Route path="/forum" children={<Forum/>}/>
                 <Route exact path="/design" children={<Design/>}/>
-                <Route exact path="/design/:id" children={<DesignDetails/>}
+                <Route exact path="/design/:id" children={<DesignDetails id={undefined} data={undefined} fetchData={undefined}/>}
                 />
                 <DesignProvider>
                     <Route exact path="/feed" children={<Feed/>}/>
