@@ -26,19 +26,40 @@ const Login: FC = () => {
     const [form] = Form.useForm();
     const [email, setEmailState] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [invalidCredentials, setInvalidCredentials] = useState(false);
+    const [invalidCredentials, setInvalidCredentials] = useState<boolean>(false);
+    const [emailProvided, setEmailProvided] = useState<boolean>(true);
+    const [passwordProvided, setPasswordProvided] = useState<boolean>(true);
     const dispatch = useDispatch();
     const history = useHistory();
 
     const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmailProvided(true)
         setInvalidCredentials(false);
-
         setEmailState(e.target.value);
     };
 
+    const setPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPasswordProvided(true)
+        setInvalidCredentials(false)
+        setPassword(e.target.value)
+    }
+
     const submit = async () => {
-        const loginSuccessful = await dispatch(signIn({email, password}))
-        !loginSuccessful ? setInvalidCredentials(true) : history.push('/feed')
+        if (email === '' || password === '') {
+            if (email === '') {
+                setEmailProvided(false)
+            }
+            if (password === '') {
+                setPasswordProvided(false)
+            }
+            return;
+        }
+
+        if (typeof await dispatch(signIn({email, password})) === 'string') {
+            setInvalidCredentials(true)
+        } else {
+            history.push('/feed')
+        }
     };
 
     const googleSuccess = async (res: any) => {
@@ -57,13 +78,6 @@ const Login: FC = () => {
         console.log('google sign in was unsuccessful. Please refresh and start again.')
     };
 
-    // todo
-    // ({ getFieldValue }) => ({
-    //     validator(_, value) {
-    //         if (!value || getFieldValue('password') === value) {
-    //             return Promise.resolve();
-    //         }
-    //         return Promise.reject(new Error('The t
 
     return (
         <Wrapper>
@@ -78,21 +92,21 @@ const Login: FC = () => {
                 )}
                 <LoginForm onFinish={submit} form={form}>
                     <Field
-                        rules={[{required: true, message: "Email is required!"}]}
                         name="email"
-                        validateStatus={invalidCredentials? "error": ""}
+                        validateStatus={invalidCredentials || !emailProvided ? "error" : ""}
+                        help={!emailProvided ? "Email is required" : null}
 
                     >
                         <InputField placeholder="Email..." onChange={setEmail}/>
                     </Field>
                     <Field
                         name="password"
-                        rules={[{required: true, message: "Password is required!"}]}
-                        validateStatus={invalidCredentials? "error": ""}
+                        validateStatus={!passwordProvided || invalidCredentials ? "error" : ""}
+                        help={!passwordProvided ? "Password is required" : null}
                     >
                         <PasswordField
                             placeholder="Password..."
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={setPasswordState}
                         />
                     </Field>
                     <GoogleLogin

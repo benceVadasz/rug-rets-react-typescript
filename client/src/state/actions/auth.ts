@@ -5,17 +5,15 @@ import {RootState} from "../store";
 import {Dispatch} from "redux";
 
 
-export const signIn = (formData: signInData): ThunkAction<void, RootState, null,AuthAction> =>
+export const signIn = (formData: signInData): (dispatch: Dispatch<AuthAction>) => Promise<{ payload: any; type: string }> =>
     async (dispatch: Dispatch<AuthAction>) => {
     try {
         const { data } = await api.signIn(formData);
 
-        dispatch({ type: SIGN_IN, payload: data})
-        return true
+        return dispatch({ type: SIGN_IN, payload: data})
     }
     catch (error) {
-        console.log(error.message);
-        return false
+        return error.response.data.message
     }
 }
 
@@ -24,12 +22,12 @@ export const signUp = (formData: signUpData): ThunkAction<void, RootState, null,
     async (dispatch: Dispatch<AuthAction>) => {
     try {
         const { data } = await api.signUp(formData);
-        dispatch({ type: SIGN_UP, payload: data })
-        return true
+
+        return dispatch({ type: SIGN_UP, payload: data })
+
     }
     catch (error) {
-        dispatch({ type: SIGN_UP_ERROR, payload: 'User already exists' })
-        return false
+        return error.response.data.message
     }
 }
 

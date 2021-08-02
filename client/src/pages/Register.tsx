@@ -8,41 +8,76 @@ import * as RS from "./Register.styles";
 
 const Register = () => {
 
+    const [user, setUser] = useState({
+        username: "",
+        givenName: "",
+        familyName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    })
+
     const [givenName, setFirstNameState] = useState("");
     const [familyName, setLastNameState] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [username, setUsername] = useState("");
+    const [submitted, setSubmitted] = useState(false);
     const [invalidEmail, setInvalidEmail] = useState(false);
+    const [provided, setProvided] = useState(true)
+    const [usernameProvided, setUsernameProvided] = useState(true)
+    const [givenNameProvided, setGivenNameProvided] = useState(true)
+    const [familyNameProvided, setFamilyNameProvided] = useState(true)
+    const [passwordsMatch, setPasswordsMatch] = useState(true)
+    const [confirmPasswordProvided, setConfirmPasswordProvided] = useState(true)
     const dispatch = useDispatch();
     const history = useHistory();
 
 
     const submit = async () => {
-        if (password !== confirmPassword) alert("Passwords do not match");
-        console.log(email)
-        const signUpSuccessful = await dispatch(signUp({username, givenName, familyName, email, password, confirmPassword}))
-        !signUpSuccessful ? setInvalidEmail(true) : history.push('/feed')
+        setSubmitted(true)
+        if (user.password !== user.confirmPassword) {
+            setPasswordsMatch(false)
+            return;
+        }
+        if (Object.values(user).some(x => x === '')) {
+            setProvided(false)
+        }
+        if (typeof await dispatch(
+            signUp(user)) === 'string') {
+            setInvalidEmail(true)
+        } else {
+            history.push('/feed')
+        }
     };
 
     const setFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFirstNameState(e.target.value)
+        setUser({...user, givenName: e.target.value})
         setInvalidEmail(false)
     }
     const setLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLastNameState(e.target.value)
+        setUser({...user, familyName: e.target.value})
         setInvalidEmail(false)
     }
 
     const setUserEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
+        setUser({...user, email: e.target.value})
+        console.log(user)
         setInvalidEmail(false)
     }
 
     const setUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value)
+        setUser({...user, username: e.target.value})
+        console.log(user)
         setInvalidEmail(false)
+    }
+
+    const setPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUser({...user, password: e.target.value})
+    }
+
+    const setConfirmPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUser({...user, confirmPassword: e.target.value})
     }
 
 
@@ -54,54 +89,61 @@ const Register = () => {
                 <RS.RegisterSubtitle>Please fill this form to sign up!</RS.RegisterSubtitle>
                 <RS.RegisterForm onFinish={submit}>
                     <RS.Field
-                        rules={[{required: true, message: "Please enter a username!"}]}
                         name="user name"
+                        validateStatus={!provided && user.username === '' ? "error" : ""}
+                        help={!provided && user.username === '' ? "Please enter a username!" : null}
                     >
                         <RS.InputField placeholder="Username..." onChange={setUserName}/>
                     </RS.Field>
                     <RS.Field
-                        rules={[{required: true, message: "Please enter your first name!"}]}
                         name="first name"
+                        validateStatus={!provided && user.givenName === '' ? "error" : ""}
+                        help={!provided && user.givenName === '' ? "Please enter your first name!" : null}
                     >
                         <RS.InputField placeholder="First name..." onChange={setFirstName}/>
                     </RS.Field>
                     <RS.Field
                         name="last name"
-                        rules={[{required: true, message: "Please enter your last name!"}]}
+                        validateStatus={!provided && user.familyName === '' ? "error" : ""}
+                        help={!provided && user.familyName === '' ? "Please enter your last name!" : null}
                     >
                         <RS.InputField placeholder="Last Name..." onChange={setLastName}/>
                     </RS.Field>
                     <RS.Field
-                        validateStatus={invalidEmail ? "error" : ""}
-                        help={invalidEmail ? "Email already exists" : ""}
+                        validateStatus={invalidEmail || (!provided && user.email === '') ? "error" : ""}
+                        help={!provided && user.email === '' ? "Please enter your email!" :
+                            invalidEmail ? "Email already registered" : null}
                         name="email"
-                        rules={[{required: true, message: "Please enter email!"}]}
-                        style={{ marginBottom: !invalidEmail ?  -3 : 0}}
+                        // rules={[{required: true, message: "Please enter email!"}]}
                     >
                         <RS.InputField placeholder="Email..." onChange={setUserEmail}/>
                     </RS.Field>
                     <RS.Field
-                        rules={[{required: true, message: "Please enter your password!"}]}
                         name="password"
+                        validateStatus={!provided && user.password === '' ? "error" : ""}
+                        help={!provided && user.password === '' ? "Please enter a password!" : null}
                     >
-                        <RS.PasswordField placeholder="Password..." onChange={(e) => setPassword(e.target.value)}/>
+                        <RS.PasswordField placeholder="Password..." onChange={setPasswordState}/>
                     </RS.Field>
                     <RS.Field
-                        rules={[{required: true, message: "Please repeat password!"},
-                            ({ getFieldValue }) => ({
-                                    validator(_, value) {
-                                        if (!value || getFieldValue('password') === value) {
-                                            return Promise.resolve();
-                                        } else {
-                                            return Promise.reject('Password do not match');
-                                        }
+                        validateStatus={(!provided && user.confirmPassword === '') || !passwordsMatch ? "error" : ""}
+                        help={!provided && user.confirmPassword === '' ? "Please repeat password!"  : null}
+                        rules={[({getFieldValue}) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue('password') === value) {
+                                    return Promise.resolve();
+                                } else {
+                                    if (user.password.length === user.confirmPassword.length) {
+                                        return Promise.reject('Password do not match');
                                     }
-                                    })
+                                }
+                            }
+                        })
                         ]}
                         name="confirmPassword"
                     >
                         <RS.PasswordField placeholder="Confirm password..."
-                                          onChange={(e) => setConfirmPassword(e.target.value)}/>
+                                          onChange={setConfirmPasswordState}/>
                     </RS.Field>
                     <RS.RegisterButton htmlType="submit">Log in</RS.RegisterButton>
                 </RS.RegisterForm>

@@ -112,6 +112,7 @@ interface SignUpAction {
 
 interface SignOutAction {
     type: typeof SIGN_OUT;
+    payload?: string
 }
 
 export interface UpdatedUser {
