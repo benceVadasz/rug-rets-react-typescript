@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 interface WithDispatchProps {
     data: any;
     fetchData: (url?: string | undefined) => Promise<void>;
-    id: { id: string };
+    id: {};
     dark?: boolean
 }
 
@@ -13,10 +13,10 @@ export const withFetch = (WrappedComponent: React.ComponentType<WithDispatchProp
 
     // todo HOC props
 
-    return (props: any) => {
+    return () => {
         const {fetchData, data} = useFetch();
         const id = useParams()
 
-        return <WrappedComponent fetchData={fetchData} id={id}  {...props} data={data}/>;
+        return <WrappedComponent fetchData={fetchData} id={id} data={data}/>;
     };
 };

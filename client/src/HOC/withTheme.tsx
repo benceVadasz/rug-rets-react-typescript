@@ -9,9 +9,9 @@ export const withTheme = (WrappedComponent: React.ComponentType<ThemeProps>) => 
 
 
 
-    return (props: any) => {
+    return () => {
         const {dark} = useContext(ThemeContext)
-        return <WrappedComponent dark={dark} {...props}/>;
+        return <WrappedComponent dark={dark}/>;
     };
 
 }
