@@ -20,6 +20,7 @@ const Register = () => {
     const [invalidEmail, setInvalidEmail] = useState(false);
     const [provided, setProvided] = useState(true)
     const [passwordsMatch, setPasswordsMatch] = useState(true)
+    const [usernameTaken, setUsernameTaken] = useState(false)
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -32,10 +33,15 @@ const Register = () => {
         if (Object.values(user).some(x => x === '')) {
             setProvided(false)
         }
-        if (typeof await dispatch(
-            signUp(user)) === 'string') {
-            setInvalidEmail(true)
-        } else {
+        const signUpResp = await dispatch(signUp(user))
+        if (typeof signUpResp === "string") {
+            if (signUpResp === "Username taken") {
+                setUsernameTaken(true)
+            } else if (signUpResp === "User already exists") {
+                setInvalidEmail(true)
+            }
+        }
+        else {
             history.push('/feed')
         }
     };
@@ -59,6 +65,7 @@ const Register = () => {
         setUser({...user, username: e.target.value})
         console.log(user)
         setInvalidEmail(false)
+        setUsernameTaken(false)
     }
 
     const setPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,8 +86,9 @@ const Register = () => {
                 <RS.RegisterForm onFinish={submit}>
                     <RS.Field
                         name="user name"
-                        validateStatus={!provided && user.username === '' ? "error" : ""}
-                        help={!provided && user.username === '' ? "Please enter a username!" : null}
+                        validateStatus={usernameTaken || (!provided && user.username === '') ? "error" : ""}
+                        help={usernameTaken ? "Username taken" : !provided && user.username === ''
+                            ? "Please enter a username!" : null}
                     >
                         <RS.InputField placeholder="Username..." onChange={setUserName}/>
                     </RS.Field>
@@ -115,7 +123,7 @@ const Register = () => {
                     </RS.Field>
                     <RS.Field
                         validateStatus={(!provided && user.confirmPassword === '') || !passwordsMatch ? "error" : ""}
-                        help={!provided && user.confirmPassword === '' ? "Please repeat password!"  : null}
+                        help={!provided && user.confirmPassword === '' ? "Please repeat password!" : null}
                         rules={[({getFieldValue}) => ({
                             validator(_, value) {
                                 if (!value || getFieldValue('password') === value) {

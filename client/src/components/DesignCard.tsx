@@ -12,6 +12,7 @@ type DesignCardProps = {
 
 class DesignCard extends Component<DesignCardProps> {
 
+
     render() {
         const {Meta} = Card;
         return (
