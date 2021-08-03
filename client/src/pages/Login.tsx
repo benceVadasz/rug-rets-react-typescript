@@ -19,6 +19,7 @@ import GoogleLogin from "react-google-login";
 import {signIn} from "../state/actions/auth";
 import {Form} from "antd";
 import {SIGN_IN} from "../types";
+import {sign} from "crypto";
 
 
 const Login: FC = () => {
@@ -55,7 +56,8 @@ const Login: FC = () => {
             return;
         }
 
-        if (typeof await dispatch(signIn({email, password})) === 'string') {
+        const signInResp = await dispatch(signIn({email, password}))
+        if (typeof signInResp === 'string') {
             setInvalidCredentials(true)
         } else {
             history.push('/feed')

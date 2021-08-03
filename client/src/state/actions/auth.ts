@@ -13,7 +13,7 @@ export const signIn = (formData: signInData): (dispatch: Dispatch<AuthAction>) =
         return dispatch({ type: SIGN_IN, payload: data})
     }
     catch (error) {
-        return error.response.data.status
+        return error.response.data.message
     }
 }
 
