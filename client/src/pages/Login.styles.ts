@@ -74,9 +74,10 @@ export const LoginForm: FC<FormProps> = styled(Form)({
   justifyContent: 'space-between'
 });
 
-export const Field = styled(Form.Item)`
+export const Field = styled(Form.Item)({
+  fontFamily: `${font}`
+})
 
-`
 
 export const PasswordField = styled(Input.Password)``
 export const InputField = styled(Input)``

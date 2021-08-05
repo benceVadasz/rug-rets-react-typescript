@@ -25,7 +25,7 @@ const Login: FC = () => {
     const [form] = Form.useForm();
     const [email, setEmailState] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [invalidCredentials, setInvalidCredentials] = useState<boolean>(false);
+    const [error, setError] = useState<string>("");
     const [emailProvided, setEmailProvided] = useState<boolean>(true);
     const [passwordProvided, setPasswordProvided] = useState<boolean>(true);
     const dispatch = useDispatch();
@@ -33,13 +33,13 @@ const Login: FC = () => {
 
     const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailProvided(true)
-        setInvalidCredentials(false);
+        setError('');
         setEmailState(e.target.value);
     };
 
     const setPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPasswordProvided(true)
-        setInvalidCredentials(false)
+        setError('');
         setPassword(e.target.value)
     }
 
@@ -56,7 +56,7 @@ const Login: FC = () => {
 
         const signInResp = await dispatch(signIn({email, password}))
         if (typeof signInResp === 'string') {
-            setInvalidCredentials(true)
+            setError(signInResp)
         } else {
             history.push('/feed')
         }
@@ -85,15 +85,15 @@ const Login: FC = () => {
                 <LoginOutlined/>
                 <LoginHeader>Login</LoginHeader>
                 {/*<LoginTitle/>*/}
-                {!invalidCredentials ? (
+                {!error ? (
                     <LoginSubtitle>Please fill this form to log in!</LoginSubtitle>
                 ) : (
-                    <ErrorSubtitle>Invalid credentials</ErrorSubtitle>
+                    <ErrorSubtitle>{error}</ErrorSubtitle>
                 )}
                 <LoginForm onFinish={submit} form={form}>
                     <Field
                         name="email"
-                        validateStatus={invalidCredentials || !emailProvided ? "error" : ""}
+                        validateStatus={error.length > 0 || !emailProvided ? "error" : ""}
                         help={!emailProvided ? "Email is required" : null}
 
                     >
@@ -101,7 +101,7 @@ const Login: FC = () => {
                     </Field>
                     <Field
                         name="password"
-                        validateStatus={!passwordProvided || invalidCredentials ? "error" : ""}
+                        validateStatus={!passwordProvided || error.length > 0 ? "error" : ""}
                         help={!passwordProvided ? "Password is required" : null}
                     >
                         <PasswordField
