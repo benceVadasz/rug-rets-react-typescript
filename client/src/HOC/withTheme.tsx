@@ -7,8 +7,6 @@ interface ThemeProps {
 
 export const withTheme = (WrappedComponent: React.ComponentType<ThemeProps>) => {
 
-
-
     return () => {
         const {dark} = useContext(ThemeContext)
         return <WrappedComponent dark={dark}/>;

@@ -11,8 +11,6 @@ interface WithFetchProps {
 
 export const withFetch = (WrappedComponent: React.ComponentType<WithFetchProps>) => {
 
-    // todo HOC props
-
     return (props: WithFetchProps) => {
         const {fetchData, data} = useFetch();
         const id = useParams()

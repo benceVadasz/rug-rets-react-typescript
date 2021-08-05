@@ -19,8 +19,6 @@ import GoogleLogin from "react-google-login";
 import {signIn} from "../state/actions/auth";
 import {Form} from "antd";
 import {SIGN_IN} from "../types";
-import {sign} from "crypto";
-
 
 const Login: FC = () => {
 
