@@ -16,9 +16,24 @@ import {
 } from "./Login.styles";
 import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
-import {signIn} from "../state/actions/auth";
 import {Form} from "antd";
-import {SIGN_IN} from "../types";
+import {SIGN_IN, signInData} from "../types";
+import {gql, useMutation} from "@apollo/client";
+
+const LOGIN_MUTATION = gql`
+    mutation signIn($email: String!, $password: String!) {
+        signIn(email: $email, password: $password) {
+            token
+            user {
+                username
+                givenName
+                familyName
+                email
+                _id
+            }
+        }
+    }
+`
 
 const Login: FC = () => {
 
@@ -30,6 +45,8 @@ const Login: FC = () => {
     const [passwordProvided, setPasswordProvided] = useState<boolean>(true);
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const [login] = useMutation(LOGIN_MUTATION)
 
     const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailProvided(true)
@@ -43,7 +60,7 @@ const Login: FC = () => {
         setPassword(e.target.value)
     }
 
-    const submit = async () => {
+    const submit = async (values: signInData) => {
         if (email === '' || password === '') {
             if (email === '') {
                 setEmailProvided(false)
@@ -53,14 +70,16 @@ const Login: FC = () => {
             }
             return;
         }
-
-        const signInResp = await dispatch(signIn({email, password}))
-        if (typeof signInResp === 'string') {
-            setError(signInResp)
-        } else {
-            history.push('/feed')
+        try {
+            const response = await login({
+                variables: values
+            })
+            localStorage.setItem('profile', JSON.stringify({...response.data.signIn}))
+            history.push("/feed")
+        } catch (error) {
+            setError(error.message)
         }
-    };
+    }
 
     const googleSuccess = async (res: any) => {
         const result = res?.profileObj;
@@ -84,7 +103,6 @@ const Login: FC = () => {
             <Paper>
                 <LoginOutlined/>
                 <LoginHeader>Login</LoginHeader>
-                {/*<LoginTitle/>*/}
                 {!error ? (
                     <LoginSubtitle>Please fill this form to log in!</LoginSubtitle>
                 ) : (

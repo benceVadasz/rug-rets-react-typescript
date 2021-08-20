@@ -6,9 +6,9 @@ import Loading from "../util/Loading";
 import {ThemeContext} from "../context/store";
 
 type IProps = {
-    data?: any;
-    fetchData?: (url?: string | undefined) => Promise<void>;
-    id?: { id?: string },
+    data: any;
+    fetchData: (url?: string | undefined) => Promise<void>| any;
+    id: { id?: string } | any,
 }
 
 type IState = {

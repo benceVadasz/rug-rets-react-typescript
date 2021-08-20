@@ -3,9 +3,9 @@ import useFetch from "../customHooks/useFetch";
 import {useParams} from "react-router-dom";
 
 interface WithFetchProps {
-    data?: any;
-    fetchData?: (url?: string | undefined) => Promise<void>;
-    id?: {};
+    data: any;
+    fetchData: any ;
+    id: {} | any;
     dark?: boolean
 }
 

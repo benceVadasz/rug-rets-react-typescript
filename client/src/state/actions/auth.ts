@@ -13,10 +13,11 @@ export const signIn = (formData: signInData): ThunkAction<void, RootState, null,
         return dispatch({ type: SIGN_IN, payload: data})
     }
     catch (error) {
-        return error.response.data.message
+        throw error
     }
 }
 
+// todo
 
 export const signUp = (formData: signUpData): ThunkAction<void, RootState, null,AuthAction> =>
     async (dispatch: Dispatch<AuthAction>) => {
