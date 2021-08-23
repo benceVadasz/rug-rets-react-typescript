@@ -3,10 +3,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {useDispatch} from "react-redux";
 import {ColorAdderWrapper} from "./AddNewColor.styles";
 import {useHistory} from "react-router-dom";
-import {gql, useMutation} from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import {GET_COLORS, UPLOAD_COLOR} from "../util/graphql";
 
 
@@ -15,7 +14,6 @@ const AddNewColor = () => {
     const [addColor] = useMutation(UPLOAD_COLOR)
 
     const MySwal = withReactContent(Swal);
-    const dispatch = useDispatch();
     const useStyles = makeStyles(() => ({
         color: {
             display: 'flex',
