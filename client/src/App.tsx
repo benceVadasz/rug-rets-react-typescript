@@ -13,13 +13,14 @@ import ThemeProvider from "./context/ThemeProvider";
 import Forum from "./pages/Forum";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
+import {useLocalStorage} from "./customHooks/useLocalStorage";
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql'
 });
 
 const authLink = setContext(async (req, {headers}) => {
-    const token = localStorage.getItem("token")
+    const token = useLocalStorage('profile')?.token
 
     return {
         ...headers,

@@ -3,13 +3,17 @@ import {makeStyles} from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import {uploadColor} from "../state/actions/colors";
 import {useDispatch} from "react-redux";
 import {ColorAdderWrapper} from "./AddNewColor.styles";
 import {useHistory} from "react-router-dom";
-import {useLocalStorage} from "../customHooks/useLocalStorage";
+import {gql, useMutation} from "@apollo/client";
+import {GET_COLORS, UPLOAD_COLOR} from "../util/graphql";
+
 
 const AddNewColor = () => {
+
+    const [addColor] = useMutation(UPLOAD_COLOR)
+
     const MySwal = withReactContent(Swal);
     const dispatch = useDispatch();
     const useStyles = makeStyles(() => ({
@@ -30,12 +34,10 @@ const AddNewColor = () => {
         }
     }));
     const classes = useStyles();
-    const userState = useLocalStorage('profile')
-    const userId = userState?.result._id ? userState.result._id : userState?.result.googleId
 
     const history = useHistory()
 
-    const addNewColor = () => {
+    const addNewColor = async () => {
         if (!localStorage.getItem('profile')) {
             Swal.fire({
                 title: 'Please log in or sign up to save design',
@@ -53,8 +55,7 @@ const AddNewColor = () => {
                     }
                 }
             })
-        }
-        else {
+        } else {
             MySwal.fire({
                 title: 'Add new Color',
                 input: 'text',
@@ -69,7 +70,9 @@ const AddNewColor = () => {
                 if (hexCode?.value?.length > 0 && !RegExp.test(hexCode.value)) {
                     fire('Hex code invalid')
                 } else {
-                    dispatch(uploadColor({"name": '', "value": hexCode.value, "id": userId}))
+                    addColor(
+                        {variables: {"name": '', "value": hexCode.value},
+                        refetchQueries : [{ query: GET_COLORS }]})
                 }
             })
         }
