@@ -55,3 +55,13 @@ export const REGISTER_MUTATION = gql`
         }
     }
 `
+
+export const GET_DESIGNS = gql`
+    query getDesigns{
+        getDesigns{
+            name
+            shape
+            colors
+        }
+    }
+`

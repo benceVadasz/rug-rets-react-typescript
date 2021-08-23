@@ -11,7 +11,7 @@ import {ThemeProps} from "../types";
 class Profile extends Component<ThemeProps> {
 
     render() {
-        const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
+        const userState = JSON.parse(localStorage.getItem('profile') as string)?.user
         if (!userState) window.location.href = '/login';
 
         const {dark} = this.props
