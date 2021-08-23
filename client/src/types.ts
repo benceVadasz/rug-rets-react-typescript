@@ -137,7 +137,7 @@ interface EditAction {
 }
 
 export type UserState = {
-    result: {
+    user: {
         username: string;
         givenName: string,
         familyName: string,

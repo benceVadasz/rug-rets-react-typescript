@@ -18,7 +18,7 @@ function handleMenuClick() {
 
 const Post = ({post}: PostProps) => {
     const userState = useLocalStorage('profile')
-    const userId = userState?.result._id ? userState.result._id : userState?.result.googleId
+    const userId = userState?.user._id ? userState.user._id : userState?.user.googleId
 
 
 

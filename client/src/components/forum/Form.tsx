@@ -10,7 +10,7 @@ import {useLocalStorage} from "../../customHooks/useLocalStorage";
 import {UserOutlined} from "@ant-design/icons";
 
 const Form = () => {
-    const user = useLocalStorage('profile')?.result
+    const user = useLocalStorage('profile')?.user
     const dispatch = useDispatch()
     const [postData, setPostData] = useState<UploadedPost>({message: '', selectedFile: ''});
 

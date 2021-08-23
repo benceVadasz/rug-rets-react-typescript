@@ -21,7 +21,7 @@ const ProfilePersonalInfo = () => {
         history.push('login')
     }
 
-    const userState = useLocalStorage('profile')?.result
+    const userState = useLocalStorage('profile')?.user
     const userId = userState?._id ? userState._id : userState?.googleId
 
 
