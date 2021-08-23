@@ -18,22 +18,10 @@ import {GoogleOutlined, LoginOutlined} from "@ant-design/icons";
 import GoogleLogin from "react-google-login";
 import {Form} from "antd";
 import {SIGN_IN, signInData} from "../types";
-import {gql, useMutation} from "@apollo/client";
+import {useMutation} from "@apollo/client";
+import {LOGIN_MUTATION} from "../util/graphql";
 
-const LOGIN_MUTATION = gql`
-    mutation signIn($email: String!, $password: String!) {
-        signIn(email: $email, password: $password) {
-            token
-            user {
-                username
-                givenName
-                familyName
-                email
-                _id
-            }
-        }
-    }
-`
+
 
 const Login: FC = () => {
 

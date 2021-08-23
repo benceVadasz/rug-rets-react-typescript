@@ -3,25 +3,11 @@ import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";
 import * as RS from "./Register.styles";
 import {signUpData, signUpDataToBackend} from "../types";
-import {gql, useMutation} from "@apollo/client";
+import {useMutation} from "@apollo/client";
 import {ErrorSubtitle} from "./Login.styles";
+import {REGISTER_MUTATION} from "../util/graphql";
 
-const REGISTER_MUTATION = gql`
-    mutation signUp($username: String!, $givenName: String!, 
-        $familyName: String!, $email: String!, $password: String!) {
-        signUp(username: $username, givenName: $givenName, familyName: $familyName,
-            email: $email, password: $password) {
-            token
-            user {
-                username
-                givenName
-                familyName
-                email
-                _id
-            }
-        }
-    }
-`
+
 
 
 const Register = () => {
