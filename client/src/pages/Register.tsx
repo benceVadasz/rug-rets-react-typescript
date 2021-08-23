@@ -1,10 +1,28 @@
 import React, {useState} from "react";
-import {signUp} from '../state/actions/auth';
-import {useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import {LoginOutlined} from "@ant-design/icons";
 import * as RS from "./Register.styles";
-import {signUpData} from "../types";
+import {signUpData, signUpDataToBackend} from "../types";
+import {gql, useMutation} from "@apollo/client";
+import {ErrorSubtitle} from "./Login.styles";
+
+const REGISTER_MUTATION = gql`
+    mutation signUp($username: String!, $givenName: String!, 
+        $familyName: String!, $email: String!, $password: String!) {
+        signUp(username: $username, givenName: $givenName, familyName: $familyName,
+            email: $email, password: $password) {
+            token
+            user {
+                username
+                givenName
+                familyName
+                email
+                _id
+            }
+        }
+    }
+`
+
 
 const Register = () => {
 
@@ -17,63 +35,70 @@ const Register = () => {
         confirmPassword: ""
     })
 
+    const [register] = useMutation(REGISTER_MUTATION)
+
     const [invalidEmail, setInvalidEmail] = useState(false);
     const [provided, setProvided] = useState(true)
-    const [passwordsMatch, setPasswordsMatch] = useState(true)
     const [usernameTaken, setUsernameTaken] = useState(false)
-    const dispatch = useDispatch();
+    const [error, setError] = useState<string>("");
     const history = useHistory();
 
 
-    const submit = async () => {
-        if (user.password !== user.confirmPassword) {
-            setPasswordsMatch(false)
-            return;
-        }
+    const submit = async (values: signUpDataToBackend) => {
+
         if (Object.values(user).some(x => x === '')) {
             setProvided(false)
         }
-        const signUpResp = await dispatch(signUp(user))
-        if (typeof signUpResp === "string") {
-            if (signUpResp === "Username taken") {
-                setUsernameTaken(true)
-            } else if (signUpResp === "User already exists") {
-                setInvalidEmail(true)
+        try {
+            console.log(values)
+            const response = await register({
+                variables: values
+            })
+            localStorage.setItem('profile', JSON.stringify({...response.data.signUp}))
+            history.push("/feed")
+        } catch (error) {
+            switch (error.message) {
+                case "Username is taken":
+                    setUsernameTaken(true)
+                    break
+                case "Email is already registered":
+                    setInvalidEmail(true)
             }
-        }
-        else {
-            history.push('/feed')
         }
     };
 
     const setFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, givenName: e.target.value})
+        setError('')
         setInvalidEmail(false)
     }
     const setLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, familyName: e.target.value})
+        setError('')
         setInvalidEmail(false)
     }
 
     const setUserEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, email: e.target.value})
-        console.log(user)
+        setError('')
         setInvalidEmail(false)
     }
 
     const setUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, username: e.target.value})
-        console.log(user)
+        setError('')
         setInvalidEmail(false)
         setUsernameTaken(false)
     }
 
     const setPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, password: e.target.value})
+        setError('')
     }
 
     const setConfirmPasswordState = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, confirmPassword: e.target.value})
+        setError('')
     }
 
 
@@ -82,10 +107,13 @@ const Register = () => {
             <RS.Paper>
                 <LoginOutlined/>
                 <RS.RegisterHeader>Register</RS.RegisterHeader>
-                <RS.RegisterSubtitle>Please fill this form to sign up!</RS.RegisterSubtitle>
+                {!error?
+                    <RS.RegisterSubtitle>Please fill this form to sign up!</RS.RegisterSubtitle>:
+                    <ErrorSubtitle>{error}</ErrorSubtitle>
+                }
                 <RS.RegisterForm onFinish={submit}>
                     <RS.Field
-                        name="user name"
+                        name="username"
                         validateStatus={usernameTaken || (!provided && user.username === '') ? "error" : ""}
                         help={usernameTaken ? "Username taken" : !provided && user.username === ''
                             ? "Please enter a username!" : null}
@@ -93,14 +121,14 @@ const Register = () => {
                         <RS.InputField placeholder="Username..." onChange={setUserName}/>
                     </RS.Field>
                     <RS.Field
-                        name="first name"
+                        name="givenName"
                         validateStatus={!provided && user.givenName === '' ? "error" : ""}
                         help={!provided && user.givenName === '' ? "Please enter your first name!" : null}
                     >
                         <RS.InputField placeholder="First name..." onChange={setFirstName}/>
                     </RS.Field>
                     <RS.Field
-                        name="last name"
+                        name="familyName"
                         validateStatus={!provided && user.familyName === '' ? "error" : ""}
                         help={!provided && user.familyName === '' ? "Please enter your last name!" : null}
                     >
@@ -122,7 +150,7 @@ const Register = () => {
                         <RS.PasswordField placeholder="Password..." onChange={setPasswordState}/>
                     </RS.Field>
                     <RS.Field
-                        validateStatus={(!provided && user.confirmPassword === '') || !passwordsMatch ? "error" : ""}
+                        validateStatus={(!provided && user.confirmPassword === '') ? "error" : ""}
                         help={!provided && user.confirmPassword === '' ? "Please repeat password!" : null}
                         rules={[({getFieldValue}) => ({
                             validator(_, value) {
@@ -141,7 +169,7 @@ const Register = () => {
                         <RS.PasswordField placeholder="Confirm password..."
                                           onChange={setConfirmPasswordState}/>
                     </RS.Field>
-                    <RS.RegisterButton htmlType="submit">Log in</RS.RegisterButton>
+                    <RS.RegisterButton htmlType="submit">Sign up</RS.RegisterButton>
                 </RS.RegisterForm>
             </RS.Paper>
         </RS.Wrapper>

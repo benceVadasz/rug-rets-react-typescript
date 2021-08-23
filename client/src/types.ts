@@ -64,6 +64,14 @@ export interface signUpData {
     confirmPassword: string
 }
 
+export interface signUpDataToBackend {
+    username: string,
+    givenName: string,
+    familyName: string,
+    email: string,
+    password: string,
+}
+
 export interface signInData {
     email: string,
     password: string

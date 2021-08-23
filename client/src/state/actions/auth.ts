@@ -28,7 +28,7 @@ export const signUp = (formData: signUpData): ThunkAction<void, RootState, null,
 
     }
     catch (error) {
-        return error.response.data.message
+        // return error.response.data.message
     }
 }
 
