@@ -48,11 +48,20 @@ export type UploadedPost = {
     selectedFile: string
 }
 
+export type Comment = {
+    username: string,
+    text: string
+}
+
 export type PostData = {
     message: string,
     selectedFile: string,
     _id: string,
-    user: string
+    username: string,
+    userId: string,
+    comments: Comment[],
+    likes: string[]
+    createdAt: string
 }
 
 export interface signUpData {
@@ -95,7 +104,16 @@ export interface profileData {
 export interface Color {
     name: string,
     value: string
+    _id: string,
 }
+
+export interface OnStockColor {
+    name: string,
+    value: string,
+    _id?: string | undefined
+}
+
+export type ColorType = Color | OnStockColor
 
 export interface UploadColorData {
     name: string,
