@@ -1,36 +1,9 @@
 import * as api from '../../api';
-import {AuthAction, EDIT, SIGN_IN, SIGN_UP, signInData, signUpData} from "../../types";
+import {AuthAction, EDIT} from "../../types";
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "../store";
 import {Dispatch} from "redux";
 
-
-export const signIn = (formData: signInData): ThunkAction<void, RootState, null,AuthAction> =>
-    async (dispatch: Dispatch<AuthAction>) => {
-    try {
-        const { data } = await api.signIn(formData);
-
-        return dispatch({ type: SIGN_IN, payload: data})
-    }
-    catch (error) {
-        throw error
-    }
-}
-
-// todo
-
-export const signUp = (formData: signUpData): ThunkAction<void, RootState, null,AuthAction> =>
-    async (dispatch: Dispatch<AuthAction>) => {
-    try {
-        const { data } = await api.signUp(formData);
-
-        return dispatch({ type: SIGN_UP, payload: data })
-
-    }
-    catch (error) {
-        // return error.response.data.message
-    }
-}
 
 export const editProfile = (formData: { phone: string | undefined; givenName: string | undefined; familyName: string | undefined; email: string | undefined; username: string | undefined }, id: string | undefined): ThunkAction<void, RootState, null, AuthAction> =>
     async (dispatch: Dispatch<AuthAction>) => {

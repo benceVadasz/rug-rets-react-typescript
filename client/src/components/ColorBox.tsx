@@ -6,7 +6,7 @@ import {setColor} from "../state/actions/colors";
 import {RootState} from "../state/store";
 import AddNewColor from "./AddNewColor";
 import {useQuery} from "@apollo/client";
-import {DELETE_COLOR, GET_COLORS, GET_POSTS} from "../util/graphql";
+import {DELETE_COLOR, GET_COLORS} from "../util/graphql";
 import x from '../assets/remove.svg'
 import {useMutation} from "@apollo/client";
 import {ColorType} from "../types";
@@ -38,7 +38,6 @@ const ColorBox = () => {
     const [deleteColor] = useMutation(DELETE_COLOR)
 
     const removerColor = async (id: string | undefined) => {
-        console.log(id)
         await deleteColor({variables: {id}, refetchQueries: [{ query: GET_COLORS }]})
     }
 

@@ -6,26 +6,15 @@ import {RootState} from "../store";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "redux"
 
-export const getColors = (userId: string) => async (dispatch: any) => {
-    try {
-        const {data} = await api.fetchColors(userId);
-
-        dispatch({type: FETCH_ALL, payload: data});
-    } catch (error) {
-        console.log(error.message);
-    }
-};
-
-export const uploadColor = (colorData: UploadColorData): ThunkAction<void, RootState, null, ColorAction> =>
-    async (dispatch: Dispatch<ColorAction>) => {
-    try {
-        const {data} = await api.uploadColor(colorData);
-
-        dispatch({type: CREATE, payload: data});
-    } catch (error) {
-        console.log(error.message);
-    }
-};
+// export const getColors = (userId: string) => async (dispatch: any) => {
+//     try {
+//         const {data} = await api.fetchColors(userId);
+//
+//         dispatch({type: FETCH_ALL, payload: data});
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// };
 
 export const colorExists = (hex: string) =>
     async () => {
