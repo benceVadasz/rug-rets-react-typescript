@@ -3,7 +3,8 @@ import {Color} from "../../types";
 
 const initialColorState: Color = {
     name: '',
-    value: ''
+    value: '',
+    _id: ''
 }
 
 export const colors = (colors: Color[] = [], action: ColorAction): Color[] => {

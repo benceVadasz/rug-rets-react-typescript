@@ -6,8 +6,10 @@ import {setColor} from "../state/actions/colors";
 import {RootState} from "../state/store";
 import AddNewColor from "./AddNewColor";
 import {useQuery} from "@apollo/client";
-import {GET_COLORS} from "../util/graphql";
-
+import {DELETE_COLOR, GET_COLORS, GET_POSTS} from "../util/graphql";
+import x from '../assets/remove.svg'
+import {useMutation} from "@apollo/client";
+import {ColorType} from "../types";
 
 
 const ColorBox = () => {
@@ -33,15 +35,30 @@ const ColorBox = () => {
         dispatch(setColor(value))
     }
 
+    const [deleteColor] = useMutation(DELETE_COLOR)
+
+    const removerColor = async (id: string | undefined) => {
+        console.log(id)
+        await deleteColor({variables: {id}, refetchQueries: [{ query: GET_COLORS }]})
+    }
 
     return (
         <DS.ColorSelector>
-            { loading? <h1>Loading</h1> :
-                colors.map((color: { name: string, value: string }) =>
-                (<DS.Color key={color.value} title={color.name}
-                           style={{background: color.value}} onClick={() => selectColor(color.value)}>
-                </DS.Color>)
-            )}
+            {loading ? <h1>Loading</h1> :
+                colors.map((color: ColorType) =>
+                    (<DS.ColorWrapper>
+                        { colorSelection === 'custom' ?
+                            <DS.DeleteIcon onClick={
+                                () => {
+                                    removerColor(color._id)
+                                    console.log(color)
+                                }} src={x}/>
+                        : null}
+                        <DS.Color key={color.value} title={color.name}
+                                  style={{background: color.value}} onClick={() => selectColor(color.value)}>
+                        </DS.Color>
+                    </DS.ColorWrapper>)
+                )}
             {colorSelection === 'custom' ? <AddNewColor/> : null}
         </DS.ColorSelector>
     );

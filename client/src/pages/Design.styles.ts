@@ -97,5 +97,33 @@ export const Color = styled.div({
     borderRadius: 5,
     cursor: 'pointer',
     marginBottom: 30,
-    boxShadow: 'rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px'
+    boxShadow: 'rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px',
+    position: 'absolute',
+    overflow: 'hidden',
+    '&:hover': {
+        boxShadow: 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px'
+    }
+})
+
+export const DeleteIcon = styled.img({
+    zIndex: 2,
+    width: 25,
+    height: 25,
+    padding: 2,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    cursor: 'pointer',
+    '&:hover': {
+        width: 30,
+        height: 30,
+        right: -3
+    }
+})
+
+export const ColorWrapper = styled.div({
+    width: 90,
+    height: 90,
+    position: 'relative',
+    padding: 10
 })
