@@ -11,12 +11,13 @@ import {ThemeProps} from "../../types";
 export default class ProfileMenu extends Component<ThemeProps> {
 
     render() {
-        const userState = JSON.parse(localStorage.getItem('profile') as string)?.result
+        const userState = JSON.parse(localStorage.getItem('profile') as string)?.user
+
 
         return (
             <PM.Paper>
                 <PM.AvatarContainer dark={this.props.dark}>
-                    <PM.Avatar src={userState?.imageUrl || acc}/>
+                    <PM.Avatar src={userState?.profilePicture || acc}/>
                         <PM.Typo className="lower-case">
                             Hi, {userState?.givenName}
                         </PM.Typo>

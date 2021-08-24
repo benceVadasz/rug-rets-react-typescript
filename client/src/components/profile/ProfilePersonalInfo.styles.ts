@@ -13,7 +13,7 @@ export const Text = styled(Typography)({
 })
 
 export const Container = styled(Form)({
-    height: 550,
+    height: 590,
     alignSelf: 'flex-start',
     margin: '50px 0 0 50px',
     display: 'flex',
