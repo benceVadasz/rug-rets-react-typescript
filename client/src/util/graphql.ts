@@ -70,6 +70,7 @@ export const GET_DESIGNS = gql`
 export const GET_POSTS = gql`
     query getPosts{
         getPosts {
+            _id
             selectedFile
             message
             userId
@@ -112,5 +113,11 @@ export const SAVE_DESIGN = gql`
                 colors
             }
         }
+    }
+`
+
+export const DELETE_POST = gql`
+    mutation deletePost($id: ID!){
+        deletePost(id: $id)
     }
 `

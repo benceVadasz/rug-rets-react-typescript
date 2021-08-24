@@ -2,18 +2,19 @@ import React from 'react'
 import {PostData} from "../../types";
 import * as PS from './Post.styles'
 import {Menu} from 'antd';
-import {DeleteOutlined, HeartOutlined, UserOutlined} from "@ant-design/icons";
+import {UserOutlined} from "@ant-design/icons";
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
 import moment from 'moment';
+import UpdateIcon from '@material-ui/icons/Update';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import {useMutation} from "@apollo/client";
+import {DELETE_POST, GET_POSTS} from "../../util/graphql";
 
 
 type PostProps = {
     post: PostData
-}
-
-function handleMenuClick() {
-    // message.info('Click on menu item.');
-    // console.log('click', e);
 }
 
 
@@ -21,17 +22,25 @@ const Post = ({post}: PostProps) => {
     const userState = useLocalStorage('profile')
     const userId = userState?.user._id ? userState.user._id : userState?.user.googleId
 
+    const [deletePost] = useMutation(DELETE_POST)
+
+    const removePost = async (id: string) => {
+        console.log(id)
+        await deletePost({variables: {id}, refetchQueries: [{query: GET_POSTS}]})
+    }
+
     const menu = (
-        <Menu onClick={handleMenuClick}>
-            <Menu.Item key="1" icon={<HeartOutlined/>}>
-                Like
-            </Menu.Item>
-            {userId !== post.userId ? <Menu.Item key="2" icon={<UserOutlined/>}>
-                Follow {post.username}
-            </Menu.Item> : null}
-            {userId === post.userId ? <Menu.Item key="3" icon={<DeleteOutlined/>}>
-                Delete
-            </Menu.Item> : null}
+        <Menu>
+            {userId === post.userId ?
+                <div>
+                    <Menu.Item key="3" icon={<UpdateIcon/>}>Update</Menu.Item>
+                    <Menu.Item key="3" onClick={() => removePost(post._id)} icon={<DeleteOutlineIcon/>}>Delete</Menu.Item>
+                </div> :
+                <div>
+                    <Menu.Item key="2" icon={<PersonAddIcon/>}>
+                        Follow {post.username}</Menu.Item>
+                    <Menu.Item key="1" icon={<FavoriteBorderIcon/>}>Like</Menu.Item>
+                </div>}
         </Menu>
     );
 
