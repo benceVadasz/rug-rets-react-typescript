@@ -30,28 +30,6 @@ const Register = () => {
     const history = useHistory();
 
 
-    const submit = async (values: signUpDataToBackend) => {
-
-        if (Object.values(user).some(x => x === '')) {
-            setProvided(false)
-        }
-        try {
-            console.log(values)
-            const response = await register({
-                variables: values
-            })
-            localStorage.setItem('profile', JSON.stringify({...response.data.signUp}))
-            history.push("/feed")
-        } catch (error) {
-            switch (error.message) {
-                case "Username is taken":
-                    setUsernameTaken(true)
-                    break
-                case "Email is already registered":
-                    setInvalidEmail(true)
-            }
-        }
-    };
 
     const setFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, givenName: e.target.value})
@@ -87,6 +65,27 @@ const Register = () => {
         setError('')
     }
 
+    const submit = async (values: signUpDataToBackend) => {
+
+        if (Object.values(user).some(x => x === '')) {
+            setProvided(false)
+        }
+        try {
+            const response = await register({
+                variables: values
+            })
+            localStorage.setItem('profile', JSON.stringify({...response.data.signUp}))
+            history.push("/feed")
+        } catch (error) {
+            switch (error.message) {
+                case "Username is taken":
+                    setUsernameTaken(true)
+                    break
+                case "Email is already registered":
+                    setInvalidEmail(true)
+            }
+        }
+    };
 
     return (
         <RS.Wrapper>
