@@ -61,7 +61,8 @@ export type PostData = {
     userId: string,
     comments: Comment[],
     likes: string[]
-    createdAt: string
+    createdAt: string,
+    profilePicture: string
 }
 
 export interface signUpData {
@@ -142,11 +143,12 @@ interface SignOutAction {
 }
 
 export interface UpdatedUser {
-    username: string | undefined,
-    givenName: string | undefined,
-    familyName: string | undefined,
-    email: string | undefined,
-    phone?: string | undefined
+    username: string,
+    givenName: string,
+    familyName: string,
+    email: string,
+    phone?: string,
+    profilePicture?: string
 }
 
 interface EditAction {
@@ -160,7 +162,8 @@ export type UserState = {
         givenName: string,
         familyName: string,
         email: string,
-        phone: string,
+        phone?: string,
+        profilePicture?: string
         _id?: string | undefined
         googleId?: string | undefined
         imageUrl?: string | undefined

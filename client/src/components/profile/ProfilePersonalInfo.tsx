@@ -4,41 +4,48 @@ import {Col} from "antd";
 import * as RS from "../../pages/Register.styles";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {editProfile} from "../../state/actions/auth";
 import 'react-phone-input-2/lib/style.css'
 import PhoneInput from 'react-phone-input-2'
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
 import {useHistory} from "react-router";
 import {ProfileContainer} from "../../pages/Profile.styles";
 import {ThemeContext} from "../../context/store";
+import {useMutation} from "@apollo/client";
+import {UPDATE_PROFILE} from "../../util/graphql";
+import FileBase from "react-file-base64";
 
 const ProfilePersonalInfo = () => {
 
     const history = useHistory()
-    const dispatch = useDispatch();
+    const [updateProfile] = useMutation(UPDATE_PROFILE)
 
     if (!useLocalStorage('profile')) {
         history.push('login')
     }
 
     const userState = useLocalStorage('profile')?.user
-    const userId = userState?._id ? userState._id : userState?.googleId
-
-
-    const [givenName, setFirstName] = useState<string | undefined>(userState?.givenName);
-    const [familyName, setLastName] = useState<string | undefined>(userState?.familyName);
-    const [username, setUsername] = useState<string | undefined>(userState?.username);
-    const [email, setEmail] = useState<string | undefined>(userState?.email);
-    const [phone, setPhone] = useState<string | undefined>(userState?.phone);
+    const token = useLocalStorage('profile')?.token
     const {dark} = useContext(ThemeContext)
 
-    const noChange = username === userState?.username && givenName === userState?.givenName &&
-        familyName === userState?.familyName && email === userState?.email && phone === userState?.phone;
+
+    const [user, setUser] = useState({
+        username: userState?.username,
+        givenName: userState?.givenName,
+        familyName: userState?.familyName,
+        email: userState?.email,
+        phone: userState?.phone,
+        profilePicture: userState?.profilePicture
+    })
 
 
-    const saveInfo = () => {
-        dispatch(editProfile({username, givenName, familyName, email, phone},
-            userId))
+    const noChange = user.username === userState?.username && user.givenName === userState?.givenName &&
+        user.familyName === userState?.familyName && user.email === userState?.email &&
+        user.phone === userState?.phone && user.profilePicture === userState?.profilePicture;
+
+
+    const submit = async () => {
+        await updateProfile({variables: user})
+        localStorage.setItem('profile', JSON.stringify({token: token, user: user}))
     };
 
 
@@ -50,43 +57,43 @@ const ProfilePersonalInfo = () => {
                         Account overview
                     </s.Text>
                 </s.Title>
-                <s.Container onFinish={saveInfo} layout="vertical">
-                    <Col>
+                <s.Container onFinish={submit} layout="vertical">
+                    <Col style={{height: '100%'}}>
                         <RS.Field
                             label={'Username'}
                             rules={[{required: true, message: "Please enter your username!"}]}
                             name="username"
-                            initialValue={username ? username : ""}
+                            initialValue={user.username ? user.username : ""}
                         >
-                            <RS.InputField placeholder="First name..."
-                                           onChange={(e) => setUsername(e.target.value)}/>
+                            <RS.InputField placeholder="Username..."
+                                           onChange={(e) => setUser({...user, username: e.target.value})}/>
                         </RS.Field>
                         <RS.Field
                             label={'First Name'}
                             rules={[{required: true, message: "Please enter your first name!"}]}
-                            name="first name"
-                            initialValue={givenName ? givenName : ""}
+                            name="givenName"
+                            initialValue={user.givenName ? user.givenName : ""}
                         >
                             <RS.InputField placeholder="First name..."
-                                           onChange={(e) => setFirstName(e.target.value)}/>
+                                           onChange={(e) => setUser({...user, givenName: e.target.value})}/>
                         </RS.Field>
                         <RS.Field
                             label={'Last Name'}
-                            name="last name"
+                            name="familyName"
                             rules={[{required: true, message: "Please enter your last name!"}]}
-                            initialValue={familyName ? familyName : ""}
+                            initialValue={user.familyName ? user.familyName : ""}
                         >
-                            <RS.InputField  placeholder="Last Name..."
-                                           onChange={(e) => setLastName(e.target.value)}/>
+                            <RS.InputField placeholder="Last Name..."
+                                           onChange={(e) => setUser({...user, familyName: e.target.value})}/>
                         </RS.Field>
                         <RS.Field
                             label={'Email'}
                             name="email"
                             rules={[{required: true, message: "Please enter email!"}]}
-                            initialValue={email ? email : ""}
+                            initialValue={user.email ? user.email : ""}
                         >
                             <RS.InputField placeholder="Email..."
-                                           onChange={(e) => setEmail(e.target.value)}/>
+                                           onChange={(e) => setUser({...user, email: e.target.value})}/>
                         </RS.Field>
                         <RS.Field
                             label={'Phone'}
@@ -94,10 +101,23 @@ const ProfilePersonalInfo = () => {
                         >
                             <PhoneInput
                                 placeholder="Enter phone number"
-                                value={phone}
-                                onChange={(e) => setPhone(e)}/>
+                                value={user.phone ? user.phone : ""}
+                                onChange={(e) => setUser({...user, phone: e})}/>
                         </RS.Field>
-
+                        <div style={{color: 'white', marginBottom: 20}}>
+                            <RS.Field
+                                label={'Change profile picture'}
+                                name="profilePicture"
+                            >
+                                <FileBase
+                                    type="file" multiple={false}
+                                    name="profilePicture"
+                                    onDone={({base64}: any) =>{
+                                        setUser({...user, profilePicture: base64})
+                                    }}
+                                />
+                            </RS.Field>
+                        </div>
                         <RS.SaveButton disabled={noChange} htmlType="submit">Save</RS.SaveButton>
                     </Col>
                 </s.Container>

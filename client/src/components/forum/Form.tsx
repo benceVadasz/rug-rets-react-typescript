@@ -23,7 +23,7 @@ const Form = () => {
         <FS.Container>
             <FS.Form onFinish={submit}>
                 <FS.InputBox>
-                    <Avatar src={user?.imageUrl} icon={<UserOutlined/>} />
+                    <Avatar size={42} src={user?.profilePicture} icon={<UserOutlined/>} />
                     <FS.Input
                         onChange={(e) => setPostData({...postData, message: e.target.value})}
                         value={postData.message}

@@ -35,6 +35,8 @@ export const LOGIN_MUTATION = gql`
                 familyName
                 email
                 _id
+                phone
+                profilePicture
             }
         }
     }
@@ -82,6 +84,7 @@ export const GET_POSTS = gql`
                 username
                 text
             }
+            profilePicture
         }
     }
 `
@@ -131,4 +134,21 @@ export const LIKE_POST = gql`
             }
         }
     }
+`
+
+export const UPDATE_PROFILE = gql`
+    mutation updateProfile($username: String!, $givenName: String!,
+    $familyName: String!, $email: String!, $profilePicture: String, $phone: String) {
+        updateProfile(
+            username: $username
+            email: $email
+            givenName: $givenName
+            familyName: $familyName
+            phone: $phone
+            profilePicture: $profilePicture
+        ) {
+            profilePicture
+        }
+    }
+
 `

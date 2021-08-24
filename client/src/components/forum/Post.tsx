@@ -43,7 +43,8 @@ const Post = ({post}: PostProps) => {
                 </div> :
                 <div>
                     <Menu.Item key="2" icon={<PersonAddIcon/>}>
-                        Follow {post.username}</Menu.Item>
+                        Follow <span style={{fontWeight: 'bolder'}}>{post.username}</span>
+                    </Menu.Item>
                     <Menu.Item key="1" onClick={() => {
                         setLiked(!liked)
                         like(post._id)
@@ -59,7 +60,8 @@ const Post = ({post}: PostProps) => {
         >
             <PS.PostHeaderContainer>
                 <PS.InfoContainer>
-                <PS.Avatar icon={<UserOutlined/>}/>
+                <PS.Avatar src={post.profilePicture ? post.profilePicture : null}
+                           icon={!post.profilePicture ? <UserOutlined/> : null}/>
                 <PS.Text bold='yes'>
                     @{post.username}
                 </PS.Text>
