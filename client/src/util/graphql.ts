@@ -5,6 +5,7 @@ export const GET_COLORS = gql`
         getColors{
             name
             value
+            _id
         }
     }
 `
@@ -63,5 +64,41 @@ export const GET_DESIGNS = gql`
             shape
             colors
         }
+    }
+`
+
+export const GET_POSTS = gql`
+    query getPosts{
+        getPosts {
+            selectedFile
+            message
+            userId
+            createdAt
+            username
+            userId
+            likes
+            comments {
+                username
+                text
+            }
+        }
+    }
+`
+
+export const UPLOAD_POST = gql`
+    mutation uploadPost($message: String!, $selectedFile: String){
+        uploadPost(message: $message, selectedFile: $selectedFile){
+            post{
+                username
+                userId
+
+            }
+        }
+    }
+`
+
+export const DELETE_COLOR = gql`
+    mutation deleteColor($id: ID!){
+        deleteColor(id: $id)
     }
 `

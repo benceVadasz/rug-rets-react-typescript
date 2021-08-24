@@ -1,24 +1,23 @@
 import React, {useEffect, useState} from "react";
 import Form from "./Form";
 import Post from "./Post";
-import {getPosts} from "../../state/actions/posts";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../state/store";
 import {PostData} from "../../types";
 import * as FS from './ForumFeed.styles'
 import MySkeleton from "./Skeleton";
+import {useQuery} from "@apollo/client";
+import {GET_POSTS} from "../../util/graphql";
 
 function Feed() {
-    const dispatch = useDispatch()
-    const posts = useSelector((state: RootState) => state.posts);
-    const [loading, setLoading] = useState(true)
+
+    const {data, loading} = useQuery(GET_POSTS)
+
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-
-        dispatch(getPosts())
-        setLoading(false)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [posts])
+        if (data) {
+            setPosts(data.getPosts)
+        }
+    }, [data])
 
     return (
         <FS.Feed>

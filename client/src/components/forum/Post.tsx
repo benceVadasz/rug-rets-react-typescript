@@ -4,6 +4,7 @@ import * as PS from './Post.styles'
 import {Menu} from 'antd';
 import {DeleteOutlined, HeartOutlined, UserOutlined} from "@ant-design/icons";
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
+import moment from 'moment';
 
 
 type PostProps = {
@@ -20,17 +21,15 @@ const Post = ({post}: PostProps) => {
     const userState = useLocalStorage('profile')
     const userId = userState?.user._id ? userState.user._id : userState?.user.googleId
 
-
-
     const menu = (
         <Menu onClick={handleMenuClick}>
             <Menu.Item key="1" icon={<HeartOutlined/>}>
                 Like
             </Menu.Item>
-            {userId !== post.user ? <Menu.Item key="2" icon={<UserOutlined/>}>
-                Follow @user
+            {userId !== post.userId ? <Menu.Item key="2" icon={<UserOutlined/>}>
+                Follow {post.username}
             </Menu.Item> : null}
-            {userId === post.user ? <Menu.Item key="3" icon={<DeleteOutlined/>}>
+            {userId === post.userId ? <Menu.Item key="3" icon={<DeleteOutlined/>}>
                 Delete
             </Menu.Item> : null}
         </Menu>
@@ -38,16 +37,15 @@ const Post = ({post}: PostProps) => {
 
     return (
         <PS.Post
-            // cover={post.selectedFile?<img alt="example" src={post.selectedFile} /> : null}
         >
             <PS.PostHeaderContainer>
                 <PS.InfoContainer>
                 <PS.Avatar icon={<UserOutlined/>}/>
                 <PS.Text bold='yes'>
-                    @User1249712
+                    @{post.username}
                 </PS.Text>
                 <PS.Text time='yes'>
-                    12h ago
+                    {moment(post.createdAt).fromNow()}
                 </PS.Text>
                 </PS.InfoContainer>
                 <PS.Dropdown overlay={menu} placement="bottomCenter" icon={<PS.Ellipsis/>}>
