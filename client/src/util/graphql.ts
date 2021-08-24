@@ -121,3 +121,14 @@ export const DELETE_POST = gql`
         deletePost(id: $id)
     }
 `
+
+export const LIKE_POST = gql`
+    mutation likePost($id: ID!) {
+        likePost(id: $id){
+            post{
+                message
+                likes
+            }
+        }
+    }
+`
