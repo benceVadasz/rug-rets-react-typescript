@@ -5,7 +5,8 @@ import {OrderButton, SaveButton, ButtonContainer} from './ButtonGroup.styles';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../state/store";
 import {setAlertState, toggleAlertNeeded} from "../state/actions/alert";
-import {saveDesign} from "../state/actions/designs";
+import {useMutation} from "@apollo/client";
+import {SAVE_DESIGN} from "../util/graphql";
 
 const ButtonGroup = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,8 @@ const ButtonGroup = () => {
 
     const initColors = useSelector((state: RootState) => state.shapeColorArray)
     const shape = useSelector((state:RootState) => state.shape)
+
+    const [saveDesign] = useMutation(SAVE_DESIGN)
 
     const save = () => {
         if (!localStorage.getItem('profile')) {
@@ -46,7 +49,9 @@ const ButtonGroup = () => {
                 }).then(r => {
                         const name = r.value;
                         const colors = replaceEmptyValues(initColors)
-                        dispatch(saveDesign({shape, colors, name}))
+                        saveDesign({
+                        variables: {shape, colors, name}
+                    })
                         dispatch(setAlertState({text: "Your shape has been successfully saved!", severity: 'success'}))
                         dispatch(toggleAlertNeeded())
                         closeAlertIn5()

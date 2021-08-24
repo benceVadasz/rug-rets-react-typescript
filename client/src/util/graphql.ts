@@ -102,3 +102,15 @@ export const DELETE_COLOR = gql`
         deleteColor(id: $id)
     }
 `
+
+export const SAVE_DESIGN = gql`
+    mutation uploadDesign($name: String!, $colors: [String!]!, $shape: String!){
+        uploadDesign(name: $name, colors: $colors, shape: $shape){
+            design {
+                name
+                shape
+                colors
+            }
+        }
+    }
+`
