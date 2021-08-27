@@ -75,3 +75,10 @@ export const Ellipsis = styled(EllipsisOutlined)({
         fontSize: '180%',
     }
 })
+
+export const LikeContainer = styled.div({
+    margin: '10px 0 0 85px',
+    fontFamily: 'IBM Plex Mono, monospace',
+    fontWeight: 'bolder',
+    fontSize: 16
+})

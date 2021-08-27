@@ -11,6 +11,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import {useMutation} from "@apollo/client";
 import {DELETE_POST, GET_POSTS, LIKE_POST} from "../../util/graphql";
+import CommentSection from "./CommentSection";
 
 type PostProps = {
     post: PostData
@@ -33,13 +34,16 @@ const Post = ({post}: PostProps) => {
         await likePost({variables: {id}, refetchQueries: [{query: GET_POSTS}]})
     }
 
+    const moreThanOneLike = post.likes.length > 1
+
 
     const menu = (
         <Menu>
-            {userId === post.userId ?
+            {userId === post.userId._id ?
                 <div>
                     <Menu.Item key="3" icon={<UpdateIcon/>}>Update</Menu.Item>
-                    <Menu.Item key="3" onClick={() => removePost(post._id)} icon={<DeleteOutlineIcon/>}>Delete</Menu.Item>
+                    <Menu.Item key="3" onClick={() => removePost(post._id)}
+                               icon={<DeleteOutlineIcon/>}>Delete</Menu.Item>
                 </div> :
                 <div>
                     <Menu.Item key="2" icon={<PersonAddIcon/>}>
@@ -49,25 +53,30 @@ const Post = ({post}: PostProps) => {
                         setLiked(!liked)
                         like(post._id)
                     }} icon={<FavoriteBorderIcon/>}>
-                        {liked ?  'unlike' : 'like'}
+                        {liked ? 'unlike' : 'like'}
                     </Menu.Item>
                 </div>}
         </Menu>
     );
+
+    const CommentProps = {
+        comments: post.comments,
+        postId: post._id
+    }
 
     return (
         <PS.Post
         >
             <PS.PostHeaderContainer>
                 <PS.InfoContainer>
-                <PS.Avatar src={post.profilePicture ? post.profilePicture : null}
-                           icon={!post.profilePicture ? <UserOutlined/> : null}/>
-                <PS.Text bold='yes'>
-                    @{post.username}
-                </PS.Text>
-                <PS.Text time='yes'>
-                    {moment(post.createdAt).fromNow()}
-                </PS.Text>
+                    <PS.Avatar src={post.userId.profilePicture ? post.userId.profilePicture : null}
+                               icon={!post.profilePicture ? <UserOutlined/> : null}/>
+                    <PS.Text bold='yes'>
+                        @{post.userId.username}
+                    </PS.Text>
+                    <PS.Text time='yes'>
+                        {moment(post.createdAt).fromNow()}
+                    </PS.Text>
                 </PS.InfoContainer>
                 <PS.Dropdown overlay={menu} placement="bottomCenter" icon={<PS.Ellipsis/>}>
                 </PS.Dropdown>
@@ -78,7 +87,8 @@ const Post = ({post}: PostProps) => {
             <PS.ImageContainer>
                 <PS.Image src={post.selectedFile}/>
             </PS.ImageContainer>
-
+            <PS.LikeContainer>{post.likes.length}{moreThanOneLike ? ' likes' : ' like'}</PS.LikeContainer>
+            <CommentSection {...CommentProps}/>
         </PS.Post>
     )
 }

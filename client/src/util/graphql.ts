@@ -75,16 +75,17 @@ export const GET_POSTS = gql`
             _id
             selectedFile
             message
-            userId
             createdAt
-            username
-            userId
+            userId {
+                profilePicture
+                username
+            }
             likes
             comments {
                 username
                 text
             }
-            profilePicture
+            
         }
     }
 `
@@ -150,5 +151,23 @@ export const UPDATE_PROFILE = gql`
             profilePicture
         }
     }
+`
 
+export const COMMENT_POST = gql`
+    mutation commentPost($id: ID!, $comment: String!) {
+        commentPost(id: $id, comment: $comment) {
+            comments {
+                username
+            }
+        }
+    }    
+`
+
+export const ME = gql`
+    query me{
+        me{
+            username
+            profilePicture
+        }
+    }
 `

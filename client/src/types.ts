@@ -49,6 +49,7 @@ export type UploadedPost = {
 }
 
 export type Comment = {
+    _id:string,
     username: string,
     text: string
 }
@@ -58,7 +59,7 @@ export type PostData = {
     selectedFile: string,
     _id: string,
     username: string,
-    userId: string,
+    userId: User,
     comments: Comment[],
     likes: string[]
     createdAt: string,
@@ -88,11 +89,14 @@ export interface signInData {
 }
 
 export interface User {
+    _id: string,
+    username: string
     givenName: string,
     familyName: string,
     password: string,
     email: string,
     phone?: string
+    profilePicture?: string
 }
 
 export interface profileData {
