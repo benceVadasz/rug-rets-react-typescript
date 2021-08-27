@@ -1,9 +1,7 @@
-import {CREATE, FETCH_ALL, SET, SET_TYPE} from '../../types';
+import {SET, SET_TYPE} from '../../types';
 
 import * as api from '../../api';
-import {ColorAction, UploadColorData} from "../../types";
-import {RootState} from "../store";
-import {ThunkAction} from "redux-thunk";
+import {ColorAction} from "../../types";
 import {Dispatch} from "redux"
 
 // export const getColors = (userId: string) => async (dispatch: any) => {
