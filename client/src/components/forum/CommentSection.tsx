@@ -25,6 +25,7 @@ const CommentSection = ({comments, postId}: CommentSectionProps) => {
         }
     }
 
+
     return (
         <div>
             <CS.Comments>
@@ -38,7 +39,9 @@ const CommentSection = ({comments, postId}: CommentSectionProps) => {
                 }
                 {comments.length > 3 ?
                     <CS.LoadMoreWrapper>
-                        <CS.LoadMore>Load more comments...</CS.LoadMore>
+                        <CS.Link to={"/post/" + postId}>
+                            <CS.LoadMore>Load more comments...</CS.LoadMore>
+                        </CS.Link>
                     </CS.LoadMoreWrapper> : null}
             </CS.Comments>
             <CS.CommentInputContainer>

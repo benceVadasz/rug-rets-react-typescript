@@ -14,6 +14,7 @@ import Forum from "./pages/Forum";
 import {ApolloClient, ApolloProvider, createHttpLink, InMemoryCache} from "@apollo/client";
 import {setContext} from "@apollo/client/link/context";
 import {useLocalStorage} from "./customHooks/useLocalStorage";
+import PostDetails from "./components/forum/PostDetails";
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql'
@@ -51,6 +52,9 @@ function App() {
                     <Route exact path="/design/:id"
                            children={<DesignDetails id={undefined} data={undefined} fetchData={undefined}/>}
                     />
+                    <Route exact path="/post/:id" children={<PostDetails />}
+                    />
+
                     <DesignProvider>
                         <Route exact path="/feed" children={<Feed/>}/>
                     </DesignProvider>

@@ -85,7 +85,7 @@ export const GET_POSTS = gql`
                 username
                 text
             }
-            
+
         }
     }
 `
@@ -139,7 +139,7 @@ export const LIKE_POST = gql`
 
 export const UPDATE_PROFILE = gql`
     mutation updateProfile($username: String!, $givenName: String!,
-    $familyName: String!, $email: String!, $profilePicture: String, $phone: String) {
+        $familyName: String!, $email: String!, $profilePicture: String, $phone: String) {
         updateProfile(
             username: $username
             email: $email
@@ -149,6 +149,7 @@ export const UPDATE_PROFILE = gql`
             profilePicture: $profilePicture
         ) {
             profilePicture
+            _id
         }
     }
 `
@@ -160,7 +161,7 @@ export const COMMENT_POST = gql`
                 username
             }
         }
-    }    
+    }
 `
 
 export const ME = gql`
@@ -170,4 +171,21 @@ export const ME = gql`
             profilePicture
         }
     }
+`
+
+export const GET_POST = gql`
+    query getPost($id: ID!){
+        getPost(id: $id) {
+            userId {
+                username
+                profilePicture
+            }
+            message
+            comments{username text}
+            selectedFile
+            likes
+            createdAt
+        }
+    }
+
 `

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import {Link as RLink} from 'react-router-dom'
 
 export const Input = styled.input({
     marginLeft: 10,
@@ -9,6 +10,7 @@ export const Input = styled.input({
     height: 30,
     '&:focus': {
         outline: 'none !important',
+        boxShadow: 'rgba(99, 99, 99, 0.2) 0 4px 2px -2px'
     }
 })
 
@@ -53,5 +55,12 @@ export const LoadMore = styled.span({
     '&:hover': {
         textDecoration: 'underline',
         cursor: 'pointer'
+    }
+})
+
+export const Link = styled(RLink)({
+    color: 'black',
+    '&:hover': {
+        color: 'black'
     }
 })

@@ -3,7 +3,6 @@ import * as s from './ProfilePersonalInfo.styles'
 import {Col} from "antd";
 import * as RS from "../../pages/Register.styles";
 import {useState} from "react";
-import {useDispatch} from "react-redux";
 import 'react-phone-input-2/lib/style.css'
 import PhoneInput from 'react-phone-input-2'
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
@@ -11,7 +10,7 @@ import {useHistory} from "react-router";
 import {ProfileContainer} from "../../pages/Profile.styles";
 import {ThemeContext} from "../../context/store";
 import {useMutation} from "@apollo/client";
-import {UPDATE_PROFILE} from "../../util/graphql";
+import {GET_POSTS, ME, UPDATE_PROFILE} from "../../util/graphql";
 import FileBase from "react-file-base64";
 
 const ProfilePersonalInfo = () => {
@@ -29,6 +28,7 @@ const ProfilePersonalInfo = () => {
 
 
     const [user, setUser] = useState({
+        _id: userState?._id,
         username: userState?.username,
         givenName: userState?.givenName,
         familyName: userState?.familyName,
@@ -44,7 +44,7 @@ const ProfilePersonalInfo = () => {
 
 
     const submit = async () => {
-        await updateProfile({variables: user})
+        await updateProfile({variables: user, refetchQueries: [{query: ME}, {query: GET_POSTS}]})
         localStorage.setItem('profile', JSON.stringify({token: token, user: user}))
     };
 
