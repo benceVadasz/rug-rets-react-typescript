@@ -5,7 +5,7 @@ import * as RS from "./Register.styles";
 import {signUpData, signUpDataToBackend} from "../types";
 import {useMutation} from "@apollo/client";
 import {ErrorSubtitle} from "./Login.styles";
-import {REGISTER_MUTATION} from "../util/graphql";
+import {ME, REGISTER_MUTATION} from "../util/graphql";
 
 
 
@@ -72,7 +72,7 @@ const Register = () => {
         }
         try {
             const response = await register({
-                variables: values
+                variables: values, refetchQueries: [{query: ME}]
             })
             localStorage.setItem('profile', JSON.stringify({...response.data.signUp}))
             history.push("/feed")

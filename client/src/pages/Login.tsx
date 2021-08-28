@@ -19,7 +19,7 @@ import GoogleLogin from "react-google-login";
 import {Form} from "antd";
 import {SIGN_IN, signInData} from "../types";
 import {useMutation} from "@apollo/client";
-import {LOGIN_MUTATION} from "../util/graphql";
+import {LOGIN_MUTATION, ME} from "../util/graphql";
 
 
 
@@ -34,7 +34,7 @@ const Login: FC = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [login] = useMutation(LOGIN_MUTATION)
+    const [login] = useMutation(LOGIN_MUTATION, {refetchQueries: [{query: ME}]})
 
     const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailProvided(true)
