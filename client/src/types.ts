@@ -49,9 +49,9 @@ export type UploadedPost = {
 }
 
 export type Comment = {
-    _id:string,
     username: string,
-    text: string
+    text: string,
+    createdAt: string
 }
 
 export type PostData = {
@@ -264,3 +264,27 @@ interface saveDesign {
 }
 
 export type DesignAction = fetchDesignsAction | saveDesign;
+
+export const defaultUserData = {
+    _id: '',
+    username: '',
+    givenName: '',
+    familyName: '',
+    password: '',
+    email: '',
+    phone: '',
+    profilePicture: ''
+}
+
+export const defaultPostData = {
+    message: '',
+    selectedFile: '',
+    _id: '',
+    username: '',
+    userId: defaultUserData,
+    comments: [],
+    likes: [],
+    createdAt: '',
+    profilePicture: ''
+}
+

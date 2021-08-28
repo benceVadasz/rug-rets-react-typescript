@@ -10,12 +10,12 @@ type TextProps = {
 
 export const Post = styled.div({
     width: '100%',
-    marginBottom: 100,
     display: 'flex',
     flexFlow: 'column',
     backgroundColor: 'white',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
-    paddingBottom: 30
+    paddingBottom: 30,
+    minHeight: '60vh'
 });
 
 export const Text = styled(Typography)<TextProps>(
@@ -81,4 +81,14 @@ export const LikeContainer = styled.div({
     fontFamily: 'IBM Plex Mono, monospace',
     fontWeight: 'bolder',
     fontSize: 16
+})
+
+export const Info = styled.div({
+    margin: '15px 0 0 80px',
+    display: 'flex',
+    fontFamily: 'IBM Plex Mono, monospace',
+    fontWeight: 'bolder',
+    fontSize: 16,
+    justifyContent: 'space-around',
+    width: 100
 })

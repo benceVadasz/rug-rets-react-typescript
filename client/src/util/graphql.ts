@@ -84,6 +84,7 @@ export const GET_POSTS = gql`
             comments {
                 username
                 text
+                createdAt
             }
 
         }
@@ -94,9 +95,7 @@ export const UPLOAD_POST = gql`
     mutation uploadPost($message: String!, $selectedFile: String){
         uploadPost(message: $message, selectedFile: $selectedFile){
             post{
-                username
-                userId
-
+                message
             }
         }
     }
@@ -176,12 +175,18 @@ export const ME = gql`
 export const GET_POST = gql`
     query getPost($id: ID!){
         getPost(id: $id) {
+            _id
             userId {
                 username
                 profilePicture
+                _id
             }
             message
-            comments{username text}
+            comments{
+                username
+                text
+                createdAt
+            }
             selectedFile
             likes
             createdAt

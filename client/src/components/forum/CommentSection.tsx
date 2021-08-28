@@ -5,7 +5,7 @@ import {UserOutlined} from "@ant-design/icons";
 import * as PS from "./Post.styles";
 import {Comment} from "../../types";
 import {useMutation} from "@apollo/client";
-import {COMMENT_POST, GET_POSTS} from "../../util/graphql";
+import {COMMENT_POST, GET_POST} from "../../util/graphql";
 
 type CommentSectionProps = {
     comments: Comment[]
@@ -20,29 +20,25 @@ const CommentSection = ({comments, postId}: CommentSectionProps) => {
 
     const handleClick = async (e: any) => {
         if (e.key === 'Enter') {
-            await commentPost({variables: {id: postId, comment: commentText}, refetchQueries: [{query: GET_POSTS}]})
+            await commentPost({variables: {id: postId, comment: commentText},
+                refetchQueries: [{query: GET_POST, variables: {id: postId}}]})
             setComment('')
         }
     }
 
+    console.log(comments)
 
     return (
         <div>
             <CS.Comments>
                 {
-                    comments.slice(0, 3).map((comment: Comment) => (
-                        <CS.CommentWrapper key={comment._id}>
-                            <CS.Username key={comment._id}>{comment.username}: </CS.Username>
-                            <CS.CommentText key={comment._id}>{comment.text}</CS.CommentText>
+                    comments.map((comment: Comment) => (
+                        <CS.CommentWrapper key={comment.createdAt}>
+                            <CS.Username>{comment.username}: </CS.Username>
+                            <CS.CommentText>{comment.text}</CS.CommentText>
                         </CS.CommentWrapper>
                     ))
                 }
-                {comments.length > 3 ?
-                    <CS.LoadMoreWrapper>
-                        <CS.Link to={"/post/" + postId}>
-                            <CS.LoadMore>Load more comments...</CS.LoadMore>
-                        </CS.Link>
-                    </CS.LoadMoreWrapper> : null}
             </CS.Comments>
             <CS.CommentInputContainer>
 
