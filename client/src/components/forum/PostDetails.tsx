@@ -18,6 +18,7 @@ import {UserOutlined} from "@ant-design/icons";
 import moment from "moment";
 import CommentSection from "./CommentSection";
 import {useLocalStorage} from "../../customHooks/useLocalStorage";
+import {useHistory} from "react-router-dom";
 
 const PostDetails = () => {
     const [post, setPost] = useState<PostData>(defaultPostData)
@@ -30,47 +31,50 @@ const PostDetails = () => {
 
     const [deletePost] = useMutation(DELETE_POST)
     const [likePost] = useMutation(LIKE_POST)
-    const [liked, setLiked] = useState<boolean>(post.likes?.includes(userId as string))
+    const [liked, setLiked] = useState<boolean>(false)
 
     const moreThanOneLike = post.likes?.length > 1
 
     useEffect(() => {
         if (data) {
             setPost(data.getPost)
+            setLiked(data.getPost.likes?.includes(userId as string))
         }
     }, [data])
 
+    const history = useHistory()
     const removePost = async () => {
         await deletePost({variables: {id: post._id}, refetchQueries: [{query: GET_POSTS}]})
+        history.push('/forum')
     }
 
     const like = async () => {
-        console.log(post._id)
         await likePost({variables: {id: post._id}, refetchQueries: [{query: GET_POSTS}]})
     }
-
 
     const menu = (
         <Menu>
             {userId === post.userId._id ?
-                <div>
+                <Menu.ItemGroup key="g1">
                     <Menu.Item key="3" icon={<UpdateIcon/>}>Update</Menu.Item>
-                    <Menu.Item key="4" onClick={() => removePost()}
+                    <Menu.Item key="4" onClick={removePost}
                                icon={<DeleteOutlineIcon/>}>Delete</Menu.Item>
-                </div> :
-                <div>
+                </Menu.ItemGroup>
+                :
+                <Menu.ItemGroup key="g2">
                     <Menu.Item key="2" icon={<PersonAddIcon/>}>
                         Follow <span style={{fontWeight: 'bolder'}}>{post.username}</span>
                     </Menu.Item>
-                    <Menu.Item key="1" onClick={() => {
-                        setLiked(!liked)
-                        like()
-                    }} icon={<FavoriteBorderIcon/>}>
-                        {liked ? 'unlike' : 'like'}
-                    </Menu.Item>
-                </div>}
-        </Menu>
-    );
+                    {loading ? null :
+                        <Menu.Item key="1" onClick={() => {
+                            setLiked(!liked)
+                            like()
+                        }} icon={<FavoriteBorderIcon/>}>
+                            {liked ? 'unlike' : 'like'}
+                        </Menu.Item>}
+                </Menu.ItemGroup>
+            }
+        </Menu>)
 
     const CommentProps = {
         comments: [...post.comments].reverse(),
@@ -95,8 +99,9 @@ const PostDetails = () => {
                                     {moment(post.createdAt).fromNow()}
                                 </PS.Text>
                             </PS.InfoContainer>
-                            <PS.Dropdown overlay={menu} placement="bottomCenter" icon={<PS.Ellipsis/>}>
-                            </PS.Dropdown>
+                            {userState?.user ?
+                                <PS.Dropdown overlay={menu} placement="bottomCenter" icon={<PS.Ellipsis/>}>
+                                </PS.Dropdown> : null}
                         </PS.PostHeaderContainer>
                         <PS.Text message='yes'>
                             {post.message}

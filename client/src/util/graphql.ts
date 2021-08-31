@@ -1,4 +1,4 @@
-import {gql} from "@apollo/client";
+import {gql} from "graphql-tag";
 
 export const GET_COLORS = gql`
     query getColors{
@@ -70,8 +70,8 @@ export const GET_DESIGNS = gql`
 `
 
 export const GET_POSTS = gql`
-    query getPosts{
-        getPosts {
+    query getPosts($searchQuery: String){
+        getPosts(searchQuery: $searchQuery){
             _id
             selectedFile
             message
@@ -192,5 +192,5 @@ export const GET_POST = gql`
             createdAt
         }
     }
-
 `
+
