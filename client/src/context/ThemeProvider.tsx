@@ -5,8 +5,6 @@ const ThemeProvider: FC = ({children}) => {
 
   const initDark = localStorage.getItem('dark')
 
-
-  console.log(initDark)
   const [dark, toggleMode] = useState(false)
 
     const changeMode = () => {
