@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
 import {Link as RLink} from 'react-router-dom'
 
-export const Input = styled.input({
+export const Input = styled.textarea({
     marginLeft: 10,
     flex: 1,
     fontSize: 16,
     lineHeight: 1.2,
     border: 'none',
-    height: 30,
+    height: 100,
+    width: '60% !important',
     '&:focus': {
         outline: 'none !important',
         boxShadow: 'rgba(99, 99, 99, 0.2) 0 4px 2px -2px'
@@ -17,7 +18,7 @@ export const Input = styled.input({
 export const CommentInputContainer = styled.div({
     margin: '30px 0 0 60px',
     display: 'flex',
-    width: '100%'
+    width: '80%'
 })
 
 export const Comments = styled.div({
@@ -34,6 +35,8 @@ export const Username = styled.span({
 
 export const CommentText = styled.p({
     fontFamily: 'IBM Plex Mono, monospace',
+    marginLeft: 7,
+    width: '77%'
 })
 
 export const CommentWrapper = styled.div({

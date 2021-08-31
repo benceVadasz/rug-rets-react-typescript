@@ -18,15 +18,17 @@ const CommentSection = ({comments, postId}: CommentSectionProps) => {
     const [commentText, setComment] = useState('')
     const [commentPost] = useMutation(COMMENT_POST)
 
+    const userState = useLocalStorage('profile')
+
     const handleClick = async (e: any) => {
         if (e.key === 'Enter') {
-            await commentPost({variables: {id: postId, comment: commentText},
-                refetchQueries: [{query: GET_POST, variables: {id: postId}}]})
+            await commentPost({
+                variables: {id: postId, comment: commentText},
+                refetchQueries: [{query: GET_POST, variables: {id: postId}}]
+            })
             setComment('')
         }
     }
-
-    console.log(comments)
 
     return (
         <div>
@@ -40,18 +42,19 @@ const CommentSection = ({comments, postId}: CommentSectionProps) => {
                     ))
                 }
             </CS.Comments>
-            <CS.CommentInputContainer>
+            {userState?.user ?
+                <CS.CommentInputContainer>
 
-                <PS.Avatar src={user?.profilePicture ? user?.profilePicture : null}
-                           icon={!user?.profilePicture ? <UserOutlined/> : null}/>
+                    <PS.Avatar src={user?.profilePicture ? user?.profilePicture : null}
+                               icon={!user?.profilePicture ? <UserOutlined/> : null}/>
 
-                <CS.Input
-                    placeholder={comments.length < 1 ? 'Be the first to comment...' : 'Comment...'}
-                    onChange={(e) => setComment(e.target.value)}
-                    onKeyDown={handleClick}
-                    value={commentText}
-                />
-            </CS.CommentInputContainer>
+                    <CS.Input
+                        placeholder={comments.length < 1 ? 'Be the first to comment...' : 'Comment...'}
+                        onChange={(e) => setComment(e.target.value)}
+                        onKeyDown={handleClick}
+                        value={commentText}
+                    />
+                </CS.CommentInputContainer> : null}
         </div>
     )
 }
