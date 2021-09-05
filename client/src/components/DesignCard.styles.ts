@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 import {Card, Typography} from 'antd';
 import {Link} from "react-router-dom";
-import {ThemeProps} from "../types";
 
-export const Paper = styled(Card)<ThemeProps>(
-    (props: ThemeProps) => ({
+export const Paper = styled(Card)(
+    {
         width: 240,
-        background: props.dark ? '#c5deed' : ''
-    })
+    }
 );
 
 export const LinkWrapper = styled(Link)({

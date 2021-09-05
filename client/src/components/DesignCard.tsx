@@ -18,7 +18,6 @@ class DesignCard extends Component<DesignCardProps> {
         return (
             <DS.LinkWrapper to={`/design/${this.props.design.id}`}>
                 <DS.Paper
-                    dark={this.props.dark}
                     hoverable
                     bordered={false}
                     cover={<DS.Image alt="example" src={this.props.design.imageUrl}/>}
