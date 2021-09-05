@@ -1,23 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Form from "./Form";
 import Post from "./Post";
 import {PostData} from "../../types";
 import * as FS from './ForumFeed.styles'
 import MySkeleton from "./Skeleton";
-import {useQuery} from "@apollo/client";
-import {GET_POSTS} from "../../util/graphql";
+import notFound from '../../assets/no-search-result-removebg-preview.png'
 
-function Feed() {
+type IFeedProps = {
+    posts: PostData[]
+    loading: boolean
+}
 
-    const {data, loading} = useQuery(GET_POSTS)
-
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        if (data) {
-            setPosts(data.getPosts)
-        }
-    }, [data])
+function Feed({posts, loading} : IFeedProps) {
 
     return (
         <FS.Feed>
@@ -28,14 +22,16 @@ function Feed() {
             <Form/>
             {loading ?
                 <MySkeleton/> :
-                posts.map((post: PostData) => (
-                    <Post
-                        key={post._id}
-                        post={post}
-                    />
-                ))}
+                posts.length === 0 ? <FS.Wrapper><FS.NoResultImg src={notFound}/></FS.Wrapper> :
+                    posts.map((post: PostData) => (
+                        <Post
+                            key={post._id}
+                            post={post}
+                        />
+                    ))
+                }
         </FS.Feed>
     );
-}
+};
 
 export default Feed;

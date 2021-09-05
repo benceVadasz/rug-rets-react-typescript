@@ -26,3 +26,12 @@ export const Media = styled(Card)({
 export const Skeleton = styled(MSkeleton)({
 
 })
+
+export const NoResultImg = styled.img({
+})
+
+export const Wrapper = styled.div({
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center'
+})

@@ -114,7 +114,6 @@ const PostDetails = () => {
                     </PS.Post>
                 }
             </Feed>
-            <Searchbar/>
         </Container>
     )
 }
