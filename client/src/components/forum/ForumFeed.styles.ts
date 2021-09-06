@@ -15,7 +15,8 @@ export const FeedHeader = styled.div({
     backgroundColor: 'white',
     zIndex: 100,
     border: '1px solid var(--twitter-background)',
-    padding: '15px 20px'
+    padding: '15px 20px',
+    width: '100%'
 })
 
 export const Media = styled(Card)({

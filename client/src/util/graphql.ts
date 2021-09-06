@@ -194,3 +194,25 @@ export const GET_POST = gql`
     }
 `
 
+export const GET_POSTS_BY_CREATOR = gql`
+    query getPostsByCreator($id: ID!){
+        getPostsByCreator(id: $id){
+            posts{
+                likes
+            }
+        }
+    }
+`
+
+export const GET_USERNAMES_WITH_LIKE_COUNT = gql`
+    query getPostsGroupedByUsers{
+        getPostsGroupedByUsers {
+            likes
+            userId {
+                username
+                profilePicture
+            }
+        }
+    }
+`
+

@@ -16,7 +16,7 @@ function Feed({posts, loading} : IFeedProps) {
     return (
         <FS.Feed>
             <FS.FeedHeader>
-                <h2>Home</h2>
+                <h2 style={{fontFamily: 'IBM Plex Mono, monospace', color: '#0969a3'}}>Home</h2>
             </FS.FeedHeader>
 
             <Form/>
