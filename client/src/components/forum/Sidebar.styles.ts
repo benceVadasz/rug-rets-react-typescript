@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {LinearProgress} from "@material-ui/core";
+import {Link} from 'react-router-dom'
 
 export const Container = styled.div({
     gridArea: '1 / 1 / 6 / 3',
@@ -24,12 +25,14 @@ export const LikeCountContainer = styled.div({
 
 })
 
-export const LikeCountUsername = styled.h3({
+export const LikeCountUsername = styled(Link)({
     marginRight: 7,
+    color: 'black',
     '&:hover':{
         textDecoration: 'underline',
-        cursor: 'pointer'
-    }
+        cursor: 'pointer',
+        color: 'black',
+    },
 })
 
 export const LikeCount = styled.h3({

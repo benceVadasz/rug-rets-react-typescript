@@ -195,10 +195,20 @@ export const GET_POST = gql`
 `
 
 export const GET_POSTS_BY_CREATOR = gql`
-    query getPostsByCreator($id: ID!){
-        getPostsByCreator(id: $id){
-            posts{
-                likes
+    query getPostsByCreator($username: String!){
+        getPostsByCreator(username: $username){
+            message
+            comments{
+                username
+                text
+            }
+            likes
+            createdAt
+            selectedFile
+            _id
+            userId{
+                profilePicture
+                username
             }
         }
     }
@@ -215,4 +225,5 @@ export const GET_USERNAMES_WITH_LIKE_COUNT = gql`
         }
     }
 `
+
 

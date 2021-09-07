@@ -39,14 +39,14 @@ const Sidebar = () => {
     }
 
     return (
-        parsing? <SS.Loading/> :
+        parsing? <SS.Container><SS.Loading/></SS.Container> :
         <SS.Container>
             <FeedHeader>
             <SS.SideBarTitle>Trending users</SS.SideBarTitle>
             </FeedHeader>
             {Object.keys(likeArray).map((key, index) =>
                     <SS.LikeCountContainer key={key}>
-                        <SS.LikeCountUsername>@{key}</SS.LikeCountUsername>
+                        <SS.LikeCountUsername to={`/user/${key}`}>@{key}</SS.LikeCountUsername>
                         <SS.LikeCount> {likeArray[key]}</SS.LikeCount>
                         <FavoriteBorderIcon style={{marginTop: 1}}/>
                     </SS.LikeCountContainer>
