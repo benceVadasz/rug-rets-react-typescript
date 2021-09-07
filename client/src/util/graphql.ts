@@ -94,9 +94,7 @@ export const GET_POSTS = gql`
 export const UPLOAD_POST = gql`
     mutation uploadPost($message: String!, $selectedFile: String){
         uploadPost(message: $message, selectedFile: $selectedFile){
-            post{
-                message
-            }
+            message
         }
     }
 `
@@ -128,10 +126,8 @@ export const DELETE_POST = gql`
 export const LIKE_POST = gql`
     mutation likePost($id: ID!) {
         likePost(id: $id){
-            post{
-                message
-                likes
-            }
+            message
+            likes
         }
     }
 `
@@ -222,6 +218,16 @@ export const GET_USERNAMES_WITH_LIKE_COUNT = gql`
                 username
                 profilePicture
             }
+        }
+    }
+`
+
+export const UPDATE_POST = gql`
+    mutation updatePost($id: ID!, $message: String!, $selectedFile: String){
+        updatePost(id: $id, selectedFile: $selectedFile, message: $message){
+            message
+            selectedFile
+            _id
         }
     }
 `

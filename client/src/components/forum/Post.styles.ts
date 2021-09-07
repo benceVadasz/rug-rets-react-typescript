@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import {Typography, Avatar as AntAvatar, Dropdown as AntDropdown} from "antd";
+import {Typography, Avatar as AntAvatar, Dropdown as AntDropdown, Button as AntButton} from "antd";
 import {EllipsisOutlined} from "@ant-design/icons";
 
 type TextProps = {
@@ -15,7 +15,7 @@ export const Post = styled.div({
     backgroundColor: 'white',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
     paddingBottom: 30,
-    minHeight: '60vh'
+    minHeight: '60vh',
 });
 
 export const Text = styled(Typography)<TextProps>(
@@ -91,4 +91,55 @@ export const Info = styled.div({
     fontSize: 16,
     justifyContent: 'space-around',
     width: 100
+})
+
+export const Input = styled.textarea({
+    flex: 1,
+    fontSize: 16,
+    lineHeight: 1.2,
+    borderRadius: 5,
+    boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px',
+    height: 70,
+    border: 'none',
+    paddingLeft: 5,
+    '&:focus': {
+        outline: 'none !important',
+        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 5px 15px 0px'
+    }
+})
+
+export const InputContainer = styled.div({
+    margin: '10px auto',
+    display: 'flex',
+    justifyContent: 'center',
+    width: '76%',
+})
+
+export const FileUploadContainer = styled.div({
+    margin: '1% 0 0 12%'
+})
+
+export const ButtonGroup = styled.div({
+    display: 'flex',
+    width: '100%'
+})
+
+export const Button = styled(AntButton)({
+    backgroundColor: '#0969a3',
+    border: 'none !important',
+    color: 'white',
+    fontWeight: "bolder",
+    borderRadius: '30px',
+    justifySelf: 'flex-end',
+    width: 80,
+    height: 40,
+    marginLeft: '27%',
+    '&:hover': {
+        color: 'white',
+        backgroundColor: '#20232A !important'
+    },
+    '&:focus': {
+        backgroundColor: '#0969a3',
+        color: 'white',
+    }
 })
