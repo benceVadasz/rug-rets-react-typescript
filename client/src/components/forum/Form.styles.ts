@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import {Form as AntForm, Button as AntButton} from 'antd'
+import {CircularProgress} from "@material-ui/core";
 
 export const Container = styled.div({
     paddingBottom: 10,
@@ -45,5 +46,10 @@ export const Button = styled(AntButton)({
         backgroundColor: '#0969a3',
         color: 'white',
     }
+})
+
+export const Spinner = styled(CircularProgress)({
+    color: 'white',
+
 })
 

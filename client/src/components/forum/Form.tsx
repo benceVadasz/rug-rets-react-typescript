@@ -10,12 +10,13 @@ import {useMutation} from "@apollo/client";
 import {GET_POSTS, UPLOAD_POST} from "../../util/graphql";
 
 const Form = () => {
-    const [uploadPost] = useMutation(UPLOAD_POST)
+    const [uploadPost, {loading}] = useMutation(UPLOAD_POST)
     const user = useLocalStorage('profile')?.user
     const [postData, setPostData] = useState<UploadedPost>({message: '', selectedFile: ''});
 
     const submit = async () => {
-        await uploadPost({variables: postData, refetchQueries : [{ query: GET_POSTS }]})
+        await uploadPost({variables: postData, awaitRefetchQueries: true,
+            refetchQueries : [{ query: GET_POSTS, variables: {searchQuery: ''} }]})
         setPostData({message: '', selectedFile: ''})
     }
 
@@ -38,7 +39,7 @@ const Form = () => {
                 <FS.Button
                     htmlType="submit"
                 >
-                    Go!
+                    {loading? <FS.Spinner size={20} style={{color: 'white', marginTop: 3}} /> : 'Go!'}
                 </FS.Button>
             </FS.Form>
         </FS.Container>

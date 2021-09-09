@@ -32,9 +32,9 @@ const PostDetails = () => {
     const userState = useLocalStorage('profile')
     const userId = userState?.user._id ? userState.user._id : userState?.user.googleId
 
-    const {data, loading} = useQuery(GET_POST, {variables: {id}})
+    const {data, loading: getPostsLoading} = useQuery(GET_POST, {variables: {id}})
 
-    const [deletePost] = useMutation(DELETE_POST)
+    const [deletePost, {loading}] = useMutation(DELETE_POST)
     const [likePost] = useMutation(LIKE_POST)
     const [liked, setLiked] = useState<boolean>(false)
     const [editing, setEditing] = useState<boolean>(false)
@@ -50,12 +50,14 @@ const PostDetails = () => {
 
     const history = useHistory()
     const removePost = async () => {
-        await deletePost({variables: {id: post._id}, refetchQueries: [{query: GET_POSTS}]})
+        await deletePost({variables: {id: post._id}, awaitRefetchQueries: true,
+            refetchQueries: [{query: GET_POSTS, variables: {searchQuery: ''}}]})
         history.push('/forum')
     }
 
     const like = async () => {
-        await likePost({variables: {id: post._id}, refetchQueries: [{query: GET_POSTS}]})
+        await likePost({variables: {id: post._id}, awaitRefetchQueries: true,
+            refetchQueries: [{query: GET_POSTS, variables: {searchQuery: ''}}]})
     }
 
     const editPost = async () => {
@@ -75,10 +77,10 @@ const PostDetails = () => {
                     <Menu.Item key="2" icon={<PersonAddIcon/>}>
                         Follow <span style={{fontWeight: 'bolder'}}>{post.username}</span>
                     </Menu.Item>
-                    {loading ? null :
-                        <Menu.Item key="1" onClick={() => {
+                    {getPostsLoading || loading ? null :
+                        <Menu.Item key="1" onClick={async () => {
                             setLiked(!liked)
-                            like()
+                            await like()
                         }} icon={<FavoriteBorderIcon/>}>
                             {liked ? 'unlike' : 'like'}
                         </Menu.Item>}
@@ -93,9 +95,11 @@ const PostDetails = () => {
 
     const submit = async () => {
         await updatePost(
-            {variables: {...postData, id: post._id},
-                refetchQueries: [{query: GET_POST, variables: {id: post._id}}]}
-            )
+            {
+                variables: {...postData, id: post._id},
+                refetchQueries: [{query: GET_POST, variables: {id: post._id}}]
+            }
+        )
         setEditing(false)
     }
 
@@ -103,7 +107,7 @@ const PostDetails = () => {
         <Container>
             <Sidebar/>
             <Feed>
-                {loading ? <MySkeleton/> :
+                {loading || getPostsLoading ? <MySkeleton/> :
                     <PS.Post
                     >
                         <PS.PostHeaderContainer>

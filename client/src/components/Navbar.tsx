@@ -122,6 +122,11 @@ const Navbar: FC = () => {
                         Feed
                     </Button>
                 </Link>
+                <Link to="/chat" exact activeClassName="current">
+                    <Button key="chat">
+                        Chat
+                    </Button>
+                </Link>
             </LeftNav>
             {!user ?
                 <RightNav>

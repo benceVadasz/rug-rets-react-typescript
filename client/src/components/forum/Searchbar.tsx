@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react'
+import React from 'react'
 import * as SS from './Searchbar.styles'
 
 interface ISearchProps {

@@ -16,6 +16,7 @@ import {setContext} from "@apollo/client/link/context";
 import {useLocalStorage} from "./customHooks/useLocalStorage";
 import PostDetails from "./components/forum/PostDetails";
 import UserPage from "./components/forum/UserPage";
+import ChatPage from "./components/chat/ChatPage";
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql'
@@ -49,6 +50,7 @@ function App() {
                     <Route exact path="/register" children={<Register/>}/>
                     <Route path="/profile" children={<Profile/>}/>
                     <Route exact path="/forum" children={<Forum/>}/>
+                    <Route exact path="/chat" children={<ChatPage/>}/>
                     <Route exact path="/user/:username" children={<UserPage/>}/>
                     <Route exact path="/design" children={<Design/>}/>
                     <Route exact path="/design/:id"
