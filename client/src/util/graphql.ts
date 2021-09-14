@@ -232,4 +232,20 @@ export const UPDATE_POST = gql`
     }
 `
 
+export const MESSAGE_SUBSCRIPTION = gql`
+    subscription {
+        newMessage {
+            text
+            to{
+                profilePicture
+                username
+            }
+            from{
+                profilePicture
+                username
+            }
+        }
+    }
+`
+
 
