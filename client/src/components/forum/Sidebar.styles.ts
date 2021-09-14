@@ -11,24 +11,27 @@ export const Container = styled.div({
     alignItems: 'flex-start',
     minWidth: '100%',
     backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 20,
+    padding: '7px 20px 20px 0',
     maxHeight: '100vh'
 })
 
 
 export const SideBarTitle = styled.h3({
     color: '#0969a3',
+    marginLeft: 20
 })
 
 export const LikeCountContainer = styled.div({
     // fontFamily: 'IBM Plex Mono, monospace',
     display: 'flex',
     flexFlow: 'column',
-    width: '60%',
+    width: '100%',
+    paddingLeft: 20,
     justifyContent: 'flex-start',
-    margin: '5px 0 0 5px'
-
+    margin: '5px 0 0 5px',
+    '&:hover':{
+        backgroundColor: '#F8F6F6',
+    }
 })
 
 export const LikeCountUsername = styled(Link)({

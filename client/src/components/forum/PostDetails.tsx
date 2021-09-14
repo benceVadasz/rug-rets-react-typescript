@@ -25,10 +25,10 @@ import {Button} from './Post.styles'
 const PostDetails = () => {
     const [post, setPost] = useState<PostData>(defaultPostData)
     const {id}: { id: "" } = useParams()
-    const [postData, setPostData] = useState<UploadedPost>({message: post.message, selectedFile: ''});
+    const [postData, setPostData] = useState<UploadedPost>({message: post.message, selectedFile: post.selectedFile});
     const [updatePost] = useMutation(UPDATE_POST)
 
-
+    console.log(postData)
     const userState = useLocalStorage('profile')
     const userId = userState?.user._id ? userState.user._id : userState?.user.googleId
 
@@ -96,7 +96,8 @@ const PostDetails = () => {
     const submit = async () => {
         await updatePost(
             {
-                variables: {...postData, id: post._id},
+                variables: postData.selectedFile.length > 0 ? {...postData, id: post._id} :
+                    {message: postData.message, id: post._id},
                 refetchQueries: [{query: GET_POST, variables: {id: post._id}}]
             }
         )
@@ -105,7 +106,6 @@ const PostDetails = () => {
 
     return (
         <Container>
-            <Sidebar/>
             <Feed>
                 {loading || getPostsLoading ? <MySkeleton/> :
                     <PS.Post
@@ -130,6 +130,7 @@ const PostDetails = () => {
                             </PS.Text> :
                             <PS.InputContainer>
                                 <Input
+                                    placeholder="Caption..."
                                     value={postData.message}
                                     onChange={(e) => setPostData({...postData, message: e.target.value})}
                                 />

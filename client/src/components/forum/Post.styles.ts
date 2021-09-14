@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import {Typography, Avatar as AntAvatar, Dropdown as AntDropdown, Button as AntButton} from "antd";
 import {EllipsisOutlined} from "@ant-design/icons";
+import {Link as ALink} from 'react-router-dom'
 
 type TextProps = {
     bold?: string,
     message?: string,
-    time?: string
+    time?: string,
+    userpage?: string | null
 }
 
 export const Post = styled.div({
@@ -24,7 +26,7 @@ export const Text = styled(Typography)<TextProps>(
         fontWeight: props.bold ? 'bolder' : 'normal',
         display: props.bold ? 'inline-block' : '',
         paddingLeft: 5,
-        margin: props.message ? '0 0 20px 90px' : 0,
+        margin: props.message ? '0 0 20px 108px' : props.userpage ? '0 15% 0 0' : 0,
         width: props.message ? '70%' : '',
         color: props.time ? '#787A91' : 'black',
     })
@@ -55,6 +57,7 @@ export const PostHeaderContainer = styled.div({
 
 export const InfoContainer = styled.div({
     display: 'flex',
+    width: '28%',
     justifyContent: "space-around",
     alignItems: 'center'
 });
@@ -84,7 +87,7 @@ export const LikeContainer = styled.div({
 })
 
 export const Info = styled.div({
-    margin: '15px 0 0 80px',
+    margin: '15px 0 0 110px',
     display: 'flex',
     fontFamily: 'IBM Plex Mono, monospace',
     fontWeight: 'bolder',
@@ -141,5 +144,16 @@ export const Button = styled(AntButton)({
     '&:focus': {
         backgroundColor: '#0969a3',
         color: 'white',
+    }
+})
+
+export const Link = styled(ALink)({
+    color: "black",
+    marginLeft: 15,
+    fontFamily: 'IBM Plex Mono, monospace',
+    fontWeight: 'bold',
+    '&:hover': {
+        textDecoration: 'underline',
+        color: 'black'
     }
 })

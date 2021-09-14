@@ -69,6 +69,26 @@ export const GET_DESIGNS = gql`
     }
 `
 
+export const DELETE_COLOR = gql`
+    mutation deleteColor($id: ID!){
+        deleteColor(id: $id)
+    }
+`
+
+export const SAVE_DESIGN = gql`
+    mutation uploadDesign($name: String!, $colors: [String!]!, $shape: String!){
+        uploadDesign(name: $name, colors: $colors, shape: $shape){
+            design {
+                name
+                shape
+                colors
+            }
+        }
+    }
+`
+
+// FORUM
+
 export const GET_POSTS = gql`
     query getPosts($searchQuery: String){
         getPosts(searchQuery: $searchQuery){
@@ -79,6 +99,8 @@ export const GET_POSTS = gql`
             userId {
                 profilePicture
                 username
+                familyName
+                givenName
             }
             likes
             comments {
@@ -99,23 +121,6 @@ export const UPLOAD_POST = gql`
     }
 `
 
-export const DELETE_COLOR = gql`
-    mutation deleteColor($id: ID!){
-        deleteColor(id: $id)
-    }
-`
-
-export const SAVE_DESIGN = gql`
-    mutation uploadDesign($name: String!, $colors: [String!]!, $shape: String!){
-        uploadDesign(name: $name, colors: $colors, shape: $shape){
-            design {
-                name
-                shape
-                colors
-            }
-        }
-    }
-`
 
 export const DELETE_POST = gql`
     mutation deletePost($id: ID!){
@@ -205,6 +210,9 @@ export const GET_POSTS_BY_CREATOR = gql`
             userId{
                 profilePicture
                 username
+                givenName
+                familyName
+                email
             }
         }
     }

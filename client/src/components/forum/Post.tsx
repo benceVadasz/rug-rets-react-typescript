@@ -12,6 +12,7 @@ type PostProps = {
     post: PostData
 }
 
+const isUserPage = window.location.href.split('/').includes('user')
 
 const Post = ({post}: PostProps) => {
 
@@ -22,12 +23,15 @@ const Post = ({post}: PostProps) => {
                 >
                     <PS.PostHeaderContainer>
                         <PS.InfoContainer>
-                            <PS.Avatar src={post.userId.profilePicture ? post.userId.profilePicture : null}
-                                       icon={!post.profilePicture ? <UserOutlined/> : null}/>
-                            <PS.Text bold='yes'>
-                                @{post.userId.username}
-                            </PS.Text>
-                            <PS.Text time='yes'>
+                            {!isUserPage ?
+                                <div>
+                                    <PS.Avatar src={post.userId.profilePicture ? post.userId.profilePicture : null}
+                                               icon={!post.profilePicture ? <UserOutlined/> : null}/>
+                                    <PS.Link to={`/user/${post.userId.username}`}>
+                                        {post.userId.username}
+                                    </PS.Link>
+                                </div> : null}
+                            <PS.Text userpage={isUserPage? 'yes' : null} time='yes'>
                                 {moment(post.createdAt).fromNow()}
                             </PS.Text>
                         </PS.InfoContainer>
