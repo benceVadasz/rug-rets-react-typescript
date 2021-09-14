@@ -24,6 +24,7 @@
     "@types/react-redux": "^7.1.16",
     "antd": "^4.16.5",
     "axios": "^0.21.1",
+    "downloadjs": "^1.4.7",
     "graphql": "^15.5.1",
     "html-react-parser": "^1.2.7",
     "jwt-decode": "^3.1.2",
@@ -76,9 +77,9 @@
     "@types/react-lottie": "^1.2.5",
     "@types/react-router": "^5.1.15",
     "@types/react-router-dom": "^5.1.7",
+    "apollo": "^2.33.6",
     "http-proxy-middleware": "^2.0.0",
     "react-redux": "^7.2.4",
-    "sweetalert2-react-content": "^4.1.0",
-    "apollo": "^2.33.6"
+    "sweetalert2-react-content": "^4.1.0"
   }
 }
