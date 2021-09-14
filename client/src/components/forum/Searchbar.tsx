@@ -1,5 +1,6 @@
 import React from 'react'
 import * as SS from './Searchbar.styles'
+import Sidebar from "./Sidebar";
 
 interface ISearchProps {
     search: (phrase : string) => void
