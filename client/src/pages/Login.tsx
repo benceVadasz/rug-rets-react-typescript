@@ -63,7 +63,7 @@ const Login: FC = () => {
                 variables: values
             })
             localStorage.setItem('profile', JSON.stringify({...response.data.signIn}))
-            history.push("/feed")
+            history.push("/forum")
         } catch (error) {
             setError(error.message)
         }

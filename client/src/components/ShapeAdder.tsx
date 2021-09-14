@@ -1,18 +1,14 @@
 import React from 'react';
-import {useDispatch} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
 import {Button} from "@material-ui/core";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
-import {uploadShape} from "../state/actions/shapes";
 
 const MySwal = withReactContent(Swal)
 
 const ShapeAdder = () => {
-    // const [shapeData, setShapeData] = useState({name: '', selectedFile: ''});
-    const dispatch = useDispatch();
 
     const useStyles = makeStyles(() => ({
         paper: {
@@ -50,8 +46,11 @@ const ShapeAdder = () => {
             confirmButtonText: 'Upload',
             showCancelButton: true,
         }).then((file) => {
-            console.log(file)
-            dispatch(uploadShape(file))
+            window.open(file.value)
+            // const data = new FormData()
+            // data.append('file', file.value, file.value.name)
+            // download(file.value, `${file.value}.svg`)
+            // dispatch(uploadShape(file))
         })
     };
 

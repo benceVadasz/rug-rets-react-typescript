@@ -32,9 +32,11 @@ const Post = ({post}: PostProps) => {
                             </PS.Text>
                         </PS.InfoContainer>
                     </PS.PostHeaderContainer>
-                    <PS.Text message='yes'>
-                        {post.message}
-                    </PS.Text>
+                    <Link to={"/post/" + post._id}>
+                        <PS.Text message='yes'>
+                            {post.message}
+                        </PS.Text>
+                    </Link>
                     <Link to={"/post/" + post._id}>
                         <PS.ImageContainer>
                             <PS.Image src={post.selectedFile}/>
@@ -48,7 +50,6 @@ const Post = ({post}: PostProps) => {
             }
         </div>
     )
-}
-;
+};
 
 export default Post;

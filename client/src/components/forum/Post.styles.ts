@@ -9,13 +9,13 @@ type TextProps = {
 }
 
 export const Post = styled.div({
-    width: '100%',
+    maxWidth: '100%',
     display: 'flex',
     flexFlow: 'column',
     backgroundColor: 'white',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
     paddingBottom: 30,
-    minHeight: '60vh',
+    minHeight: '25vh',
 });
 
 export const Text = styled(Typography)<TextProps>(

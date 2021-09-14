@@ -25,7 +25,6 @@ const ShapePicker = () => {
         <div className={classes.colorSelector}>
             {shapeSelection === 'custom' ? <ShapeAdder/> : null}
             {Object.keys(SHAPE_OBJECT).map(function(key) {
-                console.log(SHAPE_OBJECT[key])
                 return <Shape name={key} key={key} file={SHAPE_OBJECT[key]} />
             })}
         </div>

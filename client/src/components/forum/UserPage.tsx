@@ -20,7 +20,6 @@ const UserPage = () => {
     useEffect(() => {
         if (data) {
             setPosts(data.getPostsByCreator)
-            console.log(posts)
         }
     }, [data])
 

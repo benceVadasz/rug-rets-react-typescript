@@ -46,7 +46,7 @@ const PostDetails = () => {
             setPost(data.getPost)
             setLiked(data.getPost.likes?.includes(userId as string))
         }
-    }, [data])
+    }, [data, userId])
 
     const history = useHistory()
     const removePost = async () => {
