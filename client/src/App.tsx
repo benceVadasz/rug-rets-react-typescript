@@ -19,7 +19,7 @@ import UserPage from "./components/forum/UserPage";
 import ChatPage from "./components/chat/ChatPage";
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/graphql'
+    uri: 'http://localhost:4000'
 });
 
 const authLink = setContext(async (req, {headers}) => {
