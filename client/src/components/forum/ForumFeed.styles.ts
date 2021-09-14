@@ -6,11 +6,11 @@ export const Feed = styled.div({
     borderRight: '1px solid var(--twitter-background)',
     minWidth: 'fit-content',
     overflowY: 'scroll',
-    gridArea: '1 / 3 / 6 / 8'
+    width: '100%',
+    gridArea: '1 / 3 / 6 / 11',
 })
 
 export const FeedHeader = styled.div({
-    position: "sticky",
     top: 0,
     backgroundColor: 'white',
     zIndex: 100,

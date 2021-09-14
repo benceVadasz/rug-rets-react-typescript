@@ -27,7 +27,9 @@ const Forum = () => {
 
     return (
         <Container>
-            <Sidebar/>
+            <div style={{width: '100%', gridArea: '1 / 1 / 6 / 3', padding: 10}}>
+                <Sidebar/>
+            </div>
             <ForumFeed {...props}/>
             <Searchbar search={setSearchQuery}/>
         </Container>

@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react'
 import * as SS from './Sidebar.styles'
 import {useQuery} from "@apollo/client";
 import {GET_USERNAMES_WITH_LIKE_COUNT} from "../../util/graphql";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import {FeedHeader} from "./ForumFeed.styles";
 
 type PostType = {
     likes: string[],
@@ -24,10 +22,13 @@ const Sidebar = () => {
     useEffect(() => {
         const fetchData = async () => {
             if (data) {
-                groupByUserName(data.getPostsGroupedByUsers).finally(() => {setParsing(false)})
+                groupByUserName(data.getPostsGroupedByUsers).finally(() => {
+                    setParsing(false)
+                })
             }
         }
         fetchData()
+        // eslint-disable-next-line
     }, [data])
 
     const groupByUserName = async (posts: PostType[]) => {
@@ -39,19 +40,16 @@ const Sidebar = () => {
     }
 
     return (
-        parsing? <SS.Container><SS.Loading/></SS.Container> :
-        <SS.Container>
-            <FeedHeader>
-            <SS.SideBarTitle>Trending users</SS.SideBarTitle>
-            </FeedHeader>
-            {Object.keys(likeArray).map((key, index) =>
+        parsing ? <SS.Container><SS.Loading/></SS.Container> :
+            <SS.Container>
+                <SS.SideBarTitle>Trending users</SS.SideBarTitle>
+                {Object.keys(likeArray).map((key, index) =>
                     <SS.LikeCountContainer key={key}>
-                        <SS.LikeCountUsername to={`/user/${key}`}>@{key}</SS.LikeCountUsername>
-                        <SS.LikeCount> {likeArray[key]}</SS.LikeCount>
-                        <FavoriteBorderIcon style={{marginTop: 1}}/>
+                        <SS.LikeCountUsername to={`/user/${key}`}>{key}</SS.LikeCountUsername>
+                        <SS.LikeCount> {likeArray[key]} likes</SS.LikeCount>
                     </SS.LikeCountContainer>
-            )}
-        </SS.Container>
+                )}
+            </SS.Container>
     )
 }
 
