@@ -1,5 +1,40 @@
 import {gql} from "graphql-tag";
 
+// AUTH
+export const LOGIN_MUTATION = gql`
+    mutation signIn($email: String!, $password: String!) {
+        signIn(email: $email, password: $password) {
+            token
+            user {
+                username
+                givenName
+                familyName
+                email
+                _id
+                phone
+                profilePicture
+            }
+        }
+    }
+`
+export const REGISTER_MUTATION = gql`
+    mutation signUp($username: String!, $givenName: String!,
+        $familyName: String!, $email: String!, $password: String!) {
+        signUp(username: $username, givenName: $givenName, familyName: $familyName,
+            email: $email, password: $password) {
+            token
+            user {
+                username
+                givenName
+                familyName
+                email
+                _id
+            }
+        }
+    }
+`
+
+// COLOR
 export const GET_COLORS = gql`
     query getColors{
         getColors{
@@ -25,40 +60,13 @@ export const UPLOAD_COLOR = gql`
     }
 `
 
-export const LOGIN_MUTATION = gql`
-    mutation signIn($email: String!, $password: String!) {
-        signIn(email: $email, password: $password) {
-            token
-            user {
-                username
-                givenName
-                familyName
-                email
-                _id
-                phone
-                profilePicture
-            }
-        }
+export const DELETE_COLOR = gql`
+    mutation deleteColor($id: ID!){
+        deleteColor(id: $id)
     }
 `
 
-export const REGISTER_MUTATION = gql`
-    mutation signUp($username: String!, $givenName: String!,
-        $familyName: String!, $email: String!, $password: String!) {
-        signUp(username: $username, givenName: $givenName, familyName: $familyName,
-            email: $email, password: $password) {
-            token
-            user {
-                username
-                givenName
-                familyName
-                email
-                _id
-            }
-        }
-    }
-`
-
+// DESIGN
 export const GET_DESIGNS = gql`
     query getDesigns{
         getDesigns{
@@ -66,12 +74,6 @@ export const GET_DESIGNS = gql`
             shape
             colors
         }
-    }
-`
-
-export const DELETE_COLOR = gql`
-    mutation deleteColor($id: ID!){
-        deleteColor(id: $id)
     }
 `
 
@@ -88,7 +90,6 @@ export const SAVE_DESIGN = gql`
 `
 
 // FORUM
-
 export const GET_POSTS = gql`
     query getPosts($searchQuery: String){
         getPosts(searchQuery: $searchQuery){
