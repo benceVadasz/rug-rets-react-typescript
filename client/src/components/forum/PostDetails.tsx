@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {Container} from "../../pages/Forum.styles";
-import Sidebar from "./Sidebar";
 import {useParams} from "react-router-dom";
 import {useMutation, useQuery} from "@apollo/client";
 import {DELETE_POST, GET_POST, GET_POSTS, LIKE_POST, UPDATE_POST} from "../../util/graphql";
