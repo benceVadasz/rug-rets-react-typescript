@@ -8,8 +8,11 @@ import {useHistory} from "react-router-dom";
 import {useMutation} from "@apollo/client";
 import {GET_COLORS, UPLOAD_COLOR} from "../util/graphql";
 
+type IColorAdderProps = {
+    paddingNeeded: boolean
+}
 
-const AddNewColor = () => {
+const AddNewColor = ({paddingNeeded}: IColorAdderProps) => {
 
     const [addColor] = useMutation(UPLOAD_COLOR)
 
@@ -84,7 +87,7 @@ const AddNewColor = () => {
     }
 
     return (
-        <ColorAdderWrapper onClick={addNewColor}>
+        <ColorAdderWrapper paddingNeeded={paddingNeeded} onClick={addNewColor}>
             <AddIcon className={classes.icon}/>
         </ColorAdderWrapper>
     );

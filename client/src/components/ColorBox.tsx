@@ -22,6 +22,10 @@ const ColorBox = () => {
 
     let colors = colorSelection === 'custom' ? customColors : COLORS;
 
+    const paddingNeeded = colorSelection === 'custom' && colors.length % 2 === 1
+
+    console.log(paddingNeeded)
+
     useEffect(() => {
         if (data) {
             setColors(data.getColors)
@@ -58,7 +62,7 @@ const ColorBox = () => {
                         </DS.Color>
                     </DS.ColorWrapper>)
                 )}
-            {colorSelection === 'custom' ? <AddNewColor/> : null}
+            {colorSelection === 'custom' ? <AddNewColor paddingNeeded={paddingNeeded}/> : null}
         </DS.ColorSelector>
     );
 }
