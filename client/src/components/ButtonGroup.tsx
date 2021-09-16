@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../state/store";
 import {setAlertState, toggleAlertNeeded} from "../state/actions/alert";
 import {useMutation} from "@apollo/client";
-import {SAVE_DESIGN} from "../util/graphql";
+import {GET_DESIGNS, SAVE_DESIGN} from "../util/graphql";
 
 const ButtonGroup = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const ButtonGroup = () => {
     const initColors = useSelector((state: RootState) => state.shapeColorArray)
     const shape = useSelector((state:RootState) => state.shape)
 
-    const [saveDesign] = useMutation(SAVE_DESIGN)
+    const [saveDesign] = useMutation(SAVE_DESIGN, {refetchQueries: [{query: GET_DESIGNS}]})
 
     const save = () => {
         if (!localStorage.getItem('profile')) {

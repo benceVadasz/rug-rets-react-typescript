@@ -20,18 +20,19 @@ import {useHistory} from "react-router-dom";
 import {Input} from './Post.styles'
 import FileBase from 'react-file-base64';
 import {Button} from './Post.styles'
+import {Spinner} from "./Form.styles";
 
 const PostDetails = () => {
     const [post, setPost] = useState<PostData>(defaultPostData)
     const {id}: { id: "" } = useParams()
     const [postData, setPostData] = useState<UploadedPost>({message: post.message, selectedFile: post.selectedFile});
-    const [updatePost] = useMutation(UPDATE_POST)
+    const [updatePost, {loading: updating}] = useMutation(UPDATE_POST)
 
     console.log(postData)
     const userState = useLocalStorage('profile')
     const userId = userState?.user._id ? userState.user._id : userState?.user.googleId
 
-    const {data, loading: getPostsLoading} = useQuery(GET_POST, {variables: {id}})
+    const {data, loading: getPostLoading} = useQuery(GET_POST, {variables: {id}})
 
     const [deletePost, {loading}] = useMutation(DELETE_POST)
     const [likePost] = useMutation(LIKE_POST)
@@ -49,14 +50,18 @@ const PostDetails = () => {
 
     const history = useHistory()
     const removePost = async () => {
-        await deletePost({variables: {id: post._id}, awaitRefetchQueries: true,
-            refetchQueries: [{query: GET_POSTS, variables: {searchQuery: ''}}]})
+        await deletePost({
+            variables: {id: post._id}, awaitRefetchQueries: true,
+            refetchQueries: [{query: GET_POSTS, variables: {searchQuery: ''}}]
+        })
         history.push('/forum')
     }
 
     const like = async () => {
-        await likePost({variables: {id: post._id}, awaitRefetchQueries: true,
-            refetchQueries: [{query: GET_POSTS, variables: {searchQuery: ''}}]})
+        await likePost({
+            variables: {id: post._id}, awaitRefetchQueries: true,
+            refetchQueries: [{query: GET_POSTS, variables: {searchQuery: ''}}]
+        })
     }
 
     const editPost = async () => {
@@ -76,7 +81,7 @@ const PostDetails = () => {
                     <Menu.Item key="2" icon={<PersonAddIcon/>}>
                         Follow <span style={{fontWeight: 'bolder'}}>{post.username}</span>
                     </Menu.Item>
-                    {getPostsLoading || loading ? null :
+                    {getPostLoading || loading ? null :
                         <Menu.Item key="1" onClick={async () => {
                             setLiked(!liked)
                             await like()
@@ -106,7 +111,7 @@ const PostDetails = () => {
     return (
         <Container>
             <Feed>
-                {loading || getPostsLoading ? <MySkeleton/> :
+                {loading || getPostLoading ? <MySkeleton/> :
                     <PS.Post
                     >
                         <PS.PostHeaderContainer>
@@ -150,8 +155,9 @@ const PostDetails = () => {
                                                   selectedFile: base64
                                               })}
                                     />
+
                                     <Button onClick={submit}>
-                                        Update
+                                        {updating ? <Spinner size={20} style={{color: 'white', marginTop: 3}}/> : 'Update'}
                                     </Button>
                                 </PS.ButtonGroup>
                             </PS.FileUploadContainer>

@@ -12,11 +12,12 @@ import {ThemeContext} from "../../context/store";
 import {useMutation} from "@apollo/client";
 import {GET_POSTS, ME, UPDATE_PROFILE} from "../../util/graphql";
 import FileBase from "react-file-base64";
+import {Spinner} from "../forum/Form.styles";
 
 const ProfilePersonalInfo = () => {
 
     const history = useHistory()
-    const [updateProfile] = useMutation(UPDATE_PROFILE)
+    const [updateProfile, {loading}] = useMutation(UPDATE_PROFILE)
 
     if (!useLocalStorage('profile')) {
         history.push('login')
@@ -118,7 +119,9 @@ const ProfilePersonalInfo = () => {
                                 />
                             </RS.Field>
                         </div>
-                        <RS.SaveButton disabled={noChange} htmlType="submit">Save</RS.SaveButton>
+                        <RS.SaveButton disabled={noChange} htmlType="submit">
+                            {loading? <Spinner size={20} style={{color: 'white', marginTop: 3}}/>: 'Save'}
+                        </RS.SaveButton>
                     </Col>
                 </s.Container>
             </s.Paper>

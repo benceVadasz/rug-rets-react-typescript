@@ -57,8 +57,8 @@ export const PostHeaderContainer = styled.div({
 
 export const InfoContainer = styled.div({
     display: 'flex',
-    width: '28%',
-    justifyContent: "space-around",
+    width: '35%',
+    justifyContent: "flex-start",
     alignItems: 'center'
 });
 
@@ -66,7 +66,7 @@ export const Dropdown = styled(AntDropdown.Button)({
     border: 'none',
     justifySelf: 'flex-end',
     position: "absolute",
-    right: 140
+    right: 165
 })
 
 export const Ellipsis = styled(EllipsisOutlined)({
@@ -136,7 +136,7 @@ export const Button = styled(AntButton)({
     justifySelf: 'flex-end',
     width: 80,
     height: 40,
-    marginLeft: '27%',
+    marginLeft: '42%',
     '&:hover': {
         color: 'white',
         backgroundColor: '#20232A !important'
@@ -149,8 +149,9 @@ export const Button = styled(AntButton)({
 
 export const Link = styled(ALink)({
     color: "black",
-    marginLeft: 15,
+    margin: '0 10px',
     fontFamily: 'IBM Plex Mono, monospace',
+    padding: 0,
     fontWeight: 'bold',
     '&:hover': {
         textDecoration: 'underline',

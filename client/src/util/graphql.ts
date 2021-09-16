@@ -114,66 +114,6 @@ export const GET_POSTS = gql`
     }
 `
 
-export const UPLOAD_POST = gql`
-    mutation uploadPost($message: String!, $selectedFile: String){
-        uploadPost(message: $message, selectedFile: $selectedFile){
-            message
-        }
-    }
-`
-
-
-export const DELETE_POST = gql`
-    mutation deletePost($id: ID!){
-        deletePost(id: $id)
-    }
-`
-
-export const LIKE_POST = gql`
-    mutation likePost($id: ID!) {
-        likePost(id: $id){
-            message
-            likes
-        }
-    }
-`
-
-export const UPDATE_PROFILE = gql`
-    mutation updateProfile($username: String!, $givenName: String!,
-        $familyName: String!, $email: String!, $profilePicture: String, $phone: String) {
-        updateProfile(
-            username: $username
-            email: $email
-            givenName: $givenName
-            familyName: $familyName
-            phone: $phone
-            profilePicture: $profilePicture
-        ) {
-            profilePicture
-            _id
-        }
-    }
-`
-
-export const COMMENT_POST = gql`
-    mutation commentPost($id: ID!, $comment: String!) {
-        commentPost(id: $id, comment: $comment) {
-            comments {
-                username
-            }
-        }
-    }
-`
-
-export const ME = gql`
-    query me{
-        me{
-            username
-            profilePicture
-        }
-    }
-`
-
 export const GET_POST = gql`
     query getPost($id: ID!){
         getPost(id: $id) {
@@ -231,6 +171,20 @@ export const GET_USERNAMES_WITH_LIKE_COUNT = gql`
     }
 `
 
+export const UPLOAD_POST = gql`
+    mutation uploadPost($message: String!, $selectedFile: String){
+        uploadPost(message: $message, selectedFile: $selectedFile){
+            message
+        }
+    }
+`
+
+export const DELETE_POST = gql`
+    mutation deletePost($id: ID!){
+        deletePost(id: $id)
+    }
+`
+
 export const UPDATE_POST = gql`
     mutation updatePost($id: ID!, $message: String!, $selectedFile: String){
         updatePost(id: $id, selectedFile: $selectedFile, message: $message){
@@ -240,6 +194,52 @@ export const UPDATE_POST = gql`
         }
     }
 `
+
+export const LIKE_POST = gql`
+    mutation likePost($id: ID!) {
+        likePost(id: $id){
+            message
+            likes
+        }
+    }
+`
+
+export const COMMENT_POST = gql`
+    mutation commentPost($id: ID!, $comment: String!) {
+        commentPost(id: $id, comment: $comment) {
+            comments {
+                username
+            }
+        }
+    }
+`
+
+export const UPDATE_PROFILE = gql`
+    mutation updateProfile($username: String!, $givenName: String!,
+        $familyName: String!, $email: String!, $profilePicture: String, $phone: String) {
+        updateProfile(
+            username: $username
+            email: $email
+            givenName: $givenName
+            familyName: $familyName
+            phone: $phone
+            profilePicture: $profilePicture
+        ) {
+            profilePicture
+            _id
+        }
+    }
+`
+
+export const ME = gql`
+    query me{
+        me{
+            username
+            profilePicture
+        }
+    }
+`
+
 
 export const MESSAGE_SUBSCRIPTION = gql`
     subscription {
